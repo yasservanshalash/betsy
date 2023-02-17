@@ -41,3 +41,8 @@
 3. Styling library: free to choose
 
 MAKE THE WEBSITE AS BEAUTIFUL AS MUCH AS YOU CAN
+
+### Deadlines
+
+1. Week 1: Done Backend - CRUD
+2. Week 2: Front-end
