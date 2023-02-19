@@ -49,7 +49,8 @@ export const deleteUserController = async (req: Request, res: Response) => {
 export const updateUserController = async (req: Request, res: Response) => {
     try {
         const id = req.params.id;
-        const user = await UserServices.updateUser(id);
+        const newData = req.body;
+        const user = await UserServices.updateUser(id, newData);
         res.status(200).json(user);
     } catch(error) {
         console.log(error);

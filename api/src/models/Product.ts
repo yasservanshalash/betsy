@@ -10,7 +10,7 @@ export type ProductDocument = Document & {
     rating: number;
     description: string;
 }
-const ProductSchema = new Schema({
+export const ProductSchema = new Schema({
     name: {
         type: String,
         required: true,

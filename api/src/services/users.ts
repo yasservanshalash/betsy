@@ -18,8 +18,9 @@ const deleteUser = async (id: string): Promise<UserDocument | null> => {
     return User.findByIdAndDelete(id);
 }
 
-const updateUser = async (id: string): Promise<UserDocument | null> => {
-    return User.findByIdAndUpdate(id)
+const updateUser = async (id: string, newData: Partial<UserDocument>): Promise<UserDocument | null> => {
+    return User.findByIdAndUpdate(id, newData, {new: true});
 }
+
 
 export default {createUser, getUser, getUsers, deleteUser, updateUser}
