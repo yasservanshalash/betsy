@@ -20,7 +20,10 @@ const OrderSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: User
     },
-    products: [{type: ProductSchema}]
+    products: {
+        type: [{type: ProductSchema}],
+        default: []
+    }
 })
 
 export default mongoose.model<OrderDocument>("Orders", OrderSchema)
