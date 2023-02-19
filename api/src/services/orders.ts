@@ -10,7 +10,7 @@ const getOrders = async (): Promise<OrderDocument[] | null> => {
 }
 
 const createOrder = async (order: OrderDocument): Promise<OrderDocument> => {
-    return Order.create(Order);
+    return Order.create(order);
 }
 
 const deleteOrder = async (id: string): Promise<OrderDocument |null> => {

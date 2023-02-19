@@ -26,7 +26,7 @@ export const getOrdersController = async (req: Request, res: Response) => {
 export const createOrderController = async (req: Request, res: Response) => {
     try {
         const newOrder = new Order({
-            "dateOfOrder": req.params.dateOfOrder,
+            "dateOfOrder": req.body.dateOfOrder,
             "userId": req.body.userId,
             "products": req.body.products
         });
