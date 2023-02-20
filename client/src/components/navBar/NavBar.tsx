@@ -1,5 +1,6 @@
 import {
     Box,
+    Container,
     IconButton,
     InputBase,
     Typography,
@@ -14,13 +15,12 @@ import {
   
   const NavBar = () => {
     return (
-      <Box sx={{p: 1}}>
+      <Box sx={{p: 1, width: {xs: "100%", md: "90%",lg: "80%"}, margin: {md: "0 auto"}}}>
         <Box
           sx={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            mb: 2
           }}
         >
           <Box>
@@ -44,6 +44,8 @@ import {
               justifyContent: "space-between",
               flex: "1",
               flexGrow: "1",
+              position: "relative",
+              top: "2px",
               width: 400,
             }}
           >
@@ -103,13 +105,13 @@ import {
             </IconButton>
           </Box>
         </Box>
-        <Box sx={{display: {xs: "none", sm: "none", md: "flex"}, justifyContent: "space-evenly", mb: 2}}>
-        <Typography variant="subtitle2">Computers</Typography>
-        <Typography variant="subtitle2">Audio</Typography>
-        <Typography variant="subtitle2">Visual</Typography>
-        <Typography variant="subtitle2">Consoles</Typography>
-        <Typography variant="subtitle2">Photography</Typography>
-        <Typography variant="subtitle2">Appliances</Typography>
+        <Box sx={{display: {xs: "none", sm: "none", md: "flex"}, justifyContent: "space-between" , p:2}}>
+        <Typography variant="subtitle2" sx={{fontWeight: "light"}}>Computers</Typography>
+        <Typography variant="subtitle2" sx={{fontWeight: "light"}}>Audio</Typography>
+        <Typography variant="subtitle2" sx={{fontWeight: "light"}}>Visual</Typography>
+        <Typography variant="subtitle2" sx={{fontWeight: "light"}}>Consoles</Typography>
+        <Typography variant="subtitle2" sx={{fontWeight: "light"}}>Photography</Typography>
+        <Typography variant="subtitle2" sx={{fontWeight: "light"}}>Appliances</Typography>
 
         </Box>
       </Box>
