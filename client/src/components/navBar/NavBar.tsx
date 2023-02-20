@@ -1,9 +1,7 @@
 import {
     Box,
-    Divider,
     IconButton,
     InputBase,
-    Paper,
     Typography,
   } from "@mui/material";
   import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
