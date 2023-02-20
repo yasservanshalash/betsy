@@ -29,8 +29,8 @@ export const getUserController =  async (req: Request, res: Response) => {
 
 export const getUsersController = async (req: Request, res: Response) => {
     try {
-        const Users = await UserServices.getUsers();
-        res.status(200).json(Users);
+        const users = await UserServices.getUsers();
+        res.status(200).json(users);
     } catch (error) {
 
     }

@@ -5,7 +5,7 @@ const createProduct = async (product: ProductDocument): Promise<ProductDocument>
     return product.save();
 }
 
-const getProducts = async (): Promise<ProductDocument[]> => {
+const getProducts = async (): Promise<ProductDocument[] | null> => {
     return Product.find();
 }
 

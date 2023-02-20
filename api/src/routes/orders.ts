@@ -3,7 +3,7 @@ import Router from 'express'
 
 const router = Router();
 
-router.get("/:id", getOrderController)
+router.get("/order/:id", getOrderController)
 router.get("/", getOrdersController)
 router.get("/:userId", getOrdersByUserIdController)
 router.post("/:userId", createOrderController)

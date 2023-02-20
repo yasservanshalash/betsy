@@ -25,7 +25,7 @@ export const createProductController = async (req: Request, res: Response) => {
 export const getProductsController = async (req: Request, res: Response) => {
     try {
         const products = await ProductServices.getProducts();
-        res.json(products)
+        res.status(200).json(products)
     } catch(error) {
         console.log(error);
     }
