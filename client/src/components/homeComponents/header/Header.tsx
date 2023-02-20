@@ -5,13 +5,19 @@ import "./Header.css"
 const Header = () => {
   return (
     <Box className="header" sx={{width: {sx: "420px", sm: "100%"}}}>
-      <Typography variant="h6" sx={{textAlign: "center", px: 3, py:2, fontWeight: "lighter"}}>
+      <Typography variant="h6" sx={{display: {xs: "block", sm: "block", md: "none"},textAlign: "center", px: 3, py:2, fontWeight: "lighter"}}>
+        Find things you'll love. Support independent sellers. Only on Betsy.
+      </Typography>
+      <Typography variant="h4" sx={{display: {xs: "none", sm: "none", md: "block"},textAlign: "center", px: 3, py:2, fontWeight: "lighter"}}>
         Find things you'll love. Support independent sellers. Only on Betsy.
       </Typography>
       <Box
         sx={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr 1fr",
+          display: {xs: "grid", md: "flex"},
+          gridTemplateColumns: {xs: "1fr 1fr 1fr"},
+          justifyContent: "center",
+          alignItems: "center",
+          gap: {md: "40px"}
         }}
       >
         <HeaderItem title={"Computers"} image={"https://d10mhq06fikmnr.cloudfront.net/catalog/product/thumbnail/20168698f275bf760feec2d0a4b20aeb/image/500x500/110/80/s/h/sharkoon_tg7m_os_1.jpg"}/>

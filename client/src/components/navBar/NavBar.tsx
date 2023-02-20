@@ -20,6 +20,7 @@ import {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+            mb: 2
           }}
         >
           <Box>
@@ -33,6 +34,27 @@ import {
               Betsy
               </Link>
             </Typography>
+          </Box>
+          <Box
+            component="form"
+            sx={{
+              p: "2px 4px",
+              display: {xs: "none", sm: "none", md: "flex"},
+              alignItems: "center",
+              justifyContent: "space-between",
+              flex: "1",
+              flexGrow: "1",
+              width: 400,
+            }}
+          >
+            <InputBase
+              sx={{ ml: 1, flex: 1, flexGrow: 1 }}
+              placeholder="Search for anything..."
+              inputProps={{ "aria-label": "Search for anything..." }}
+            />
+            <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
+              <SearchIcon />
+            </IconButton>
           </Box>
           <Box
             sx={{
@@ -80,6 +102,15 @@ import {
               <SearchIcon />
             </IconButton>
           </Box>
+        </Box>
+        <Box sx={{display: {xs: "none", sm: "none", md: "flex"}, justifyContent: "space-evenly", mb: 2}}>
+        <Typography variant="subtitle2">Computers</Typography>
+        <Typography variant="subtitle2">Audio</Typography>
+        <Typography variant="subtitle2">Visual</Typography>
+        <Typography variant="subtitle2">Consoles</Typography>
+        <Typography variant="subtitle2">Photography</Typography>
+        <Typography variant="subtitle2">Appliances</Typography>
+
         </Box>
       </Box>
     );
