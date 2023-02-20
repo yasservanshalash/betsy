@@ -20,7 +20,7 @@ const OrderSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: User
     },
-    products: [{type: ProductSchema}]
+    products: [{type: ProductSchema}] //    products: [{type: Schema.Types.ObjectId, ref: Product}]
 })
 
 export default mongoose.model<OrderDocument>("Orders", OrderSchema)

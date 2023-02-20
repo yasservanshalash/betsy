@@ -9,6 +9,10 @@ const getOrders = async (): Promise<OrderDocument[] | null> => {
     return Order.find()
 }
 
+const getOrdersByUserId = async(userId: string): Promise<OrderDocument[] | null> => {
+    return Order.find({userId: userId})
+}
+
 const createOrder = async (order: OrderDocument): Promise<OrderDocument> => {
     return Order.create(order);
 }
@@ -21,4 +25,4 @@ const updateOrder  = async (id: string): Promise<OrderDocument |null> => {
     return Order.findByIdAndUpdate(id)
 }
 
-export default { getOrder, getOrders, createOrder, deleteOrder, updateOrder}
+export default { getOrder, getOrders, createOrder, deleteOrder, updateOrder, getOrdersByUserId}

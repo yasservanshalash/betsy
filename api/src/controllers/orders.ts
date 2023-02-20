@@ -23,11 +23,21 @@ export const getOrdersController = async (req: Request, res: Response) => {
     }
 }
 
+export const getOrdersByUserIdController = async( req: Request, res: Response) => {
+    try {
+        const userId = req.params.userId;
+        const orders = await OrderServices.getOrdersByUserId(userId);
+        res.status(200).json(orders);
+    } catch(error) {
+        console.log(error);
+    }
+}
+
 export const createOrderController = async (req: Request, res: Response) => {
     try {
         const newOrder = new Order({
             "dateOfOrder": req.body.dateOfOrder,
-            "userId": req.body.userId,
+            "userId": req.params.userId,
             "products": req.body.products
         });
         const order = await OrderServices.createOrder(newOrder);
