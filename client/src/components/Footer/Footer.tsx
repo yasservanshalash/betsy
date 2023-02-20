@@ -5,12 +5,14 @@ import OffersSubscription from './OffersSubscription';
 import RenewableEnergy from './RenewableEnergy';
 import FooterAccordion from './FooterAccordion';
 import BottomFooter from './BottomFooter';
+import FooterAccordionDesktop from './FooterAccordionDesktop';
 const Footer = () => {
   return (
     <Box>
         <OffersSubscription />
         <RenewableEnergy />
         <FooterAccordion />
+        <FooterAccordionDesktop />
         <BottomFooter />
     </Box>
 

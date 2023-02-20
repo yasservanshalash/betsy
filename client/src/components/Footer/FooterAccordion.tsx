@@ -9,7 +9,7 @@ import YouTube  from '@mui/icons-material/YouTube';
 import { lightBlue } from '@mui/material/colors';
 const FooterAccordion = () => {
   return (
-    <Box sx={{background: "#2F456C", border: "0px", display: "flex", flexDirection: "column", gap: "5px"}}>
+    <Box sx={{background: "#2F456C", border: "0px", display:{xs: "flex", md: "none"}, flexDirection: "column", gap: "5px"}}>
     <Accordion sx={{background: "transparent", border:"0px", boxShadow: "0px 0px 0px", color: "white", borderRadius: "10px",px:1}}>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon sx={{color: "white"}}/>}
