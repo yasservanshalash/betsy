@@ -1,0 +1,5 @@
+popular-item-image:hover::after {
+    font-family: 'Material Icons';
+    content: "link";
+    -webkit-font-feature-settings: 'liga';
+  }
