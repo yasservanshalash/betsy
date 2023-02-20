@@ -17,7 +17,7 @@ const Header = () => {
           gridTemplateColumns: {xs: "1fr 1fr 1fr"},
           justifyContent: "center",
           alignItems: "center",
-          gap: {md: "40px"}
+          gap: {md: "30px"}
         }}
       >
         <HeaderItem title={"Computers"} image={"https://d10mhq06fikmnr.cloudfront.net/catalog/product/thumbnail/20168698f275bf760feec2d0a4b20aeb/image/500x500/110/80/s/h/sharkoon_tg7m_os_1.jpg"}/>
