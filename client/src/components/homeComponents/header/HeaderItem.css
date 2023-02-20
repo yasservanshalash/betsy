@@ -7,7 +7,7 @@
 }
 .header_item_img:hover{
     transform: scale(1.05);
-    -webkit-box-shadow: -2px 4px 67px -10px rgba(0,0,0,0.47);
-    -moz-box-shadow: -2px 4px 67px -10px rgba(0,0,0,0.47);
-    box-shadow: -2px 4px 67px -10px rgba(0,0,0,0.47);
+    -webkit-box-shadow: -2px 4px 67px -10px rgba(0,0,0,0.2);
+    -moz-box-shadow: -2px 4px 67px -10px rgba(0,0,0,0.2);
+    box-shadow: -2px 4px 67px -10px rgba(0,0,0,0.2);
 }

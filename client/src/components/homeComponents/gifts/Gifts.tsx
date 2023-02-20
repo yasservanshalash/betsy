@@ -6,7 +6,7 @@ const Gifts = () => {
     return (
         <Box sx={{my: 5, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
         <Typography sx={{textAlign: "center", fontWeight: "bold", mb: 3}}>Gifts by categories</Typography>
-        <Box sx={{display: "grid", gridTemplateColumns: {sx: "1fr", sm: "1fr 1fr"}, justifyContent: "center", alignItems: "center", margin: "0 auto", p:1, gap: "10px"}}>
+        <Box sx={{display: {xs: "grid", md: "flex"}, gridTemplateColumns: {sx: "1fr", sm: "1fr 1fr"}, justifyContent: "center", alignItems: "center", margin: "0 auto", p:1, gap: "10px"}}>
             <GiftItem categoryImage={"https://hips.hearstapps.com/hmg-prod/images/most-popular-video-games-of-2022-1642612227.png"} categoryTitle={"For Gamers"}/>
             <GiftItem categoryImage={"https://media.istockphoto.com/id/1196974664/nl/foto/set-van-huishoudelijke-keuken-apparaten-in-de-kamer-op-de-achtergrond-van-de-muur.jpg?s=612x612&w=0&k=20&c=T74rNC_UQh6CWGhYYtwOWJz0bgkbJIO6gTNvgjEcSWI="} categoryTitle={"Stay at home parent?"} />
             <GiftItem categoryImage={"https://ourproperty.co.uk/content/uploads/2007/04/Home-entertainment-system-.jpg"} categoryTitle={"Netflix and chill"} />

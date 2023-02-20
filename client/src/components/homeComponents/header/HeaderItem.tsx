@@ -4,13 +4,13 @@ import "./HeaderItem.css"
 
 const HeaderItems = ({image, title}: {image: string, title:string}) => {
   return (
-    <Box sx={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", mt: 2, p:1, borderBottom: "1px solid transparent"}} className="header_item">
+    <Box sx={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", mt: 2, p:1, borderBottom: "1px solid transparent", gap: 2}} className="header_item">
         {/* <img src={image} style={{height:"100px", width: "100px", borderRadius:"50%", backgroundColor: "black", marginBottom: "10px"}} className="header_item_img" alt={title}/> */}
         <Box
         component="img"
         sx={{
-          height: { xs: "75px", sm: "100px" },
-          width: { xs: "75px", sm: "100px" },
+          height: { xs: "75px", sm: "100px", md:"120px" },
+          width: { xs: "75px", sm: "100px",md:"120px" },
           maxHeight: { xs: 233, md: 167 },
           maxWidth: { xs: 350, md: 250 },
           borderRadius: "50%",

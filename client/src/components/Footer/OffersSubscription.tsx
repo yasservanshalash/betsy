@@ -15,7 +15,9 @@ const OffersSubscription = () => {
             background: "white",
             borderRadius: "20px",
             my: 2,
-            border: "1px solid black"
+            mt: {md: "3"},
+            border: "1px solid black",
+            width: {xs: "inherit", md: "400px"}
           }}
         >
           <InputBase
