@@ -1,1 +1,2 @@
 //  product slice here
+export {}

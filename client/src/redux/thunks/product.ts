@@ -1,1 +1,2 @@
 // product thunk here
+export {}
