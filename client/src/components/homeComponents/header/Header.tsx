@@ -4,7 +4,7 @@ import HeaderItem from "./HeaderItem";
 import "./Header.css"
 const Header = () => {
   return (
-    <Box className="header" sx={{width: {sx: "420px", sm: "100%"}}}>
+    <Box className="header" sx={{width: {sx: "420px", sm: "100%"}, background: {xs: "linear-gradient(180deg, rgba(221,235,226,1) 0%, rgba(221,235,226,1) 80%, rgba(221,235,226,0) 80%, rgba(221,235,226,0) 100%)", md: "linear-gradient(180deg, rgba(221,235,226,1) 0%, rgba(221,235,226,1) 60%, rgba(221,235,226,0) 60%, rgba(221,235,226,0) 100%)"}}}>
       <Typography variant="h6" sx={{display: {xs: "block", sm: "block", md: "none"},textAlign: "center", px: 3, py:2, fontWeight: "lighter"}}>
         Find things you'll love. Support independent sellers. Only on Betsy.
       </Typography>

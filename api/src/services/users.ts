@@ -22,5 +22,8 @@ const updateUser = async (id: string, newData: Partial<UserDocument>): Promise<U
     return User.findByIdAndUpdate(id, newData, {new: true});
 }
 
+const findUserByEmail = async (email: string): Promise<UserDocument | null> => {
+    return User.findOne({email: email});
+}
 
-export default {createUser, getUser, getUsers, deleteUser, updateUser}
+export default {createUser, getUser, getUsers, deleteUser, updateUser, findUserByEmail}

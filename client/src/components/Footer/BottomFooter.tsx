@@ -5,7 +5,7 @@ const BottomFooter = () => {
     const date = new Date().getFullYear();
     const footerMessage = `© ${date} Betsy, Inc.`
   return (
-    <Box sx={{p: 3,background: "#232347"}}>
+    <Box sx={{p: 3,background: "#232347", display: {xs: "block", md: "none"}}}>
         <Box sx={{display: "flex", justifyContent: "space-evenly", color: "white", p: 2}}>
         <Typography sx={{fontSize:"130%"}}>🇪🇺</Typography>
         <Divider sx={{ height: 20, m: 0.5 , background: "white"}} orientation="vertical" />

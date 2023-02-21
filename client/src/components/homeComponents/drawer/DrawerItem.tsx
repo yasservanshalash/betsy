@@ -125,8 +125,8 @@ const DrawerItem = () => {
 
   return (
     <div>
-      <IconButton>
-      <MenuIcon onClick={toggleDrawer("bottom", true)}>{"bottom"}</MenuIcon>
+      <IconButton onClick={toggleDrawer("bottom", true)}>
+      <MenuIcon>{"bottom"}</MenuIcon>
 
       </IconButton>
         <Drawer

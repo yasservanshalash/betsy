@@ -6,6 +6,7 @@ import RenewableEnergy from './RenewableEnergy';
 import FooterAccordion from './FooterAccordion';
 import BottomFooter from './BottomFooter';
 import FooterAccordionDesktop from './FooterAccordionDesktop';
+import BottomFooterDesktop from './BottomFooterDesktop';
 const Footer = () => {
   return (
     <Box>
@@ -14,6 +15,7 @@ const Footer = () => {
         <FooterAccordion />
         <FooterAccordionDesktop />
         <BottomFooter />
+        <BottomFooterDesktop />
     </Box>
 
   )

@@ -1,7 +1,13 @@
 import { Request, Response } from "express";
+import jwt, { Secret } from 'jsonwebtoken';
+import dotenv from "dotenv";
 
 import UserServices from '../services/users';
 import User from "../models/User";
+
+dotenv.config();
+
+export const JWT_SECRET = process.env.JWT_SECRET as string;
 
 export const createUserController = async (req: Request, res: Response) => {
     try {
@@ -52,6 +58,21 @@ export const updateUserController = async (req: Request, res: Response) => {
         const newData = req.body;
         const user = await UserServices.updateUser(id, newData);
         res.status(200).json(user);
+    } catch(error) {
+        console.log(error);
+    }
+}
+
+export const loginWithPassword = async (req: Request, res: Response) => {
+    try {
+        const user = await UserServices.findUserByEmail(req.body.email)
+        if(!user) {
+            res.json({message: `coudn't find user with email ${req.body.email}`})
+            return;
+        }
+        const token = jwt.sign(
+            {email: user.email, _id: user._id}, JWT_SECRET, {expiresIn: "1hr"})
+            res.json({user, token})
     } catch(error) {
         console.log(error);
     }

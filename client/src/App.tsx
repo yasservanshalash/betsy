@@ -7,6 +7,8 @@ import { Route, Routes } from 'react-router-dom';
 import { Favorite } from '@mui/icons-material';
 import Favorites from './pages/Favorites';
 import Cart from './pages/Cart';
+import SignIn from './components/Forms/signIn/SignIn';
+import SignUp from './components/Forms/signUp/SignUp';
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/favorites" element={<Favorites />} />
       <Route path="/cart" element={<Cart />} />
+      <Route path="/signin" element={<SignIn />} />
+      <Route path="/signup" element={<SignUp />} />
       </Routes>
     </Box>
   );

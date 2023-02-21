@@ -14,6 +14,7 @@ const HeaderItems = ({image, title}: {image: string, title:string}) => {
           maxHeight: { xs: 233, md: 167 },
           maxWidth: { xs: 350, md: 250 },
           borderRadius: "50%",
+          border: "0.5px solid gray"
         }}
         alt={title}
         src={image}

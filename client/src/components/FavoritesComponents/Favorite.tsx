@@ -6,7 +6,7 @@ import FavoriteItem from './FavoriteItem';
 
 const Favorites = () => {
   return (
-    <Box>
+    <Box sx={{width: {xs: "100%", sm: "100%", md: "80%"}, margin: "0 auto"}}>
         <Box sx={{display: "flex", justifyContent: "space-between", p: 1}}>
             <Typography variant='h4'>Favorite Items</Typography>
             <Button sx={{borderRadius: "20px",p :1, width: "100px", border: "2px solid black", color:"black"}}>Sign in</Button>

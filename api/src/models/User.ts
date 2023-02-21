@@ -7,9 +7,7 @@ export type UserDocument = Document & {
     name: string;
     email: string,
     password: string;
-    wishlist: [],
-    cart: [],
-    orders: []
+    isAdmin: boolean;
 }
 
 const UserSchema = new Schema({
@@ -26,18 +24,10 @@ const UserSchema = new Schema({
         type: String,
         required: [true, "password is required"]
     },
-    wishList: {
-        type: [{}],
-        default: []
-    },
-    cart: {
-        type: [{}],
-        default: []
-    },
-    orders: {
-        type: [{}],
-        default: []
-    },
+    isAdmin: {
+        type: Boolean,
+        default: false,
+    }
 })
 
 export default mongoose.model<UserDocument>("Users", UserSchema)
