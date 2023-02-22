@@ -50,6 +50,7 @@ const SignIn = () => {
             localStorage.setItem('token', token);
             localStorage.setItem('user', user)
             dispatch(userActions.logIn(JSON.parse(user)))
+            console.log("here")
             navigate("/")
         })
     }}>

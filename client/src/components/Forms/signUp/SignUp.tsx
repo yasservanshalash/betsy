@@ -5,9 +5,11 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
 import "./SignUp.css"
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 const SignUp = () => {
     const [readOnly, setReadOnly] = useState(true);
-
+    const navigate = useNavigate();
     type InitialValues = {
         email: string;
         password: string | RegExp;
@@ -31,7 +33,7 @@ const SignUp = () => {
                 /^(?=.*[A-Za-z])(?=.*d)[A-Za-zd]{8,}$/,
                 "Password must have at least one letter one number and 6 characters at least in total."
               ),
-            firstName: Yup.string().required("Name is required to sign up").matches(/\w+/)
+            name: Yup.string().required("Name is required to sign up").matches(/\w+/, "Not a valid name")
         });
         
   return (
@@ -40,6 +42,11 @@ const SignUp = () => {
     validationSchema={FormSchema}
     onSubmit={(values: InitialValues) => { 
         console.log(values);
+        axios.post('http://localhost:8000/users/', values).then((response) => {
+            const user = response.data.user
+            console.log(user);
+            navigate("/signin")
+        })
     }}>
     {({errors, touched, handleChange}) => {
         return (
@@ -58,7 +65,7 @@ const SignUp = () => {
         </Box>
         <Box sx={{display: "flex", flexDirection: "column"}}>
             <Typography variant='subtitle2'>First Name</Typography>
-            <input type="text" name="firstName" id="firstName" placeholder="Enter your first name..." className="input" onChange={handleChange}/>
+            <input type="text" name="name" id="name" placeholder="Enter your first name..." className="input" onChange={handleChange}/>
         </Box>
         <Box sx={{display: "flex", flexDirection: "column"}}>
         <Typography variant='subtitle2'>Password</Typography>

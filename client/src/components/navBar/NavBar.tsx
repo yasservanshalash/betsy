@@ -3,22 +3,51 @@ import {
   Container,
   IconButton,
   InputBase,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { ShoppingBag } from "@mui/icons-material";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+// MENU
 
+import Avatar from '@mui/material/Avatar';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Divider from '@mui/material/Divider';
+import PersonAdd from '@mui/icons-material/PersonAdd';
+import Settings from '@mui/icons-material/Settings';
+import Logout from '@mui/icons-material/Logout';
+
+// MENU
 import React from "react";
 import DrawerItem from "../homeComponents/drawer/DrawerItem";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+import { userActions } from "../../redux/slices/userSlice";
 
 const NavBar = () => {
   const user = useSelector((state: RootState) => state.user.user);
 
+  // MENU
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  // MENU
+
+  // Log Out 
+  const dispatch = useDispatch();
+
+  // Log Out
   return (
     <Box
       sx={{
@@ -99,7 +128,7 @@ const NavBar = () => {
           <Typography
             variant="subtitle2"
             style={
-              user.email === "" ? { display: "block" } : { display: "none" }
+              user.email === "" ? { display: "inherit" } : { display: "none" }
             }
             sx={{
               textDecoration: "none",
@@ -112,15 +141,95 @@ const NavBar = () => {
             Sign in
           </Typography>
           <Typography sx={{ fontSize: "120%" }}>🇪🇺</Typography>
+
+          <Tooltip title="Favorites">
           <IconButton component={Link} to="/favorites">
             <FavoriteBorderIcon sx={{ color: "black" }} />
           </IconButton>
+          </Tooltip>
+
+          <Tooltip title="Cart">
           <IconButton component={Link} to="/cart">
             <ShoppingBag sx={{ color: "black" }} />
           </IconButton>
-          <IconButton component={Link} to="/profile" style={user.email === "" ? { display: "none" } : { display: "inherit" }}>
+          </Tooltip>
+
+          <Tooltip title="Account settings" style={user.email === "" ? { display: "none" } : { display: "inherit" }}>
+          <IconButton
+            onClick={handleClick}
+            size="small"
+            aria-controls={open ? 'account-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+          >
             <AccountCircleIcon sx={{ color: "black" }}/>
           </IconButton>
+        </Tooltip>
+          <Menu
+        anchorEl={anchorEl}
+        id="account-menu"
+        open={open}
+        onClose={handleClose}
+        onClick={handleClose}
+        PaperProps={{
+          elevation: 0,
+          sx: {
+            overflow: 'visible',
+            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+            mt: 1.5,
+            '& .MuiAvatar-root': {
+              width: 32,
+              height: 32,
+              ml: -0.5,
+              mr: 1,
+            },
+            '&:before': {
+              content: '""',
+              display: 'block',
+              position: 'absolute',
+              top: 0,
+              right: 14,
+              width: 10,
+              height: 10,
+              bgcolor: 'background.paper',
+              transform: 'translateY(-50%) rotate(45deg)',
+              zIndex: 0,
+            },
+          },
+        }}
+        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+      >
+        <MenuItem onClick={handleClose} component={Link} to="/profile">
+          <Avatar /> Profile
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Avatar /> My account
+        </MenuItem>
+        <Divider />
+        <MenuItem onClick={handleClose}>
+          <ListItemIcon>
+            <PersonAdd fontSize="small" />
+          </ListItemIcon>
+          Add another account
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <ListItemIcon>
+            <Settings fontSize="small" />
+          </ListItemIcon>
+          Settings
+        </MenuItem>
+        <MenuItem onClick={() => {
+          handleClose();
+          dispatch(userActions.logOut())
+        }}>
+          <ListItemIcon>
+            <Logout fontSize="small" />
+          </ListItemIcon>
+          Logout
+        </MenuItem>
+      </Menu>
+          
         </Box>
       </Box>
       <Box

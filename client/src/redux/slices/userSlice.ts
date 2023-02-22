@@ -8,7 +8,7 @@ type initialStateType = {
 const initialState = {
     user: {
         name: "",
-        isAdmin: "",
+        isAdmin: false,
         email: "",
         _id: ""
     },
@@ -26,9 +26,10 @@ const userSlice = createSlice({
         },
         logOut: (state) => {
             state.user.email = ""
-            state.user.isAdmin = ""
+            state.user.isAdmin = false
             state.user.name = ""
             state.user._id = ""
+            localStorage.clear()
         }
     }
 })
