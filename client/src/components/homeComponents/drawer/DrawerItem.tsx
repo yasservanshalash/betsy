@@ -12,6 +12,7 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from "@mui/icons-material/Menu";
 import { IconButton, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
@@ -91,7 +92,14 @@ const DrawerItem = () => {
           <ListItem>
           <ListItemButton>
             <Typography variant="subtitle1">
-              Photography
+              Computers
+            </Typography>
+          </ListItemButton>
+        </ListItem>
+        <ListItem component={Link} to="/products">
+          <ListItemButton>
+            <Typography variant="subtitle1" sx={{textDecoration: "none", color: "black"}}>
+              All
             </Typography>
           </ListItemButton>
         </ListItem>

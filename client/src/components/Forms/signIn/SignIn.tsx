@@ -7,8 +7,13 @@ import * as Yup from "yup";
 import "./SignIn.css"
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { userActions } from '../../../redux/slices/userSlice';
 const SignIn = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+
     type InitialValues = {
         email: string;
         password: string | RegExp;
@@ -44,6 +49,7 @@ const SignIn = () => {
             const user = JSON.stringify(response.data.user);
             localStorage.setItem('token', token);
             localStorage.setItem('user', user)
+            dispatch(userActions.logIn(JSON.parse(user)))
             navigate("/")
         })
     }}>
