@@ -31,14 +31,16 @@ export const createUserController = async (req: Request, res: Response) => {
                 "userId": user._id, "products": []
             })
 
+            const favorites = await FavoritesServices.createFavorites(newFavorites)
+
+
             const newCart = new Cart({
                 "userId": user._id, "products": []
             })
 
-            
-
-            const favorites = await FavoritesServices.createFavorites(newFavorites)
             const cart = await CartServices.createCart(newCart)
+
+
 
             res.status(201).json({
                 "user": user,
