@@ -1,3 +1,4 @@
+import { createFavoritesController } from './favorites';
 import { Request, Response } from "express";
 import jwt, { Secret } from 'jsonwebtoken';
 import dotenv from "dotenv";
@@ -5,21 +6,38 @@ import dotenv from "dotenv";
 import UserServices from '../services/users';
 import User from "../models/User";
 
+import FavoritesServices from "../services/favorites"
+import Favorites from '../models/Favorites';
 dotenv.config();
 
 export const JWT_SECRET = process.env.JWT_SECRET as string;
 
-export const createUserController = async (req: Request, res: Response) => {
+export const createUserController = async (req: Request, res: Response) => {    
     try {
-        const newUser = new User({
-            "name": req.body.name,
-            "email": req.body.email,
-            "password": req.body.password,
-        })
-        const user = await UserServices.createUser(newUser);
-        res.status(201).json(user)
+        const user = await UserServices.findUserByEmail(req.body.email);
+        if(!user) {
+            const newUser = new User({
+                "name": req.body.name,
+                "email": req.body.email,
+                "password": req.body.password,
+            })
+            const user = await UserServices.createUser(newUser);
+
+            const newFavorites = new Favorites({
+                "userId": user._id, products: []
+            })
+            const favorites = await FavoritesServices.createFavorites(newFavorites)
+            res.status(201).json({
+                "user": user,
+                "favorites": favorites
+            })
+        } else {
+            res.status(400).json({message: "User already exists"})
+        }
+
     } catch (error) {
         console.log(error);
+        res.json({message: "User already exists"})
     }
 }
 
