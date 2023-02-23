@@ -3,14 +3,16 @@ import React from 'react'
 import LockIcon from '@mui/icons-material/Lock';
 import ShareIcon from '@mui/icons-material/Share';
 import FavoriteItem from './FavoriteItem';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { Product } from '../../types/types';
+import { favoriteActions } from '../../redux/slices/favorite';
 
 const Favorites = () => {
   const favorites = useSelector((state: RootState) => state.favorites.favorites)
   console.log(favorites, "from favorites page")
   const user = useSelector((state: RootState) => state.user.user);
+  const dispatch = useDispatch();
   return (
     <Box sx={{width: {xs: "100%", sm: "100%", md: "80%"}, margin: "0 auto"}}>
         <Box sx={{display: "flex", justifyContent: "space-between", p: 1}}>

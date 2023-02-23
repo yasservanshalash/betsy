@@ -53,12 +53,13 @@ const favoriteSlice = createSlice({
           if (result !== -1) {
             state.favorites.products.splice(result, 1);
           }
-    }, addFromLocalStorage: (state, action) => {
+    }, addFromLocalStorage: (state) => {
         const localString = localStorage.getItem('favorites') as string;
         const localArray: Product[] = JSON.parse(localString);
         for( let item of localArray) {
           state.favorites.products.push(item)
         }
+        console.log(state.favorites.products)
     },
     clearFavorites: (state) => {
         state.favorites.products = [];
