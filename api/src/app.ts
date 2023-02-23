@@ -5,6 +5,7 @@ import productRouter from './routes/products';
 import userRouter from './routes/users';
 import orderRouter from './routes/orders';
 import favoritesRouter from './routes/favorites'
+import cartRouter from './routes/carts'
 import passport from "passport";
 import { jwtStrategy } from "./config/passport";
 import cors from 'cors'
@@ -21,6 +22,7 @@ app.use('/products', productRouter)
 app.use('/users', userRouter)
 app.use('/orders', orderRouter)
 app.use('/favorites', favoritesRouter)
+app.use('/cart', cartRouter)
 
 export default app; 
 

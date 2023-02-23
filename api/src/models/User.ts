@@ -8,6 +8,7 @@ export type UserDocument = Document & {
     email: string,
     password: string;
     isAdmin: boolean;
+    avatar: string;
 }
 
 const UserSchema = new Schema({
