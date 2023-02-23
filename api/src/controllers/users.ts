@@ -8,6 +8,10 @@ import User from "../models/User";
 
 import FavoritesServices from "../services/favorites"
 import Favorites from '../models/Favorites';
+
+import CartServices from "../services/carts"
+import Cart from "../models/Cart";
+
 dotenv.config();
 
 export const JWT_SECRET = process.env.JWT_SECRET as string;
@@ -24,12 +28,22 @@ export const createUserController = async (req: Request, res: Response) => {
             const user = await UserServices.createUser(newUser);
 
             const newFavorites = new Favorites({
-                "userId": user._id, products: []
+                "userId": user._id, "products": []
             })
+
+            const newCart = new Cart({
+                "userId": user._id, "products": []
+            })
+
+            
+
             const favorites = await FavoritesServices.createFavorites(newFavorites)
+            const cart = await CartServices.createCart(newCart)
+
             res.status(201).json({
                 "user": user,
-                "favorites": favorites
+                "favorites": favorites,
+                "cart": cart
             })
         } else {
             res.status(400).json({message: "User already exists"})
