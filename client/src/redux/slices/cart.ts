@@ -27,12 +27,7 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     setcart: (state, action) => {
-      const currentState = state.cart;
-      state.cart = action.payload;
-      state.cart.products = {
-        ...currentState,
-        ...state.cart.products,
-      };
+        state.cart = action.payload[0]
     },
     addTocart: (state, action) => {
       if(state.cart.products.find((product) => product._id === action.payload._id)) {
@@ -53,7 +48,19 @@ const cartSlice = createSlice({
           if (result !== -1) {
             state.cart.products.splice(result, 1);
           }
-    },
+    },addFromLocalStorage: (state) => {
+      const localString = localStorage.getItem('cart') as string;
+      const localArray: Product[] = JSON.parse(localString);
+      for( let item of localArray) {
+        if(state.cart.products.find((product) => product._id === item._id)) {
+          return;
+        } else {
+          state.cart.products.push(item)
+
+        }
+      }
+      console.log(state.cart.products)
+  },
     clearCart: (state) => {
         state.cart.products = [];
     }

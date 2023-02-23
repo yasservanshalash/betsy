@@ -12,6 +12,8 @@ import { userActions } from '../../../redux/slices/user';
 import { favoriteActions } from '../../../redux/slices/favorite';
 import { fetchFavorites } from '../../../redux/thunks/favorite';
 import { AppDispatch, RootState } from '../../../redux/store';
+import { fetchCart } from '../../../redux/thunks/cart';
+import { cartActions } from '../../../redux/slices/cart';
 const SignIn = () => {
     const favorites = useSelector((state: RootState) => state.favorites.favorites)
     const navigate = useNavigate();
@@ -55,7 +57,10 @@ const SignIn = () => {
             localStorage.setItem('user', user)
             dispatch(userActions.logIn(JSON.parse(user)))
             thunkDispatch(fetchFavorites("http://localhost:8000/favorites/" + response.data.user._id));
+            thunkDispatch(fetchCart("http://localhost:8000/cart/" + response.data.user._id));
             console.log(favorites)
+            dispatch(favoriteActions.clearFavorites());
+            dispatch(cartActions.clearCart());
             navigate("/")
         })
     }}>

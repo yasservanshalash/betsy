@@ -10,7 +10,7 @@ const CartComponent = () => {
   return (
     <Box sx={{width: {xs: "100%", sm: "100%", md: "80%"}, margin: "0 auto"}}>
         <Typography variant='h5' sx={{textAlign: "center", m: 5, display: cart.products.length === 0 ? "block" : "none"}}>Your basket is empty.</Typography>
-        <Box>
+        <Box sx={{display: "grid", gridTemplateColumns: {xs: "1fr 1fr", md: "1fr 1fr 1fr 1fr"}, justifyItems: "center", alignItems: "center", justifyContent: "space-around", alignContent: "center", gridAutoFlow: "row", my: 5}}>
           {
             cart.products.map((item: Product) => {
               return (

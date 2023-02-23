@@ -8,6 +8,7 @@ import PreFooter from '../components/homeComponents/prefooter/PreFooter'
 import Footer from '../components/Footer/Footer'
 import { useDispatch } from 'react-redux'
 import { favoriteActions } from '../redux/slices/favorite'
+import { cartActions } from '../redux/slices/cart'
 const Home = () => {
   const dispatch = useDispatch();
   
@@ -15,7 +16,8 @@ const Home = () => {
     <Box sx={{width: "100%"}}>
     <NavBar />
     <Header />
-    <Button onClick={() => dispatch(favoriteActions.addFromLocalStorage())}>Link localstorage</Button>
+    <Button onClick={() => dispatch(favoriteActions.addFromLocalStorage())}>Link favorite localstorage</Button>
+    <Button onClick={() => dispatch(cartActions.addFromLocalStorage())}>Link cart localstorage</Button>
     <Popular />
     <Gifts />
     <PreFooter />

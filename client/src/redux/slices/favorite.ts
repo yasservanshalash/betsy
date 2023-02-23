@@ -57,7 +57,12 @@ const favoriteSlice = createSlice({
         const localString = localStorage.getItem('favorites') as string;
         const localArray: Product[] = JSON.parse(localString);
         for( let item of localArray) {
-          state.favorites.products.push(item)
+          if(state.favorites.products.find((product) => product._id === item._id)) {
+            return;
+          } else {
+            state.favorites.products.push(item)
+
+          }
         }
         console.log(state.favorites.products)
     },

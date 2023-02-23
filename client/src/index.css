@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Gideon+Roman&display=swap');
+@import url('https://fonts.cdnfonts.com/css/pliska');
+
 body {
   padding: 0px;
   margin: 0px;
@@ -9,6 +11,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Gideon Roman', cursive;
+  font-family: 'Pliska', sans-serif;
+
 }
 
 code {
