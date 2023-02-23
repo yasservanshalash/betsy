@@ -1,0 +1,65 @@
+import { Product } from "./../../types/types";
+import { createSlice } from "@reduxjs/toolkit";
+import { Favorites } from "../../types/types";
+
+const localFav =
+  localStorage.getItem("favorites") !== null
+    ? JSON.parse(localStorage.getItem("favorites")!)
+    : [];
+
+type initialStateType = {
+  favorites: {
+    _id: string;
+    userId: string;
+    products: Product[];
+  };
+};
+const initialState: initialStateType = {
+  favorites: {
+    _id: "",
+    userId: "",
+    products: [],
+  },
+};
+
+const favoriteSlice = createSlice({
+  name: "favorite",
+  initialState,
+  reducers: {
+    setFavorites: (state, action) => {
+      const currentState = state.favorites;
+      state.favorites = action.payload;
+      state.favorites.products = {
+        ...currentState,
+        ...state.favorites.products,
+      };
+    },
+    addToFavorites: (state, action) => {
+      if(state.favorites.products.find((product) => product._id === action.payload._id)) {
+        return;
+      } else {
+        state.favorites?.products?.push(action.payload);
+        localStorage.setItem(
+          "favorites",
+          JSON.stringify(state.favorites.products.map((item: Product) => item))
+        );
+      }
+    },
+    removeFromFavorites: (state, action) => {
+        // state.favorites.products = state.favorites.products.filter((item: Product) => item._id !== action.payload.id)
+        const result = state.favorites.products.findIndex(
+            (product) => product.name === action.payload.name
+          );
+          if (result !== -1) {
+            state.favorites.products.splice(result, 1);
+          }
+    },
+    clearFavorites: (state) => {
+        state.favorites.products = [];
+    }
+  },
+});
+
+export const favoriteActions = favoriteSlice.actions;
+const favoriteReducer = favoriteSlice.reducer;
+export default favoriteReducer;

@@ -18,8 +18,10 @@ import Profile from './pages/Profile';
 function App() {
   const products = useSelector((state: RootState) => state.products.Products)
   const user = useSelector((state: RootState) => state.user.user)
+  const favorites = useSelector((state: RootState) => state.favorites.favorites)
   console.log(products)
   console.log(user)
+  console.log(favorites, "favorites")
 
   const dispatch = useDispatch<AppDispatch>();
 

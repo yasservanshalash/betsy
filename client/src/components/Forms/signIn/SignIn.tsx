@@ -8,11 +8,14 @@ import "./SignIn.css"
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { userActions } from '../../../redux/slices/userSlice';
+import { userActions } from '../../../redux/slices/user';
+import { favoriteActions } from '../../../redux/slices/favorite';
+import { fetchFavorites } from '../../../redux/thunks/favorite';
+import { AppDispatch } from '../../../redux/store';
 const SignIn = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
+    const thunkDispatch = useDispatch<AppDispatch>();
 
     type InitialValues = {
         email: string;
@@ -50,6 +53,7 @@ const SignIn = () => {
             localStorage.setItem('token', token);
             localStorage.setItem('user', user)
             dispatch(userActions.logIn(JSON.parse(user)))
+            thunkDispatch(fetchFavorites("http://localhost:8000/favorites/" + response.data.user._id));
             console.log("here")
             navigate("/")
         })
@@ -57,7 +61,7 @@ const SignIn = () => {
     {({errors, touched, handleChange}) => {
         return (
             <Form>
-                    <Box sx={{width: "324px", height: "730px", display: "flex", flexDirection: "column", gap: "10px", p: 4, position: "relative"}}>
+                    <Box sx={{width: "324px", height: "730px", display: "flex", flexDirection: "column", gap: "10px", p: 4, position: "absolute", background: "#00000005"}}>
                     <IconButton sx={{position: "absolute", top: "10px", right: "0px"}}>
                     <CloseIcon />
 

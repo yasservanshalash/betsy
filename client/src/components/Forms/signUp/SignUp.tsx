@@ -8,6 +8,7 @@ import "./SignUp.css"
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 const SignUp = () => {
+    const [error, setError] = useState("");
     const [readOnly, setReadOnly] = useState(true);
     const navigate = useNavigate();
     type InitialValues = {
@@ -41,12 +42,20 @@ const SignUp = () => {
     initialValues={initialValues}
     validationSchema={FormSchema}
     onSubmit={(values: InitialValues) => { 
-        console.log(values);
         axios.post('http://localhost:8000/users/', values).then((response) => {
-            const user = response.data.user
-            console.log(user);
-            navigate("/signin")
-        })
+            console.log(response.data)
+            if(response.data.user) {
+                const user = response.data.user
+                console.log(user);
+                navigate("/signin")
+            } else {
+                console.log(response.data.message)
+            }
+        }).catch(function (error) {
+            if (error.response) {
+              setError(error.response.data.message)
+            }
+          });
     }}>
     {({errors, touched, handleChange}) => {
         return (
@@ -77,34 +86,35 @@ const SignUp = () => {
         </Box>
         <Box sx={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: 3}}>
             <Button type="submit" sx={{p: 2.7, width: "324px", height: "24px", background: "black", color: "white", "&:hover": { background: "#222", color: "white"}, textTransform: "none", fontWeight: "bolder", borderRadius: "20px"}}>Sign up</Button>
-            <Typography variant='subtitle2' sx={{textDecoration: "underline"}}>Trouble signing up?</Typography>
+            <Typography variant='subtitle2' sx={{textDecoration: "underline", p:1, fontSize: "80%"}}>Trouble signing up?</Typography>
         </Box>
         <Box>
         {errors.email && touched.email ? (
-        <Typography variant="subtitle2" color="error">
+        <Typography variant="subtitle2" color="error" sx={{textAlign: "center"}}>
             * {errors.email} *
         </Typography>
         ) : null}
         {errors.password && touched.password ? (
-        <Typography variant="subtitle2" color="error">
-            * {errors.password} *
+        <Typography variant="subtitle2" color="error" sx={{textAlign: "center"}}>
+            {"* " + errors.password + " *"}
         </Typography>
         ) : null}
+        <Typography variant='subtitle2' color="error" sx={{textAlign: "center"}}>{error ? "* " + error + " *" : ""}</Typography>
         </Box>
 
         <Box sx={{display: "flex", justifyContent: "center", alignItems: "center"}} >
         <div className="hr-sect">
-            <Typography variant='subtitle1' sx={{p:1, m:1}}>OR</Typography>
+            <Typography variant='subtitle1' sx={{}}>OR</Typography>
         </div>
 
         </Box>
-        <Box sx={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: 2}}>
+        <Box sx={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: 2, p:2}}>
         <Button sx={{p: 2.7, width: "324px", height: "24px", background: "white", color: "black", border: "1px solid black", "&:hover": {}, textTransform: "none", fontWeight: "bolder", borderRadius: "20px", display: "flex", justifyContent: "space-evenly",gap:"20px"}}><img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/640px-Google_%22G%22_Logo.svg.png"} style={{width: "25px"}}/><Typography>sign up with Google</Typography></Button>
         <Button sx={{p: 2.7, width: "324px", height: "24px", background: "white", color: "black", border: "1px solid black", "&:hover": {}, textTransform: "none", fontWeight: "bolder", borderRadius: "20px", display: "flex", justifyContent: "space-evenly", gap:"20px"}}><img src={"https://cdn1.iconfinder.com/data/icons/logotypes/32/circle-facebook_-512.png"} style={{width: "25px"}}/><Typography>sign up with Facebook</Typography></Button>
         <Button sx={{p: 2.7, width: "324px", height: "24px", background: "white", color: "black", border: "1px solid black", "&:hover": {}, textTransform: "none", fontWeight: "bolder", borderRadius: "20px", display: "flex", justifyContent: "space-evenly", gap:"20px"}}><img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/833px-Apple_logo_black.svg.png"} style={{width: "25px"}}/><Typography>sign up with Facebook</Typography></Button>
         </Box>
         <Box>
-            <Typography variant='subtitle2' sx={{fontSize: "75%"}}>By clicking sign up or Continue with Google, Facebook, or Apple, you agree to Betsy's Terms of Use and Privacy Policy. Betsy may send you communications; you may change your preferences in your account settings. We'll never post without your permission.</Typography>
+            <Typography variant='subtitle2' sx={{fontSize: "75%", p:1}}>By clicking sign up or Continue with Google, Facebook, or Apple, you agree to Betsy's Terms of Use and Privacy Policy. Betsy may send you communications; you may change your preferences in your account settings. We'll never post without your permission.</Typography>
         </Box>
     </Box>
             </Form>

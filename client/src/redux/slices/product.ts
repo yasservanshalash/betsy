@@ -6,7 +6,7 @@ type initialStateType = {
 };
 
 const initialState = {
-    Products: [],
+    Products: []
 }
 
 const productsSlice = createSlice({

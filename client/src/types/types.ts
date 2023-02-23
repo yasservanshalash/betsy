@@ -6,7 +6,7 @@ export type Product = {
     rating: number;
     description: string;
     quantity: number;
-    seller: string;
+    seller?: string;
 }
 
 export type User = {
@@ -15,4 +15,16 @@ export type User = {
     isAdmin: boolean;
     _id: string;
 
+}
+
+export type Favorites = {
+    _id: string;
+    userId: string;
+    products: Product[];
+}
+
+export type Cart = {
+    _id: string;
+    userId: string;
+    products: Product[];
 }

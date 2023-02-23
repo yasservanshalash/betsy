@@ -24,14 +24,15 @@ import Logout from '@mui/icons-material/Logout';
 // MENU
 import React from "react";
 import DrawerItem from "../homeComponents/drawer/DrawerItem";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import { userActions } from "../../redux/slices/userSlice";
+import { userActions } from "../../redux/slices/user";
+import { favoriteActions } from "../../redux/slices/favorite";
 
 const NavBar = () => {
   const user = useSelector((state: RootState) => state.user.user);
-
+  const navigate = useNavigate();
   // MENU
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -222,6 +223,9 @@ const NavBar = () => {
         <MenuItem onClick={() => {
           handleClose();
           dispatch(userActions.logOut())
+          dispatch(favoriteActions.clearFavorites())
+          navigate("/")
+          
         }}>
           <ListItemIcon>
             <Logout fontSize="small" />
