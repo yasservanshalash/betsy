@@ -27,12 +27,12 @@ const favoriteSlice = createSlice({
   initialState,
   reducers: {
     setFavorites: (state, action) => {
-      const currentState = state.favorites;
-      state.favorites = action.payload;
-      state.favorites.products = {
-        ...currentState,
-        ...state.favorites.products,
-      };
+      // const currentState = state.favorites;
+      state.favorites = action.payload[0];
+      // state.favorites.products = {
+      //   ...currentState,
+      //   ...state.favorites.products,
+      // };
     },
     addToFavorites: (state, action) => {
       if(state.favorites.products.find((product) => product._id === action.payload._id)) {
@@ -53,6 +53,12 @@ const favoriteSlice = createSlice({
           if (result !== -1) {
             state.favorites.products.splice(result, 1);
           }
+    }, addFromLocalStorage: (state, action) => {
+        const localString = localStorage.getItem('favorites') as string;
+        const localArray: Product[] = JSON.parse(localString);
+        for( let item of localArray) {
+          state.favorites.products.push(item)
+        }
     },
     clearFavorites: (state) => {
         state.favorites.products = [];

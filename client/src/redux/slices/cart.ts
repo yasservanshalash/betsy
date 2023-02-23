@@ -54,7 +54,7 @@ const cartSlice = createSlice({
             state.cart.products.splice(result, 1);
           }
     },
-    clearcart: (state) => {
+    clearCart: (state) => {
         state.cart.products = [];
     }
   },

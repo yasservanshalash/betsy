@@ -7,12 +7,13 @@ import * as Yup from "yup";
 import "./SignIn.css"
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../../redux/slices/user';
 import { favoriteActions } from '../../../redux/slices/favorite';
 import { fetchFavorites } from '../../../redux/thunks/favorite';
-import { AppDispatch } from '../../../redux/store';
+import { AppDispatch, RootState } from '../../../redux/store';
 const SignIn = () => {
+    const favorites = useSelector((state: RootState) => state.favorites.favorites)
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const thunkDispatch = useDispatch<AppDispatch>();
@@ -54,7 +55,7 @@ const SignIn = () => {
             localStorage.setItem('user', user)
             dispatch(userActions.logIn(JSON.parse(user)))
             thunkDispatch(fetchFavorites("http://localhost:8000/favorites/" + response.data.user._id));
-            console.log("here")
+            console.log(favorites)
             navigate("/")
         })
     }}>

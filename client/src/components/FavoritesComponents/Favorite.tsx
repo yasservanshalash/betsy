@@ -9,6 +9,7 @@ import { Product } from '../../types/types';
 
 const Favorites = () => {
   const favorites = useSelector((state: RootState) => state.favorites.favorites)
+  console.log(favorites, "from favorites page")
   const user = useSelector((state: RootState) => state.user.user);
   return (
     <Box sx={{width: {xs: "100%", sm: "100%", md: "80%"}, margin: "0 auto"}}>
@@ -24,9 +25,9 @@ const Favorites = () => {
         </Box>
         <Box sx={{display: "grid", gridTemplateColumns: {xs: "1fr 1fr", md: "1fr 1fr 1fr 1fr"}, justifyItems: "center", alignItems: "center", justifyContent: "space-around", alignContent: "center", gridAutoFlow: "row", my: 5}}>
         {
-          favorites.products?.map((item: Product) => {
+          favorites?.products?.map((item: Product) => {
             return (
-              <FavoriteItem product={item} />
+              <FavoriteItem key={crypto.randomUUID()} product={item} />
             )
           })
         }
@@ -37,7 +38,7 @@ const Favorites = () => {
         <FavoriteItem title={"Birth Flower Jewelry Travel Case, Birth Month Flower Gift, Personalized Birthday Gift, Leather Jewelry Travel Case, Custom Jewelry Case"} image={"https://i.etsystatic.com/35966576/c/1614/1283/669/351/il/e1510f/4033777789/il_340x270.4033777789_dqlw.jpg"} price={"11.87"} rating={5}/>
         <FavoriteItem title={"Birth Flower Jewelry Travel Case, Birth Month Flower Gift, Personalized Birthday Gift, Leather Jewelry Travel Case, Custom Jewelry Case"} image={"https://i.etsystatic.com/35966576/c/1614/1283/669/351/il/e1510f/4033777789/il_340x270.4033777789_dqlw.jpg"} price={"11.87"} rating={5}/>
         </Box> */}
-        <Box sx={{display: {sx: user ? "none" : "none", sm: user? "none": "flex"}, flexDirection: "column", justifyContent: "center", alignItems: "center", jusstifySelf: "center", textAlign: "center", p: 10}}>
+        <Box sx={{display: {sx: favorites.products.length > 0 ? "none" : "none", sm: favorites.products.length > 0 ? "none": "flex"}, flexDirection: "column", justifyContent: "center", alignItems: "center", jusstifySelf: "center", textAlign: "center", p: 10}}>
         <svg xmlnsXlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" aria-hidden="true" focusable="false" width="96" height="96">
   <path d="M60.053 58.605c-.309.158-.6-.062-1.488-1.11-.753-.89-1.69-2-3.065-2-1.677 0-2.371 1.735-2.929 3.13-.242.607-.748 1.87-1.071 1.87-.323 0-.621-.46-1.086-1.22-.718-1.173-1.7-2.78-3.914-2.78a6.275 6.275 0 00-4.293 1.973c-.733.637-1.207 1.028-1.681 1.056a5.81 5.81 0 01-.348-1.945c-.152-1.8-.341-4.032-2.231-4.978-.727-.361-2.209-.67-3.956 1.37a11.505 11.505 0 00-1.391 2.082l1.789.9c.526-1.05 1.89-2.936 2.659-2.553.886.443 1.017 1.99 1.132 3.357.134 1.582.317 3.748 2.315 3.748a4.624 4.624 0 003.02-1.52A4.455 4.455 0 0146.5 58.5c1.039 0 1.516.693 2.208 1.824.594.97 1.333 2.176 2.792 2.176 1.677 0 2.371-1.734 2.929-3.13.242-.606.748-1.87 1.071-1.87.448 0 1.027.685 1.539 1.288.843 1 2.115 2.5 3.908 1.607 3.38-1.69 2.638-7.4 2.542-8.041l-1.978.292c.189 1.264.313 5.074-1.458 5.959z" fill="#222222"></path>
   <path d="M35.025 42.374a17.408 17.408 0 003.246 5.466 14.252 14.252 0 004.519 3.466 12.017 12.017 0 0010.422 0 14.244 14.244 0 004.516-3.464 17.408 17.408 0 003.247-5.467l3.189 1.192c4.827-7.986 4.949-18.63 4.789-22.74a30.497 30.497 0 01-3.544-5.247 42.186 42.186 0 01-4.415-13.687L60.882.858 32.035 5.132 32 5.958A25.64 25.64 0 0127.515 20.2c-.187 3.522-.333 14.815 4.68 23.23l2.83-1.056zm20.046-12.745l1.858.742-4 10-1.858-.742 4-10zm-14.142 0l4 10-1.858.742-4-10 1.858-.742z" fill="#222222"></path>

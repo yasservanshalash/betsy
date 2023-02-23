@@ -29,6 +29,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { userActions } from "../../redux/slices/user";
 import { favoriteActions } from "../../redux/slices/favorite";
+import { cartActions } from "../../redux/slices/cart";
 
 const NavBar = () => {
   const user = useSelector((state: RootState) => state.user.user);
@@ -224,6 +225,8 @@ const NavBar = () => {
           handleClose();
           dispatch(userActions.logOut())
           dispatch(favoriteActions.clearFavorites())
+          dispatch(cartActions.clearCart())
+
           navigate("/")
           
         }}>

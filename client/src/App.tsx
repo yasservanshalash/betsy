@@ -19,9 +19,12 @@ function App() {
   const products = useSelector((state: RootState) => state.products.Products)
   const user = useSelector((state: RootState) => state.user.user)
   const favorites = useSelector((state: RootState) => state.favorites.favorites)
+  const localFavorites = (JSON.parse(localStorage.getItem('favorites') as string))
+
   console.log(products)
   console.log(user)
   console.log(favorites, "favorites")
+  console.log(localFavorites, "local")
 
   const dispatch = useDispatch<AppDispatch>();
 
