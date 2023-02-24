@@ -6,7 +6,7 @@ import * as Yup from "yup";
 
 import "./SignIn.css"
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../../redux/slices/user';
 import { favoriteActions } from '../../../redux/slices/favorite';
@@ -58,7 +58,6 @@ const SignIn = () => {
             dispatch(userActions.logIn(JSON.parse(user)))
             thunkDispatch(fetchFavorites("http://localhost:8000/favorites/" + response.data.user._id));
             thunkDispatch(fetchCart("http://localhost:8000/cart/" + response.data.user._id));
-            console.log(favorites)
             dispatch(favoriteActions.clearFavorites());
             dispatch(cartActions.clearCart());
             navigate("/")
@@ -90,7 +89,10 @@ const SignIn = () => {
                 <Typography>Stay signed in</Typography>
             </Box>
             <Box>
+                <Link to="/signup">
                 <Typography variant='subtitle2' sx={{textDecoration: "underline"}}>Forgot your password?</Typography>
+
+                </Link>
             </Box>
         </Box>
         <Box sx={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: 3}}>

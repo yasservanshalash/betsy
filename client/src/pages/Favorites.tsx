@@ -3,7 +3,11 @@ import React from 'react'
 import Footer from '../components/Footer/Footer'
 import NavBar from '../components/NavBar/NavBar'
 import Favorite from '../components/FavoritesComponents/Favorite'
+import { useSelector } from 'react-redux'
+import { RootState } from '../redux/store'
 const Favorites = () => {
+  const cart = useSelector((state: RootState) => state.cart.cart)
+  console.log(cart)
   return (
     <Box>
     <NavBar />

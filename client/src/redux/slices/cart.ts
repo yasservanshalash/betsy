@@ -9,10 +9,10 @@ const localCart =
 
 type initialStateType = {
   cart: {
-    _id: string;
-    userId: string;
-    products: Product[];
-  };
+    _id: string,
+    userId: string,
+    products: Product[]
+  }
 };
 const initialState: initialStateType = {
   cart: {
@@ -30,14 +30,10 @@ const cartSlice = createSlice({
         state.cart = action.payload[0]
     },
     addTocart: (state, action) => {
-      if(state.cart.products.find((product) => product._id === action.payload._id)) {
+      if(state.cart?.products?.find((product) => product.name === action.payload.name)) {
         return;
       } else {
         state.cart?.products?.push(action.payload);
-        localStorage.setItem(
-          "cart",
-          JSON.stringify(state.cart.products.map((item: Product) => item))
-        );
       }
     },
     removeFromcart: (state, action) => {
@@ -59,7 +55,6 @@ const cartSlice = createSlice({
 
         }
       }
-      console.log(state.cart.products)
   },
     clearCart: (state) => {
         state.cart.products = [];

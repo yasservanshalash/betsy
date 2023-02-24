@@ -8,7 +8,7 @@ const Cart = () => {
   return (
     <Box>
         <NavBar />
-        <CartComponent />
+        <CartComponent/>
         <Footer />
     </Box>
   )

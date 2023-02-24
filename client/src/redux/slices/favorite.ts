@@ -27,12 +27,7 @@ const favoriteSlice = createSlice({
   initialState,
   reducers: {
     setFavorites: (state, action) => {
-      // const currentState = state.favorites;
       state.favorites = action.payload[0];
-      // state.favorites.products = {
-      //   ...currentState,
-      //   ...state.favorites.products,
-      // };
     },
     addToFavorites: (state, action) => {
       if(state.favorites.products.find((product) => product._id === action.payload._id)) {
@@ -64,7 +59,6 @@ const favoriteSlice = createSlice({
 
           }
         }
-        console.log(state.favorites.products)
     },
     clearFavorites: (state) => {
         state.favorites.products = [];

@@ -10,6 +10,5 @@ export function fetchProductData() {
         const productData = await response.json();
         const data = productData.forEach((product: Partial<Product>) => product.quantity = 1)
         dispatch(productActions.getAllProducts(productData));
-        console.log(productData)
     }
 }

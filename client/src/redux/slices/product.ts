@@ -6,7 +6,7 @@ type initialStateType = {
 };
 
 const initialState = {
-    Products: []
+    products: []
 }
 
 const productsSlice = createSlice({
@@ -14,7 +14,7 @@ const productsSlice = createSlice({
     initialState,
     reducers: {
         getAllProducts: (state, action) => {
-            state.Products = action.payload
+            state.products = action.payload
         }
     }
 })

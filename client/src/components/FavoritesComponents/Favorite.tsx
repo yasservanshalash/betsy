@@ -10,7 +10,6 @@ import { favoriteActions } from '../../redux/slices/favorite';
 
 const Favorites = () => {
   const favorites = useSelector((state: RootState) => state.favorites.favorites)
-  console.log(favorites, "from favorites page")
   const user = useSelector((state: RootState) => state.user.user);
   const dispatch = useDispatch();
   return (

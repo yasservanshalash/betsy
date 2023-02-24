@@ -1,11 +1,14 @@
 import { Box, Button, Container } from "@mui/material";
 import React from "react";
+import { useSelector } from "react-redux";
 import Footer from "../components/Footer/Footer";
 import NavBar from "../components/NavBar/NavBar";
 import ProductItem from "../components/productsComponents/ProductItem";
+import { RootState } from "../redux/store";
 import { Product } from "../types/types";
 
-const Products = ({ products }: { products: Product[] }) => {
+const Products = () => {
+  const products = useSelector((state: RootState) => state.products.products)
   return (
     <Box>
       <NavBar />

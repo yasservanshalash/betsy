@@ -16,16 +16,16 @@ import Products from './pages/Products';
 import Profile from './pages/Profile';
 
 function App() {
-  const products = useSelector((state: RootState) => state.products.Products)
+  const products = useSelector((state: RootState) => state.products.products)
   const user = useSelector((state: RootState) => state.user.user)
   const favorites = useSelector((state: RootState) => state.favorites.favorites)
   const localFavorites = (JSON.parse(localStorage.getItem('favorites') as string))
+  const cart = useSelector((state: RootState) => state.cart.cart)
 
-  console.log(products)
-  console.log(user)
+  console.log(user, "user")
+  console.log(cart, "cart")
+
   console.log(favorites, "favorites")
-  console.log(localFavorites, "local")
-
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
@@ -35,7 +35,7 @@ function App() {
     <Box className="App" sx={{m:0, p:0, width: "100%"}}>
       <Routes>
       <Route path="/" element={<Home />} />
-      <Route path='/products' element={<Products products={products}/>} />
+      <Route path='/products' element={<Products />} />
       <Route path="/favorites" element={<Favorites />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/signin" element={<SignIn />} />
