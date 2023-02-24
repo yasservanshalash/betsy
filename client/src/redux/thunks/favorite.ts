@@ -29,3 +29,14 @@ export function addToFavoritesThunk(userId: string, favorites: Favorites, produc
 
     }
 } 
+
+
+export function removeFromFavoritesThunk(userId: string, favorites: Favorites, product: Product) {
+    return async (dispatch: AppDispatch) => {
+        const products = favorites.products.filter((item) => item.name !== product.name)
+        console.log(products)
+        const result = await axios.put("http://localhost:8000/favorites/" + favorites._id , {"products": products})
+        console.log(result.data)
+
+    }
+} 

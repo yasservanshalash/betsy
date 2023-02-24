@@ -43,15 +43,15 @@ export function addToCartThunk(userId: string, cart: Cart, product: Product) {
 
     }
 } 
-// export function removeFromCart(userId: string, cartId: string, product: Product) {
-//     return async (dispatch: AppDispatch) => {
-//         const response = await fetch("http://localhost:8000/cart/" + userId);
-//         const cart = await response.json();
-//         const newCart = cart[0].products.filter((item: Product) => item._id !== product._id)
-//         // axios.put("http://localhost:8000/cart/" + id, newCart).then((response) => dispatch(cartActions.setcart(response.data.cart)))
-//         const result = await axios.put("http://localhost:8000/cart/" + cartId, {products: newCart})
-//         dispatch(cartActions.setcart(result.data))
-//     }
-// } 
+
+
+export function removeFromCartThunk(userId: string, cart: Cart, product: Product) {
+    return async (dispatch: AppDispatch) => {
+        const products = cart.products.filter((item) => item.name !== product.name)
+        console.log(products)
+        const result = await axios.put("http://localhost:8000/cart/" + cart._id , {"products": products})
+        console.log(result.data)
+    }
+} 
 
 

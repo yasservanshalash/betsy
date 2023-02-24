@@ -30,6 +30,9 @@ export const ProductSchema = new Schema({
     description: {
         type: String,
         default: ""
+    },    dateAdded: {
+        type: Date,
+        default: Date.now()
     },
 
 })
