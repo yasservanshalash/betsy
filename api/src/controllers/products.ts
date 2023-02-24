@@ -17,7 +17,7 @@ export const createProductController = async (req: Request, res: Response) => {
 
     res.json(product);
   } catch (error) {
-    console.log(error);
+    (error);
   }
 };
 
@@ -27,7 +27,7 @@ export const getProductsController = async (req: Request, res: Response) => {
         const products = await ProductServices.getProducts();
         res.status(200).json(products)
     } catch(error) {
-        console.log(error);
+        res.json(error);
     }
 }
 
@@ -37,7 +37,7 @@ export const getProductController = async (req: Request, res: Response) => {
         const product = await ProductServices.getProduct(id);
         res.json(product)
     } catch(error) {
-        console.log(error);
+        res.json(error);
     }
 }
 
@@ -47,7 +47,7 @@ export const deleteProductController = async (req: Request, res: Response) => {
         const product = await ProductServices.deleteProduct(id);
         res.json(product)
     } catch (error) {
-        console.log(error);
+        res.json(error);
     }
 }
 
@@ -58,6 +58,6 @@ export const updateProductsController = async (req: Request, res: Response) => {
       const product = await ProductServices.updateProducts(id, newData)
       res.json(product);
     } catch (error) {
-        console.log(error);
+        res.json(error);
     }
 }

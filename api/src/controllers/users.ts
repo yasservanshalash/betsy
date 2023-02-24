@@ -52,7 +52,6 @@ export const createUserController = async (req: Request, res: Response) => {
         }
 
     } catch (error) {
-        console.log(error);
         res.json({message: "User already exists"})
     }
 }
@@ -63,7 +62,7 @@ export const getUserController =  async (req: Request, res: Response) => {
         const user = await UserServices.getUser(id);
         res.status(200).json(user);
     } catch(error) {
-        console.log(error);
+        res.json(error);
     }  
 }
 
@@ -82,7 +81,7 @@ export const deleteUserController = async (req: Request, res: Response) => {
         const user = await UserServices.deleteUser(id);
         res.status(200).json(user);
     } catch(error) {
-        console.log(error);
+        res.json(error);
     }
 }
 
@@ -93,7 +92,7 @@ export const updateUserController = async (req: Request, res: Response) => {
         const user = await UserServices.updateUser(id, newData);
         res.status(200).json(user);
     } catch(error) {
-        console.log(error);
+        res.json(error);
     }
 }
 
@@ -108,6 +107,6 @@ export const loginWithPassword = async (req: Request, res: Response) => {
             {email: user.email, _id: user._id}, JWT_SECRET, {expiresIn: "1hr"})
             res.json({user, token})
     } catch(error) {
-        console.log(error);
+        res.json(error);
     }
 }

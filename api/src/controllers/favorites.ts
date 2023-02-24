@@ -8,7 +8,7 @@ export const getFavoritesController = async( req: Request, res: Response) => {
         const favorites = await FavoritesServices.getFavorites();
         res.status(200).json(favorites);
     } catch(error) {
-        console.log(error);
+       res.json(error);
     }
 }
 
@@ -18,7 +18,7 @@ export const getFavoritesByUserIdController = async( req: Request, res: Response
         const favorites = await FavoritesServices.getFavoritesByUserId(userId);
         res.status(200).json(favorites);
     } catch(error) {
-        console.log(error);
+       res.json(error);
     }
 }
 
@@ -31,7 +31,7 @@ export const createFavoritesController = async (req: Request, res: Response) => 
         const favorites = await FavoritesServices.createFavorites(newFavorites);
         res.status(200).json(favorites);
     } catch(error) {
-        console.log(error);
+       res.json(error);
     }
 }
 
@@ -42,7 +42,7 @@ export const deleteFavoritesController = async (req: Request, res: Response) => 
         res.status(200).json(favorites);
 
     } catch(error) {
-        console.log(error);
+       res.json(error);
     }
 }
 
@@ -53,6 +53,6 @@ export const updateFavoritesController = async (req: Request, res: Response) => 
         const favorites = await FavoritesServices.updateFavorites(id, newData);
         res.status(200).json(favorites);
     } catch(error) {
-        console.log(error);
+       res.json(error);
     }
 }

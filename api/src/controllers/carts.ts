@@ -8,7 +8,7 @@ export const getCartsController = async( req: Request, res: Response) => {
         const carts = await CartServices.getCarts();
         res.status(200).json(carts);
     } catch(error) {
-        console.log(error);
+        res.json(error);
     }
 }
 
@@ -18,7 +18,7 @@ export const getCartByUserIdController = async( req: Request, res: Response) => 
         const cart = await CartServices.getCartByUserId(userId);
         res.status(200).json(cart);
     } catch(error) {
-        console.log(error);
+        res.json(error);
     }
 }
 
@@ -31,7 +31,7 @@ export const createCartController = async (req: Request, res: Response) => {
         const cart = await CartServices.createCart(newCart);
         res.status(200).json(cart);
     } catch(error) {
-        console.log(error);
+        res.json(error);
     }
 }
 
@@ -42,7 +42,7 @@ export const deleteCartController = async (req: Request, res: Response) => {
         res.status(200).json(cart);
 
     } catch(error) {
-        console.log(error);
+        res.json(error);
     }
 }
 
@@ -53,6 +53,6 @@ export const updateCartController = async (req: Request, res: Response) => {
         const cart = await CartServices.updateCart(id, newData);
         res.status(200).json(cart);
     } catch(error) {
-        console.log(error);
+        res.json(error);
     }
 }

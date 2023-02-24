@@ -10,7 +10,7 @@ export const getOrderController = async (req: Request, res: Response) => {
         res.status(200).json(order);
 
     } catch(error) {
-        console.log(error);
+        res.json(error);
     }
 }
 
@@ -19,7 +19,7 @@ export const getOrdersController = async (req: Request, res: Response) => {
         const orders = await OrderServices.getOrders();
         res.status(200).json(orders);
     } catch(error) {
-        console.log(error);
+        res.json(error);
     }
 }
 
@@ -29,7 +29,7 @@ export const getOrdersByUserIdController = async( req: Request, res: Response) =
         const orders = await OrderServices.getOrdersByUserId(userId);
         res.status(200).json(orders);
     } catch(error) {
-        console.log(error);
+        res.json(error);
     }
 }
 
@@ -44,7 +44,7 @@ export const createOrderController = async (req: Request, res: Response) => {
         res.status(200).json(order);
 
     } catch(error) {
-        console.log(error);
+        res.json(error);
     }
 }
 
@@ -57,7 +57,7 @@ export const deleteOrderController = async (req: Request, res: Response) => {
         res.status(200).json(order);
 
     } catch(error) {
-        console.log(error);
+        res.json(error);
     }
 }
 
@@ -68,6 +68,6 @@ export const updateOrderController = async (req: Request, res: Response) => {
         res.status(200).json(order);
 
     } catch(error) {
-        console.log(error);
+        res.json(error);
     }
 }
