@@ -1,23 +1,34 @@
 import { Favorite, ShoppingBag, ShoppingBasket } from '@mui/icons-material'
 import { Box, IconButton, Rating, Typography } from '@mui/material'
+import axios from 'axios'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { cartActions } from '../../redux/slices/cart'
 import { favoriteActions } from '../../redux/slices/favorite'
-import { RootState } from '../../redux/store'
+import { AppDispatch, RootState } from '../../redux/store'
+import { updateCart } from '../../redux/thunks/cart'
 import { Product } from '../../types/types'
 
 const ProductItem = ({product}: {product: Product}) => {
     const favorite = useSelector((state: RootState) => state.favorites.favorites)
+    const cart = useSelector((state: RootState) => state.cart.cart)
+    const user = useSelector((state: RootState) => state.user.user)
     useEffect(() => {
         console.log(favorite)
     }, [favorite])
     const dispatch = useDispatch();
+    const thunkDispatch = useDispatch<AppDispatch>();
     const addToFav = () => {
         dispatch(favoriteActions.addToFavorites(product))
+        
     }
     const addToCart = () => {
-        dispatch(cartActions.addTocart(product))
+        if(cart._id === "") {
+            dispatch(cartActions.addTocart(product))
+        } else {
+            dispatch(cartActions.addTocart(product))
+            thunkDispatch(updateCart(user._id, cart._id, product))
+        }
     }
   return (
     <Box sx={{position: "relative"}}>
