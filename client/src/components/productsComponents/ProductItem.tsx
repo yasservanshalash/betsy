@@ -104,8 +104,8 @@ const ProductItem = ({ product }: { product: Product }) => {
         height="300px"
         style={{objectFit: "contain"}}
       />
-      <Typography>{`${product.name}: ${product.description}`}</Typography>
-      <Rating readOnly value={product.rating} sx={{color: "black"}}/>
+      <Typography>{`${product.name}`}</Typography>
+      <Rating value={product.rating} precision={0.25} sx={{color: "black"}} readOnly />
       <Typography>{`€ ${product.price}`}</Typography>
       <Button variant="outlined" startIcon={<Add />} sx={{color: "black", border: "0.5px solid black", borderRadius: "20px", textTransform: "none", "&:hover": {color: "black", backgroundColor: "#00000011", borderColor: "#000"}, mt: 1}} onClick={addToCart}>
   Add to cart

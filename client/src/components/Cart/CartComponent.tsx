@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
 import { Product } from '../../types/types'
 import ProductItem from '../productsComponents/ProductItem'
+import CartItem from './CartItem'
 
 const CartComponent = () => {
   const cart = useSelector((state: RootState) => state.cart.cart)
@@ -12,11 +13,11 @@ const CartComponent = () => {
   return (
     <Box sx={{width: {xs: "100%", sm: "100%", md: "80%"}, margin: "0 auto"}}>
         <Typography variant='h5' sx={{textAlign: "center", m: 5, display: "none"}}>Your basket is empty.</Typography>
-        <Box sx={{display: "grid", gridTemplateColumns: {xs: "1fr 1fr", md: "1fr 1fr 1fr 1fr"}, justifyItems: "center", alignItems: "center", justifyContent: "space-around", alignContent: "center", gridAutoFlow: "row", my: 5}}>
+        <Box sx={{display: "flex", flexDirection: "column", justifyContent: "space-evenly", my: 5, gap: 10}}>
           {
-            cart.products.length > 0 ? cart.products.map((item: Product) => {
+            cart.products.length > 0 ? cart.products.map((item: Product, index) => {
               return (
-                <ProductItem key={crypto.randomUUID()} product={item} />
+                <CartItem key={crypto.randomUUID()} product={item} index={index}/>
               )
             }) : <h1>Nothing in cart</h1>
           }

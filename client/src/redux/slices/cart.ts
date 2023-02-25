@@ -56,6 +56,12 @@ const cartSlice = createSlice({
         }
       }
   },
+  changeAmount: (state, action) => {
+    const product = state.cart.products.find((product) => product.name === action.payload[0].name);
+    if(product) {
+        product.quantity = action.payload[1]
+    }
+  },
     clearCart: (state) => {
         state.cart.products = [];
     }

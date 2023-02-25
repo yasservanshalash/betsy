@@ -1,3 +1,4 @@
+import axios from "axios";
 import { Product } from "../../types/types";
 import { productActions } from "../slices/product";
 import { AppDispatch } from "../store";
@@ -8,7 +9,14 @@ export function fetchProductData() {
     return async (dispatch: AppDispatch) => {
         const response = await fetch(url);
         const productData = await response.json();
-        const data = productData.forEach((product: Partial<Product>) => product.quantity = 1)
         dispatch(productActions.getAllProducts(productData));
+        console.log(productData)
+    }
+}
+
+export function addProductThunk(product: Product) {
+    return async (dispatch: AppDispatch) => {
+        const result = await axios.post(url, product)
+        console.log(result.data);
     }
 }

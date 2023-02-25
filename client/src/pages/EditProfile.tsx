@@ -61,6 +61,20 @@ const EditProfile = () => {
           
           </Box>
           </Box>
+          <Divider />
+          <Box             sx={{
+              display: "flex",
+              alignItems: "flex-start",
+              gap: 10,
+              my: 3,
+              mx: 6,
+            }}>
+          <Typography variant="subtitle2">City</Typography>
+          <Box sx={{display: "flex", mx: 7.5, gap: 4}}>
+          <input type="text" name="city" id="city" />
+          <button>save city</button>
+          </Box>
+          </Box>
         </Box>
       </Box>
       <Footer />

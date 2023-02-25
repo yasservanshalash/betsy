@@ -33,7 +33,7 @@ const Profile = () => {
             <Box sx={{display: "flex", gap:10}}>
             <Box sx={{display: favorite.products.length > 0 ? "flex" : "none", flexDirection: "column", gap: 3, textDecoration: "none"}} component={Link} to="/favorites">
               <Typography variant='h5' sx={{textDecoration: "none", color: "black"}}>Favorites</Typography>
-              <Box sx={{borderRadius: "20px", width: "150px", p: 2, border: "2px solid black"}}>
+              <Box sx={{borderRadius: "20px", minWidth: "150px", minHeight: "122px", p: 2, border: "2px solid black"}}>
                   <Box sx={{display: "grid", gridTemplateColumns: "1fr 1fr", border: "1px solid white", justifyItems: "center"}}>
                   {
                     favorite.products.length < 4 ? 
@@ -54,7 +54,7 @@ const Profile = () => {
             </Box>
             <Box sx={{display: cart.products.length > 0 ? "flex" : "none", flexDirection: "column", gap: 3, textDecoration: "none"}} component={Link} to="/cart">
               <Typography variant='h5' sx={{textDecoration: "none", color: "black"}}>Cart</Typography>
-              <Box sx={{borderRadius: "20px", width: "150px", p: 2, border: "2px solid black"}}>
+              <Box sx={{borderRadius: "20px", minWidth: "150px", minHeight: "122px", p: 2, border: "2px solid black"}}>
                   <Box sx={{display: "grid", gridTemplateColumns: "1fr 1fr", border: "1px solid white", justifyItems: "center"}}>
                   {
                     cart.products.length < 4 ? 
