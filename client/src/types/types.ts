@@ -14,7 +14,7 @@ export type User = {
     email: string;
     isAdmin: boolean;
     _id: string;
-
+    avatar: string;
 }
 
 export type Favorites = {

@@ -10,7 +10,8 @@ const initialState = {
         name: "",
         isAdmin: false,
         email: "",
-        _id: ""
+        _id: "",
+        avatar: "",
     },
 }
 
@@ -23,12 +24,14 @@ const userSlice = createSlice({
             state.user.isAdmin = action.payload.isAdmin
             state.user.name = action.payload.name
             state.user._id = action.payload._id
+            state.user.avatar = action.payload.avatar
         },
         logOut: (state) => {
             state.user.email = ""
             state.user.isAdmin = false
             state.user.name = ""
             state.user._id = ""
+            state.user.avatar = ""
             localStorage.clear()
         }
     }

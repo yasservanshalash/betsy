@@ -14,6 +14,7 @@ import { AppDispatch, RootState } from './redux/store';
 import { fetchProductData } from './redux/thunks/product';
 import Products from './pages/Products';
 import Profile from './pages/Profile';
+import EditProfile from './pages/EditProfile';
 
 function App() {
   const products = useSelector((state: RootState) => state.products.products)
@@ -41,6 +42,8 @@ function App() {
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/edit-profile" element={<EditProfile />} />
+      <Route path="*" element={<Home />} />
       </Routes>
     </Box>
   );
