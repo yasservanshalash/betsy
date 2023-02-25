@@ -22,7 +22,7 @@ const Products = () => {
         >
           <Button>Sort By</Button>
         </Box>
-        <Box sx={{display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", my: 2, justifyItems: "center", alignItems: "center", justifyContent: "center"}}>
+        <Box sx={{display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", my: 2, justifyItems: "center", alignItems: "center", justifyContent: "center", rowGap: "3em"}}>
         {products?.map((product: Product) => {
           return <ProductItem product={product} key={crypto.randomUUID()} />;
         })}

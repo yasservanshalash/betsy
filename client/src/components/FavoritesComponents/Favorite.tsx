@@ -13,7 +13,7 @@ const Favorites = () => {
   const user = useSelector((state: RootState) => state.user.user);
   const dispatch = useDispatch();
   return (
-    <Box sx={{width: {xs: "100%", sm: "100%", md: "80%"}, margin: "0 auto"}}>
+    <Box sx={{width: {xs: "100%", sm: "100%", md: "80%"}, margin: "0 auto", my: 5 }}>
         <Box sx={{display: "flex", justifyContent: "space-between", p: 1}}>
             <Typography variant='h4'>Favorite Items</Typography>
             <IconButton sx={{borderRadius: "",p :1, border: "0px solid black", color:"black", background: "#DEDEDE"}}><ShareIcon /></IconButton>
@@ -24,7 +24,7 @@ const Favorites = () => {
         <Button variant="contained" startIcon={<LockIcon />} sx={{borderRadius: "20px",p :1, width: "150px", border: "0px solid black", color:"black", background: "#DEDEDE", "&:hover": {background: "#F5F5F5"}}}>Private</Button>
         <IconButton sx={{borderRadius: "",p :1, border: "0px solid black", color:"black", background: "#DEDEDE"}}><ShareIcon /></IconButton>
         </Box>
-        <Box sx={{display: "grid", gridTemplateColumns: {xs: "1fr 1fr", md: "1fr 1fr 1fr 1fr"}, justifyItems: "center", alignItems: "center", justifyContent: "space-around", alignContent: "center", gridAutoFlow: "row", my: 5}}>
+        <Box sx={{display: "grid", gridTemplateColumns: {xs: "1fr 1fr", md: "1fr 1fr 1fr 1fr 1fr"}, justifyItems: "center", alignItems: "center", justifyContent: "space-around", alignContent: "center", gridAutoFlow: "row", my: 5, p:2}}>
         {
           favorites?.products?.map((item: Product) => {
             return (

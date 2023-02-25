@@ -19,16 +19,17 @@ const FavoriteItem = ({
     }
 
   return (
-    <Paper sx={{ width: "200px",p:1, position: "relative"}} onMouseEnter={() => setFavoriteIconVisibility(true)} onMouseLeave={() => setFavoriteIconVisibility(false)}>
+    <Box sx={{ width: "200px",p:0, position: "relative"}} onMouseEnter={() => setFavoriteIconVisibility(true)} onMouseLeave={() => setFavoriteIconVisibility(false)}>
       <img
         className="popular-item-image"
         src={product.image}
         alt={product.name}
-        style={{ width: "190px", height: "170px" }}
+        style={{ width: "100%", height: "170px"}}
       />
-      <IconButton sx={{display: favoriteIconVisibility ? "": "none",position: "absolute", right:"25px", bottom:"190px", color: "red", background: "white"}} onClick={removeFromFavorites}>
+      <IconButton sx={{display: favoriteIconVisibility ? "": "none",position: "absolute", right:"10px", top:"10px", color: "red", background: "white"}} onClick={removeFromFavorites}>
       <FavoriteIcon/>
       </IconButton>
+      <Box sx={{p:2, position: "relative"}}>
       <Typography variant="subtitle2"
         sx={{
           textOverflow: "ellipsis",
@@ -41,7 +42,9 @@ const FavoriteItem = ({
       </Typography>
       <Rating sx={{ color: "black", fontSize: "95%"}} value={product.rating} readOnly />
       <Typography>{`€ ${product.price}`}</Typography>
-    </Paper>
+            </Box>
+
+    </Box>
   );
 };
 

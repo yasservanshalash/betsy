@@ -31,7 +31,7 @@ const Profile = () => {
               </Box>
             </Box>
             <Box sx={{display: "flex", gap:10}}>
-            <Box sx={{display: "flex", flexDirection: "column", gap: 3, textDecoration: "none"}} component={Link} to="/favorites">
+            <Box sx={{display: favorite.products.length > 0 ? "flex" : "none", flexDirection: "column", gap: 3, textDecoration: "none"}} component={Link} to="/favorites">
               <Typography variant='h5' sx={{textDecoration: "none", color: "black"}}>Favorites</Typography>
               <Box sx={{borderRadius: "20px", width: "150px", p: 2, border: "2px solid black"}}>
                   <Box sx={{display: "grid", gridTemplateColumns: "1fr 1fr", border: "1px solid white", justifyItems: "center"}}>
@@ -39,20 +39,20 @@ const Profile = () => {
                     favorite.products.length < 4 ? 
                     favorite.products.map((item: Product) => {
                       return (
-                        <img src={item.image} alt={item.name} width="60px"/>
+                        <img src={item.image} alt={item.name} width="60px" height="60px"/>
                       )
                     })
                     : 
                     favorite.products.slice(0,4).map((item: Product) => {
                       return (
-                        <img src={item.image} alt={item.name} width="60px"/>
+                        <img src={item.image} alt={item.name} width="60px" height="60px"/>
                       )
                     })
                   }
                   </Box>
               </Box>
             </Box>
-            <Box sx={{display: "flex", flexDirection: "column", gap: 3, textDecoration: "none"}} component={Link} to="/cart">
+            <Box sx={{display: cart.products.length > 0 ? "flex" : "none", flexDirection: "column", gap: 3, textDecoration: "none"}} component={Link} to="/cart">
               <Typography variant='h5' sx={{textDecoration: "none", color: "black"}}>Cart</Typography>
               <Box sx={{borderRadius: "20px", width: "150px", p: 2, border: "2px solid black"}}>
                   <Box sx={{display: "grid", gridTemplateColumns: "1fr 1fr", border: "1px solid white", justifyItems: "center"}}>
@@ -60,13 +60,13 @@ const Profile = () => {
                     cart.products.length < 4 ? 
                     cart.products.map((item: Product) => {
                       return (
-                        <img src={item.image} alt={item.name} width="60px"/>
+                        <img src={item.image} alt={item.name} width="60px" height="60px"/>
                       )
                     })
                     : 
                     cart.products.slice(0,4).map((item: Product) => {
                       return (
-                        <img src={item.image} alt={item.name} width="60px"/>
+                        <img src={item.image} alt={item.name} width="60px" height="60px"/>
                       )
                     })
                   }
