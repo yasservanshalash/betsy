@@ -8,6 +8,6 @@ router.get("/", getUsersController)
 router.get('/:id', getUserController)
 router.post("/", createUserController)
 router.delete("/:id", deleteUserController)
-router.put("/:id",passport.authenticate("jwt", {session: false}), updateUserController)
+router.put("/:id", updateUserController)
 router.post("/login", loginWithPassword)
 export default router
