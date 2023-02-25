@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
 import NavBar from "../components/NavBar/NavBar";
+import ChangeAvatar from "../components/ProfileComponents/ChangeAvatar";
+import ChangeName from "../components/ProfileComponents/ChangeName";
 import { RootState } from "../redux/store";
 
 const EditProfile = () => {
@@ -12,7 +14,7 @@ const EditProfile = () => {
     <Box>
       <NavBar />
       <Box sx={{ width: "60%", margin: "0 auto", my: 5}}>
-        <Box>
+        <Box sx={{mb: 5}}>
           <Typography variant="h4">Public Profile</Typography>
         </Box>
         <Box sx={{ border: "0.5px solid gray", borderRadius: "5px" }}>
@@ -37,7 +39,7 @@ const EditProfile = () => {
               }}
             >
               <img src={user.avatar} alt={user.name} width="150px" />
-              <Button>change image</Button>
+              <ChangeAvatar />
               <Typography variant="subtitle2">
                 Preferably be a .jpg, .gif or .png file smaller than 10MB and at
                 least 400px by 400px.
@@ -55,7 +57,8 @@ const EditProfile = () => {
           <Typography variant="subtitle2">Your name</Typography>
           <Box sx={{display: "flex", mx: 2.5, gap: 10}}>
           <Typography variant="subtitle2">{user.name}</Typography>
-          <Typography variant="subtitle2" sx={{textDecoration:"underline", color: "black"}}>change name</Typography>
+          <ChangeName />
+          
           </Box>
           </Box>
         </Box>

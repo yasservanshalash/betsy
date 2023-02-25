@@ -33,6 +33,12 @@ const userSlice = createSlice({
             state.user._id = ""
             state.user.avatar = ""
             localStorage.clear()
+        },
+        changeName: (state, action) => {
+            state.user.name = action.payload.name
+        },
+        changeAvatar: (state, action) => {
+            state.user.avatar = action.payload.avatar
         }
     }
 })
