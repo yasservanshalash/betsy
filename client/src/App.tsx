@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Container } from "@mui/material"
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
@@ -16,6 +16,7 @@ import Products from './pages/Products';
 import Profile from './pages/Profile';
 import EditProfile from './pages/EditProfile';
 import Admin from './pages/Admin';
+import Footer from './components/Footer/Footer';
 
 function App() {
   const products = useSelector((state: RootState) => state.products.products)
@@ -23,6 +24,8 @@ function App() {
   const favorites = useSelector((state: RootState) => state.favorites.favorites)
   const localFavorites = (JSON.parse(localStorage.getItem('favorites') as string))
   const cart = useSelector((state: RootState) => state.cart.cart)
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filterTerm, setFilterTerm] = useState("");
 
   console.log(user, "user")
   console.log(cart, "cart")
@@ -35,9 +38,10 @@ function App() {
   }, [])
   return (
     <Box className="App" sx={{m:0, p:0, width: "100%"}}>
+      <NavBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} setFilterTerm={setFilterTerm} filterTerm={filterTerm}/>
       <Routes>
       <Route path="/" element={<Home />} />
-      <Route path='/products' element={<Products />} />
+      <Route path='/products' element={<Products filterTerm={filterTerm}/>} />
       <Route path="/favorites" element={<Favorites />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/signin" element={<SignIn />} />
@@ -47,6 +51,7 @@ function App() {
       <Route path="/admin" element={<Admin/>} />
       <Route path="*" element={<Home />} />
       </Routes>
+      <Footer />
     </Box>
   );
 }

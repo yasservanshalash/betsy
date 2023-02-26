@@ -10,9 +10,7 @@ const Favorites = () => {
   console.log(cart)
   return (
     <Box>
-    <NavBar />
     <Favorite />
-    <Footer />
     </Box>
   )
 }

@@ -30,3 +30,9 @@ export type Cart = {
     userId: string;
     products: Product[];
 }
+
+export type Order = {
+    _id: string;
+    userId: string;
+    products: Product[];
+}

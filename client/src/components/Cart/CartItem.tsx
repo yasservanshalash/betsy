@@ -1,5 +1,6 @@
-import { Box, Button, Divider, TextField, Typography } from "@mui/material";
-import React, { useState } from "react";
+import { Add, Remove } from "@mui/icons-material";
+import { Box, Button, Divider, IconButton, TextField, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../redux/slices/cart";
 import { AppDispatch } from "../../redux/store";
@@ -9,34 +10,50 @@ import { Cart, Product } from "../../types/types";
 const CartItem = ({ product, index, cart }: { product: Product, index: number,cart: Cart }) => {
     const dispatchThunk = useDispatch<AppDispatch>();
     const dispatch = useDispatch();
-    const changeQuantity = (e: any) => {
-        if(e.target.value < 1) {
-            return;
-        } else {
-            dispatch(cartActions.changeAmount([product, Number(e.target.value)]))
-            dispatchThunk(updateCart(cart));
+    const [val, setVal] = useState(product.quantity)
+    const decrement = () => {
+            if(product.quantity <= 1) {
+                return
+            } else {
+                dispatch(cartActions.decrement(product))
+            }
         }
-    //     dispatchThunk(changeQuantityThunk(cart, index, quantity))
+    const increment = (e: any) => {
+            dispatch(cartActions.increment(product))
     }
+
+    useEffect(() => {
+        dispatchThunk(updateCart(cart));
+    }, [dispatch, dispatchThunk, cart])
   return (
-    <Box sx={{width: "1000px"}}>
-      <Box sx={{ display: "flex", gap: 10 }}>
+    <Box sx={{width: "800px"}}>
+      <Box sx={{ display: "flex", gap: 5 }}>
         <Box>
           <img src={product.image} alt={product.name} width="212.336px"/>
         </Box>
         <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-          <Typography>{product.name}</Typography>
+          <Typography sx={{width: "280px"}}>{product.name}</Typography>
           <Box sx={{display: "flex", gap: 2}}>
             <Button sx={{m: 0, color: "black", border: "0.5px solid black", "&:hover": {color: "black", background: "lightgray"}}}>save for later</Button>
             <Button sx={{m: 0, color: "black", border: "0.5px solid black", "&:hover": {color: "white", background: "red"}}}>remove</Button>
           </Box>
         </Box>
-        <TextField
-        type="number"
-        value={product.quantity}
+        <Box sx={{display: "flex"}}>
+        <IconButton disableRipple sx={{height: "25px"}} onClick={increment}>
+            <Add />
+        </IconButton>
+        <Typography>{product.quantity}</Typography>
+        <IconButton disableRipple sx={{height: "25px"}} onClick={decrement}>
+            <Remove />
+        </IconButton>
+        </Box>
+        {/* <TextField
+        type="text"
+        value={val}
         onChange={changeQuantity}
         sx={{width: "80px"}}
-      />        <Box>
+      />         */}
+      <Box>
           <Typography sx={{fontWeight: "bold"}}>{`€${product.price * product.quantity}`}</Typography>
         </Box>
       </Box>

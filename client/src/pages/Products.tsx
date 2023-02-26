@@ -7,11 +7,10 @@ import ProductItem from "../components/productsComponents/ProductItem";
 import { RootState } from "../redux/store";
 import { Product } from "../types/types";
 
-const Products = () => {
+const Products = ({filterTerm}: {filterTerm: string}) => {
   const products = useSelector((state: RootState) => state.products.products)
   return (
     <Box>
-      <NavBar />
       <Box sx={{m: 5}}>
         <Box
           sx={{
@@ -23,12 +22,13 @@ const Products = () => {
           <Button>Sort By</Button>
         </Box>
         <Box sx={{display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", my: 2, justifyItems: "center", alignItems: "center", justifyContent: "center", rowGap: "3em"}}>
-        {products?.map((product: Product) => {
+        {filterTerm !== "" ? products?.filter((item: Product) => item.name.toLocaleLowerCase().includes(filterTerm.toLocaleLowerCase())).map((product: Product) => {
+          return <ProductItem product={product} key={crypto.randomUUID()} />;
+        }): products?.map((product: Product) => {
           return <ProductItem product={product} key={crypto.randomUUID()} />;
         })}
         </Box>
       </Box>
-      <Footer />
     </Box>
   );
 };

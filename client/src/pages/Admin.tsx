@@ -29,7 +29,6 @@ const Admin = () => {
     }
   return (
     <Box>
-        <NavBar />
             <Box>
             <input type="text" name="_id" id="_id"  placeholder='_id' disabled/>
             <input type="text" name="name" id="name"  placeholder='name' onChange={(e) => setName(e.target.value)}/>
@@ -42,7 +41,6 @@ const Admin = () => {
             <input type="text" name="brand" id="brand"  placeholder='brand' onChange={(e) => setBrand(e.target.value)} />
             <Button onClick={addProduct}>add product</Button>
             </Box>
-        <Footer />
     </Box>
   )
 }

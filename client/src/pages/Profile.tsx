@@ -14,7 +14,6 @@ const Profile = () => {
   const favorite = useSelector((state: RootState) => state.favorites.favorites)
   return (
     <Box>
-        <NavBar />
         <Box sx={{width: "80%", margin: "0 auto", my: 5, display: "flex", flexDirection: "column", gap: 10}}>
             <Box sx={{display: "flex"}}>
               <Box sx={{width: "120px", height: "120px",position: "relative"}}>
@@ -75,7 +74,6 @@ const Profile = () => {
             </Box>
             </Box>
         </Box>
-        <Footer />
     </Box>
   )
 }

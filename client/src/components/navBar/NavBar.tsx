@@ -22,7 +22,7 @@ import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 
 // MENU
-import React from "react";
+import React, { useState } from "react";
 import DrawerItem from "../homeComponents/drawer/DrawerItem";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -31,7 +31,7 @@ import { userActions } from "../../redux/slices/user";
 import { favoriteActions } from "../../redux/slices/favorite";
 import { cartActions } from "../../redux/slices/cart";
 
-const NavBar = () => {
+const NavBar = ({searchTerm, setSearchTerm, setFilterTerm, filterTerm}: {searchTerm: string, filterTerm: string,setSearchTerm: Function, setFilterTerm: Function}) => {
   const user = useSelector((state: RootState) => state.user.user);
   const navigate = useNavigate();
   // MENU
@@ -113,8 +113,12 @@ const NavBar = () => {
             sx={{ ml: 1, flex: 1, flexGrow: 1 }}
             placeholder="Search for anything..."
             inputProps={{ "aria-label": "Search for anything..." }}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
+          <IconButton type="button" sx={{ p: "10px" }} aria-label="search" onClick={() => {
+            setFilterTerm(searchTerm)
+            navigate('/products')
+          }}>
             <SearchIcon />
           </IconButton>
         </Box>
@@ -164,7 +168,7 @@ const NavBar = () => {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <AccountCircleIcon sx={{ color: "black" }}/>
+            { user.avatar !== "" ? <img src={user.avatar} style={{width: "20px", borderRadius: "50%"}} /> : <AccountCircleIcon sx={{ color: "black" }}/>}
           </IconButton>
         </Tooltip>
           <Menu
@@ -203,7 +207,7 @@ const NavBar = () => {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem onClick={handleClose} component={Link} to="/profile">
-          <Avatar /> Profile
+          <Avatar src={user.avatar !== "" ? user.avatar : ""} /> Profile
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <Avatar /> My account
@@ -267,8 +271,12 @@ const NavBar = () => {
             sx={{ ml: 1, flex: 1, flexGrow: 1 }}
             placeholder="Search for anything..."
             inputProps={{ "aria-label": "Search for anything..." }}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
+          <IconButton type="button" sx={{ p: "10px" }} aria-label="search" onClick={() => {
+            setFilterTerm(searchTerm)
+            navigate('/products')
+          }}>
             <SearchIcon />
           </IconButton>
         </Box>
@@ -300,9 +308,12 @@ const NavBar = () => {
         </Typography>
         <Typography
           variant="subtitle2"
-          sx={{ fontWeight: "light", textDecoration: "none", color: "black" }}
-          component={Link}
-          to={"/products"}
+          sx={{ fontWeight: "light", textDecoration: "none", color: "black" , cursor: "pointer"}}
+          onClick={() => {
+            setFilterTerm("");
+            navigate("/products");
+            console.log(searchTerm);
+          }}
         >
           All
         </Typography>

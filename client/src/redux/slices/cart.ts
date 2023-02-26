@@ -56,10 +56,16 @@ const cartSlice = createSlice({
         }
       }
   },
-  changeAmount: (state, action) => {
-    const product = state.cart.products.find((product) => product.name === action.payload[0].name);
+  increment: (state, action) => {
+    const product = state.cart.products.find((product) => product.name === action.payload.name);
     if(product) {
-        product.quantity = action.payload[1]
+        product.quantity += 1
+    }
+  },
+  decrement: (state, action) => {
+    const product = state.cart.products.find((product) => product.name === action.payload.name);
+    if(product) {
+        product.quantity -= 1
     }
   },
     clearCart: (state) => {

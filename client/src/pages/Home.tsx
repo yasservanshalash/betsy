@@ -14,14 +14,12 @@ const Home = () => {
   
   return (
     <Box sx={{width: "100%"}}>
-    <NavBar />
     <Header />
     <Button onClick={() => dispatch(favoriteActions.addFromLocalStorage())}>Link favorite localstorage</Button>
     <Button onClick={() => dispatch(cartActions.addFromLocalStorage())}>Link cart localstorage</Button>
     <Popular />
     <Gifts />
     <PreFooter />
-    <Footer />
     </Box>
   )
 }

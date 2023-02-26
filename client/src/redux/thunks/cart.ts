@@ -59,6 +59,6 @@ export function updateCart(cart: Cart) {
     return async (dispatch: AppDispatch) => {
 
         const result = await axios.put(`http://localhost:8000/cart/${cart._id}`  , {"products": cart.products})
-        console.log(result.data)
+        console.log(result.data, "cart updated")
     }
 } 

@@ -7,9 +7,7 @@ import NavBar from '../components/NavBar/NavBar'
 const Cart = () => {
   return (
     <Box>
-        <NavBar />
         <CartComponent/>
-        <Footer />
     </Box>
   )
 }

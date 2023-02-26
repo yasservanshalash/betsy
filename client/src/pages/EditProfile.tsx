@@ -12,7 +12,6 @@ const EditProfile = () => {
   const user = useSelector((state: RootState) => state.user.user);
   return (
     <Box>
-      <NavBar />
       <Box sx={{ width: "60%", margin: "0 auto", my: 5}}>
         <Box sx={{mb: 5}}>
           <Typography variant="h4">Public Profile</Typography>
@@ -77,7 +76,6 @@ const EditProfile = () => {
           </Box>
         </Box>
       </Box>
-      <Footer />
     </Box>
   );
 };
