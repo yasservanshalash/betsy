@@ -20,7 +20,19 @@ const OrderSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: User
     },
-    products: [{type: ProductSchema}] //    products: [{type: Schema.Types.ObjectId, ref: Product}]
+    products: [{type: ProductSchema}], //    products: [{type: Schema.Types.ObjectId, ref: Product}]
+    shippingAddress: {
+        type: String,
+        required: [true, "shipping address is required"]
+    },
+    isDelivered: {
+        type: Boolean,
+        default: false,
+    },
+    totalPrice: {
+        type: Number,
+        default: 0
+    }
 })
 
 export default mongoose.model<OrderDocument>("Orders", OrderSchema)

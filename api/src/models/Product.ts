@@ -33,7 +33,16 @@ export const ProductSchema = new Schema({
     },    dateAdded: {
         type: Date,
         default: Date.now()
-    },
+    }, brand: {
+        type: String,
+        default: ""
+    }, quantity: {
+        type: Number,
+        default: 1
+    }, quantityLeft: {
+        type: Number,
+        default: 100
+    }
 
 })
 
