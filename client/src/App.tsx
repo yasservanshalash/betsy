@@ -17,6 +17,7 @@ import Profile from './pages/Profile';
 import EditProfile from './pages/EditProfile';
 import Admin from './pages/Admin';
 import Footer from './components/Footer/Footer';
+import ProductDetails from './pages/ProductDetails';
 
 function App() {
   const products = useSelector((state: RootState) => state.products.products)
@@ -42,6 +43,7 @@ function App() {
       <Routes>
       <Route path="/" element={<Home />} />
       <Route path='/products' element={<Products filterTerm={filterTerm}/>} />
+      <Route path="/products/:id" element={<ProductDetails />} />
       <Route path="/favorites" element={<Favorites />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/signin" element={<SignIn />} />

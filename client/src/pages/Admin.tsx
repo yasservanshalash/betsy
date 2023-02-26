@@ -23,7 +23,8 @@ const Admin = () => {
             rating: rating,
             description: description,
             brand: brand,
-            quantity: 1
+            quantity: 1,
+            quantityLeft: 100,
         }
         thunkDispatch(addProductThunk(product))
     }

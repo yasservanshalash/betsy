@@ -1,8 +1,10 @@
 import { Add, Favorite, ShoppingBag, ShoppingBasket } from "@mui/icons-material";
 import { Box, Button, IconButton, Rating, Typography } from "@mui/material";
+import { style } from "@mui/system";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { cartActions } from "../../redux/slices/cart";
 import { favoriteActions } from "../../redux/slices/favorite";
 import { AppDispatch, RootState } from "../../redux/store";
@@ -96,21 +98,25 @@ const ProductItem = ({ product }: { product: Product }) => {
           <Favorite sx={{ color: favorited ? "red": "gray" }} />
         </IconButton>
       </Box>
-      <Box sx={{p:2}}>
-      <img
+      <Box sx={{p:2,textDecoration: "none", color: "black"}} >
+        <Link to={`/products/${product._id}`} style={{textDecoration: "none", color: "black"}}>
+        <img
         src={product.image}
         alt={product.name}
         width="100%"
         height="300px"
         style={{objectFit: "contain"}}
       />
-      <Typography>{`${product.name}`}</Typography>
+      <Typography sx={{textDecoration: "none", color: "black"}}>{`${product.name}`}</Typography>
       <Rating value={product.rating} precision={0.25} sx={{color: "black"}} readOnly />
-      <Typography>{`€ ${product.price}`}</Typography>
+      <Typography sx={{textDecoration: "none", color: "black"}}>{`€ ${product.price}`}</Typography>
+      </Link>
+
       <Button variant="outlined" startIcon={<Add />} sx={{color: "black", border: "0.5px solid black", borderRadius: "20px", textTransform: "none", "&:hover": {color: "black", backgroundColor: "#00000011", borderColor: "#000"}, mt: 1}} onClick={addToCart}>
   Add to cart
 </Button>
       </Box>
+
     </Box>
   );
 };

@@ -15,7 +15,7 @@ const CartComponent = () => {
         <Typography variant='h5' sx={{textAlign: "center", m: 5, display: "none"}}>Your basket is empty.</Typography>
         <Box sx={{display: "flex", flexDirection: "column", justifyContent: "space-evenly", my: 5, gap: 10}}>
           {
-            cart.products.length > 0 ? cart.products.map((item: Product, index) => {
+             cart.products.length > 0 ? cart.products.map((item: Product, index) => {
               return (
                 <CartItem key={crypto.randomUUID()} product={item} index={index} cart={cart}/>
               )
