@@ -10,6 +10,7 @@ export type Product = {
     brand: string;
     dateAdded?: string;
     quantityLeft: number;
+    categoty: string;
 }
 
 export type User = {
@@ -36,4 +37,6 @@ export type Order = {
     _id: string;
     userId: string;
     products: Product[];
+    totalPrice: number;
+    paymentMethod: string;
 }

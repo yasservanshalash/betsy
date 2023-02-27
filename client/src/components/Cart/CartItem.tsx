@@ -26,7 +26,7 @@ const CartItem = ({ product, index, cart }: { product: Product, index: number,ca
         dispatchThunk(updateCart(cart));
     }, [dispatch, dispatchThunk, cart])
   return (
-    <Box sx={{width: "800px"}}>
+    <Box sx={{width: "750px"}}>
       <Box sx={{ display: "flex", gap: 5 }}>
         <Box>
           <img src={product.image} alt={product.name} width="212.336px"/>

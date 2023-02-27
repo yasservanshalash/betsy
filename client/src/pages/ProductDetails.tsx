@@ -14,10 +14,10 @@ const ProductDetails = () => {
     console.log(typeof product.dateAdded)
     // const date = new Date(product.dateAdded)
   return (
-    <Box sx={{width: "90%", margin: "0 auto"}}>
+    <Box sx={{width: "80%", margin: "0 auto"}}>
         <Box sx={{display: "flex", justifyContent: "flex-start", gap: 20}}>
         <Box>
-            <img src={product.image} width="800px"/>
+            <img src={product.image} width="500px" style={{margin: "100px 100px"}}/>
         </Box>
         <Box sx={{display: "flex", flexDirection: "column", gap: 5, width: "400px", my: 7}}>
             <Box>

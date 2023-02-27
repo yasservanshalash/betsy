@@ -33,7 +33,7 @@ const FavoriteItem = ({
         className="popular-item-image"
         src={product.image}
         alt={product.name}
-        style={{ width: "100%", height: "170px"}}
+        style={{ width: "100%", height: "170px", objectFit: "contain"}}
       />
       <IconButton sx={{display: favoriteIconVisibility ? "": "none",position: "absolute", right:"10px", top:"10px", color: "red", background: "white"}} onClick={removeFromFav}>
       <FavoriteIcon/>
