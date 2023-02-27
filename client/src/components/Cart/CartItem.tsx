@@ -2,6 +2,7 @@ import { Add, Remove } from "@mui/icons-material";
 import { Box, Button, Divider, IconButton, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { cartActions } from "../../redux/slices/cart";
 import { AppDispatch } from "../../redux/store";
 import { updateCart } from "../../redux/thunks/cart";
@@ -29,7 +30,9 @@ const CartItem = ({ product, index, cart }: { product: Product, index: number,ca
     <Box sx={{width: "750px"}}>
       <Box sx={{ display: "flex", gap: 5 }}>
         <Box>
+        <Link to={`/products/${product._id}`} >
           <img src={product.image} alt={product.name} width="212.336px"/>
+          </Link>
         </Box>
         <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
           <Typography sx={{width: "280px"}}>{product.name}</Typography>

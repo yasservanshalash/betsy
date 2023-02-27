@@ -6,6 +6,7 @@ import { favoriteActions } from "../../redux/slices/favorite";
 import { Product } from "../../types/types";
 import { AppDispatch, RootState } from "../../redux/store";
 import { removeFromFavoritesThunk } from "../../redux/thunks/favorite";
+import { Link } from "react-router-dom";
 const FavoriteItem = ({
   product
 }: {
@@ -29,12 +30,14 @@ const FavoriteItem = ({
     };
   return (
     <Box sx={{ width: "200px",p:0, position: "relative"}} onMouseEnter={() => setFavoriteIconVisibility(true)} onMouseLeave={() => setFavoriteIconVisibility(false)}>
+      <Link to={`/products/${product._id}`} >
       <img
         className="popular-item-image"
         src={product.image}
         alt={product.name}
         style={{ width: "100%", height: "170px", objectFit: "contain"}}
       />
+      </Link>
       <IconButton sx={{display: favoriteIconVisibility ? "": "none",position: "absolute", right:"10px", top:"10px", color: "red", background: "white"}} onClick={removeFromFav}>
       <FavoriteIcon/>
       </IconButton>

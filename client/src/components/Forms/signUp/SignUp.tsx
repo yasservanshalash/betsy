@@ -32,7 +32,7 @@ const SignUp = () => {
               .required("Password is required to sign up")
               .matches(
                 /^(?=.*[A-Za-z])(?=.*d)[A-Za-zd]{8,}$/,
-                "Password must have at least one letter one number and 6 characters at least in total."
+                "Password must have at least one letter one number and 8 characters at least in total."
               ),
             name: Yup.string().required("Name is required to sign up").matches(/\w+/, "Not a valid name")
         });
