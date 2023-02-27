@@ -32,6 +32,10 @@ const OrderSchema = new Schema({
     totalPrice: {
         type: Number,
         default: 0
+    },
+    paymentMethod: {
+        type: String,
+        default: ""
     }
 })
 

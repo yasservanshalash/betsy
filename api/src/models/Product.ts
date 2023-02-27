@@ -42,7 +42,10 @@ export const ProductSchema = new Schema({
     }, quantityLeft: {
         type: Number,
         default: 100
-    }
+    }, category: {
+        type: String,
+        default: ""
+    },
 
 })
 
