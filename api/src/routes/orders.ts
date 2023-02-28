@@ -6,7 +6,7 @@ const router = Router();
 router.get("/order/:id", getOrderController)
 router.get("/", getOrdersController)
 router.get("/:userId", getOrdersByUserIdController)
-router.post("/:userId", createOrderController)
+router.post("/", createOrderController)
 router.delete("/:id", deleteOrderController)
 router.put("/:id", updateOrderController)
 

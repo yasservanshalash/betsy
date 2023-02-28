@@ -23,7 +23,7 @@ const OrderSchema = new Schema({
     products: [{type: ProductSchema}], //    products: [{type: Schema.Types.ObjectId, ref: Product}]
     shippingAddress: {
         type: String,
-        required: [true, "shipping address is required"]
+        default: "P sherman 42 wallaby way Sidney"
     },
     isDelivered: {
         type: Boolean,

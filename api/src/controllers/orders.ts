@@ -36,11 +36,11 @@ export const getOrdersByUserIdController = async( req: Request, res: Response) =
 export const createOrderController = async (req: Request, res: Response) => {
     try {
         const newOrder = new Order({
-            "dateOfOrder": req.body.dateOfOrder,
-            "userId": req.params.userId,
+            "userId": req.body.userId,
             "products": req.body.products,
             "totalPrice": req.body.totalPrice,
-            "paymentMethod": req.body.paymentMethod
+            "paymentMethod": req.body.paymentMethod,
+            "shippingAddress": req.body.shippingAddress
         });
         const order = await OrderServices.createOrder(newOrder);
         res.status(200).json(order);
