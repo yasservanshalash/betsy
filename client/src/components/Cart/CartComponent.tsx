@@ -24,7 +24,7 @@ const CartComponent = () => {
             }) : <h1>Nothing in cart</h1>
           }
         </Box>
-        <Box sx={{width: "1400px", display: user._id !== "" && cart.products.length !== 0 ? "flex" : "none",  position: "relative", right: "0px"}}>
+        <Box sx={{width: "1400px", display: user._id !== "" && cart.products.length !== 0 ? "flex" : "none",  position: "relative", left: "60px"}}>
         <CartPayment cart={cart}/>
 
         </Box>

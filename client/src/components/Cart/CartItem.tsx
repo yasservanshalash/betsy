@@ -30,8 +30,8 @@ const CartItem = ({ product, index, cart }: { product: Product, index: number,ca
         dispatchThunk(updateCart(cart));
     }, [dispatch, dispatchThunk, cart])
   return (
-    <Box sx={{width: "800px"}}>
-      <Box sx={{ display: "flex", gap: 5 }}>
+    <Box sx={{width: "1000px", }}>
+      <Box sx={{ display: "flex", gap: 0 }}>
         <Box>
         <Link to={`/products/${product._id}`} >
           <img src={product.image} alt={product.name} width="212.336px"/>
@@ -44,6 +44,7 @@ const CartItem = ({ product, index, cart }: { product: Product, index: number,ca
             <Button sx={{m: 0, color: "black", border: "0.5px solid black", "&:hover": {color: "white", background: "red"}}}>remove</Button>
           </Box>
         </Box>
+        <Box sx={{display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
         <Box sx={{display: "flex"}}>
         <IconButton disableRipple sx={{height: "25px"}} onClick={increment}>
             <Add />
@@ -52,6 +53,8 @@ const CartItem = ({ product, index, cart }: { product: Product, index: number,ca
         <IconButton disableRipple sx={{height: "25px"}} onClick={decrement}>
             <Remove />
         </IconButton>
+        </Box>
+        <Typography>{`quantity left: ${product.quantityLeft}`}</Typography>
         </Box>
         {/* <TextField
         type="text"

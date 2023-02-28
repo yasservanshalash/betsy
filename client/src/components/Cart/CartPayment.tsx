@@ -30,7 +30,7 @@ const CartPayment = ({cart}: {cart: Cart}) => {
     }
 
   return (
-    <Box sx={{width:"400px", minHeight: "487px",mx: 10,my: 5, p:2, boxShadow: "1px black", borderRadius: "20px", right: "0px", overflowY:"hidden", background: "white"}} className="payment">
+    <Box sx={{width:"400px", maxHeight: "487px",mx: 10,my: 5, p:2, boxShadow: "1px black", borderRadius: "20px", right: "0px", overflowY:"hidden", background: "white"}} className="payment">
         <Box sx={{display: "flex", flexDirection: "column", gap:2, p:3}}>
             <Typography>How you'll pay</Typography>
             <Box sx={{display: "flex", alignItems: "center", gap:2}}>

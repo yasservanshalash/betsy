@@ -246,10 +246,11 @@ const NavBar = ({searchTerm, setSearchTerm, setFilterTerm, filterTerm}: {searchT
       <Box
         sx={{
           display: { xs: "flex", md: "none" },
-          justifyContent: "space-evenly",
+          justifyContent: "flex-start",
           alignItems: "center",
           py: 2,
-          width: "100%",
+          width: "95%",
+          margin: "0 auto"
         }}
       >
         <Box>

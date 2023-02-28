@@ -33,7 +33,7 @@ const ProductDetails = () => {
             </Box>
             <Box sx={{display: "flex", flexDirection: "column",gap: 2}}>
                 <Button sx={{color: "black", backgroundColor: "white", border: "2px solid black", borderRadius: "20px"}}>Add to Favorites</Button>
-                <Button sx={{color: "white", backgroundColor: "black", border: "2px solid black", borderRadius: "20px"}}>Add to Cart</Button>
+                <Button sx={{color: "white", backgroundColor: "black", border: "2px solid black", borderRadius: "20px", "&:hover": {color: "black", background: "white"}}}>Add to Cart</Button>
 
             </Box>
         </Box>
