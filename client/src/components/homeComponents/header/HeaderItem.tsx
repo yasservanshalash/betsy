@@ -1,10 +1,11 @@
 import { Box, Typography } from '@mui/material'
+import {Link} from 'react-router-dom'
 import React from 'react'
 import "./HeaderItem.css"
 
 const HeaderItems = ({image, title}: {image: string, title:string}) => {
   return (
-    <Box sx={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", mt: 2, p:1, borderBottom: "1px solid transparent", gap: 2}} className="header_item">
+    <Box sx={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", mt: 2, p:1, borderBottom: "1px solid transparent", gap: 2, textDecoration: "none", color: "black"}} className="header_item" component={Link} to={`/c/${title.toLowerCase()}`}>
         {/* <img src={image} style={{height:"100px", width: "100px", borderRadius:"50%", backgroundColor: "black", marginBottom: "10px"}} className="header_item_img" alt={title}/> */}
         <Box
         component="img"

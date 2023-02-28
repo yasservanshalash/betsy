@@ -39,6 +39,10 @@ function App() {
   useEffect(() => {
     dispatch(fetchProductData());
   }, [])
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <Box className="App" sx={{m:0, p:0, width: "100%"}}>
       <NavBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} setFilterTerm={setFilterTerm} filterTerm={filterTerm}/>
