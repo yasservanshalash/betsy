@@ -18,6 +18,8 @@ import EditProfile from './pages/EditProfile';
 import Admin from './pages/Admin';
 import Footer from './components/Footer/Footer';
 import ProductDetails from './pages/ProductDetails';
+import Category from './pages/Category';
+import UnderConstruction from './pages/UnderConstruction';
 
 function App() {
   const products = useSelector((state: RootState) => state.products.products)
@@ -51,6 +53,8 @@ function App() {
       <Route path="/profile" element={<Profile />} />
       <Route path="/edit-profile" element={<EditProfile />} />
       <Route path="/admin" element={<Admin/>} />
+      <Route path="/c/:category" element={<Category />} />
+      <Route path="/404" element={<UnderConstruction/>} />
       <Route path="*" element={<Home />} />
       </Routes>
       <Footer />

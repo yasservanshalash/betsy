@@ -20,6 +20,9 @@ const CartItem = ({ product, index, cart }: { product: Product, index: number,ca
             }
         }
     const increment = (e: any) => {
+      if(product.quantity >= product.quantityLeft){
+        return
+      } else
             dispatch(cartActions.increment(product))
     }
 
@@ -27,7 +30,7 @@ const CartItem = ({ product, index, cart }: { product: Product, index: number,ca
         dispatchThunk(updateCart(cart));
     }, [dispatch, dispatchThunk, cart])
   return (
-    <Box sx={{width: "750px"}}>
+    <Box sx={{width: "800px"}}>
       <Box sx={{ display: "flex", gap: 5 }}>
         <Box>
         <Link to={`/products/${product._id}`} >

@@ -10,7 +10,7 @@ export type Product = {
     brand: string;
     dateAdded?: string;
     quantityLeft: number;
-    categoty: string;
+    category: string;
 }
 
 export type User = {

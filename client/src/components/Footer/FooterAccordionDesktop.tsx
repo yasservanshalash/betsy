@@ -5,6 +5,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import PinterestIcon from '@mui/icons-material/Pinterest';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import YouTube  from '@mui/icons-material/YouTube';
+import { Link } from "react-router-dom";
 
 const FooterAccordionDesktop = () => {
   return (
@@ -17,7 +18,7 @@ const FooterAccordionDesktop = () => {
         py: 5,
       }}
     >
-      <Box sx={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+      <Box sx={{ display: "flex", flexDirection: "column", gap: "15px", textDecoration: "none", color: "white"}} component={Link} to="/404">
         <Typography variant="subtitle1">Shop</Typography>
         <Box sx={{ display: "flex", flexDirection: "column", gap: "15px" }}>
           <Typography variant="subtitle2">Gift cards</Typography>
@@ -26,7 +27,7 @@ const FooterAccordionDesktop = () => {
           <Typography variant="subtitle2">Betsy Europe</Typography>
         </Box>
       </Box>
-      <Box sx={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+      <Box sx={{ display: "flex", flexDirection: "column", gap: "15px", textDecoration: "none", color: "white"}} component={Link} to="/404">
         <Typography variant="subtitle1">Sell</Typography>
         <Box sx={{ display: "flex", flexDirection: "column", gap: "15px" }}>
           <Typography variant="subtitle2">Sell on Betsy</Typography>
@@ -35,7 +36,7 @@ const FooterAccordionDesktop = () => {
           <Typography variant="subtitle2">Affiliates</Typography>
         </Box>
       </Box>
-      <Box sx={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+      <Box sx={{ display: "flex", flexDirection: "column", gap: "15px" ,textDecoration: "none", color: "white"}} component={Link} to="/404">
         <Typography variant="subtitle1">About</Typography>
         <Box sx={{ display: "flex", flexDirection: "column", gap: "15px" }}>
           <Typography variant="subtitle2">Betsy, Inc.</Typography>
@@ -46,7 +47,7 @@ const FooterAccordionDesktop = () => {
           <Typography variant="subtitle2">Legal imprint</Typography>
         </Box>
       </Box>
-      <Box sx={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+      <Box sx={{ display: "flex", flexDirection: "column", gap: "15px" ,textDecoration: "none", color: "white"}} component={Link} to="/404">
         <Typography variant="subtitle1">Help</Typography>
         <Box sx={{ display: "flex", flexDirection: "column", gap: "15px" }}>
           <Typography variant="subtitle2">Help Center</Typography>

@@ -288,22 +288,22 @@ const NavBar = ({searchTerm, setSearchTerm, setFilterTerm, filterTerm}: {searchT
           p: 2,
         }}
       >
-        <Typography variant="subtitle2" sx={{ fontWeight: "light" }}>
+        <Typography variant="subtitle2" sx={{ fontWeight: "light", textDecoration: "none", color: "black" }} component={Link} to={`/c/computers`}>
           Computers
         </Typography>
-        <Typography variant="subtitle2" sx={{ fontWeight: "light" }}>
+        <Typography variant="subtitle2" sx={{ fontWeight: "light",textDecoration: "none", color: "black"}} component={Link} to={`/c/audio`}>
           Audio
         </Typography>
-        <Typography variant="subtitle2" sx={{ fontWeight: "light" }}>
+        <Typography variant="subtitle2" sx={{ fontWeight: "light",textDecoration: "none", color: "black"}} component={Link} to={`/c/visual`}>
           Visual
         </Typography>
-        <Typography variant="subtitle2" sx={{ fontWeight: "light" }}>
+        <Typography variant="subtitle2" sx={{ fontWeight: "light",textDecoration: "none", color: "black" }} component={Link} to={`/c/gaming`}>
           Consoles
         </Typography>
-        <Typography variant="subtitle2" sx={{ fontWeight: "light" }}>
+        <Typography variant="subtitle2" sx={{ fontWeight: "light",textDecoration: "none", color: "black" }} component={Link} to={`/c/photography`}>
           Photography
         </Typography>
-        <Typography variant="subtitle2" sx={{ fontWeight: "light" }}>
+        <Typography variant="subtitle2" sx={{ fontWeight: "light",textDecoration: "none", color: "black" }} component={Link} to={`/c/home`}>
           Appliances
         </Typography>
         <Typography

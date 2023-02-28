@@ -14,6 +14,8 @@ import googlepay from "../../assets/googlepay.png"
 import "./CartPayment.css"
 import { Cart } from '../../types/types'
 import { createOrder } from '../../redux/thunks/orders'
+import { productActions } from '../../redux/slices/product'
+import { fetchProductData } from '../../redux/thunks/product'
 
 const CartPayment = ({cart}: {cart: Cart}) => {
     const [paymentMethod, setPaymentMethod] = useState("");
@@ -28,7 +30,7 @@ const CartPayment = ({cart}: {cart: Cart}) => {
     }
 
   return (
-    <Box sx={{width:"400px", height: "65vh",mx: 10,my: 5, p:2, boxShadow: "1px black", borderRadius: "20px", position: "fixed", right: "0px", overflowY:"hidden", background: "white"}} className="payment">
+    <Box sx={{width:"400px", minHeight: "487px",mx: 10,my: 5, p:2, boxShadow: "1px black", borderRadius: "20px", right: "0px", overflowY:"hidden", background: "white"}} className="payment">
         <Box sx={{display: "flex", flexDirection: "column", gap:2, p:3}}>
             <Typography>How you'll pay</Typography>
             <Box sx={{display: "flex", alignItems: "center", gap:2}}>
@@ -68,7 +70,11 @@ const CartPayment = ({cart}: {cart: Cart}) => {
         <Typography>{`Total (${cart.products.length} items)`}</Typography>
         <Typography>{`€ ${total + shipping}`}</Typography>
         </Box>
-        <Button sx={{color: "white", background: 'black', "&:hover": {color: "black", background: "white"}}} onClick={() => dispatchThunk(createOrder(cart, total, paymentMethod))}>Proceed to checkout</Button>
+        <Button sx={{color: "black", background: 'white', "&:hover": {color: "white", background: "black"}}} onClick={() => {
+            dispatchThunk(createOrder(cart, total, paymentMethod));
+            dispatchThunk(fetchProductData());
+        }
+         } disabled={ paymentMethod === "" ? true: false}>Proceed to checkout</Button>
         </Box>
     </Box>
   )

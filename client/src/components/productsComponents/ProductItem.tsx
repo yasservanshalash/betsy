@@ -57,13 +57,13 @@ const ProductItem = ({ product }: { product: Product }) => {
 
   const addToCart = () => {
     if (user._id === "") {
-      if (cart.products.find((item) => item.name === product.name)) {
+      if (cart.products.find((item) => item.name === product.name) || product.quantityLeft <= 0) {
         return;
       } else {
         dispatch(cartActions.addTocart(product));
       }
     } else {
-      if (cart.products.find((item) => item.name === product.name)) {
+      if (cart.products.find((item) => item.name === product.name) || product.quantityLeft <= 0) {
         return;
       } else {
         dispatch(cartActions.addTocart(product));
@@ -112,7 +112,7 @@ const ProductItem = ({ product }: { product: Product }) => {
       <Typography sx={{textDecoration: "none", color: "black"}}>{`€ ${product.price}`}</Typography>
       </Link>
 
-      <Button variant="outlined" startIcon={<Add />} sx={{color: "black", border: "0.5px solid black", borderRadius: "20px", textTransform: "none", "&:hover": {color: "black", backgroundColor: "#00000011", borderColor: "#000"}, mt: 1}} onClick={addToCart}>
+      <Button variant="outlined" startIcon={<Add />} sx={{color: "black", border: "0.5px solid black", borderRadius: "20px", textTransform: "none", "&:hover": {color: "black", backgroundColor: "#00000011", borderColor: "#000"}, mt: 1}} disabled={product.quantityLeft <= 0 ? true: false} onClick={addToCart}>
   Add to cart
 </Button>
       </Box>
