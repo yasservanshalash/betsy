@@ -21,8 +21,8 @@ const deleteOrder = async (id: string): Promise<OrderDocument |null> => {
     return Order.findByIdAndDelete(id)
 }
 
-const updateOrder  = async (id: string): Promise<OrderDocument |null> => {
-    return Order.findByIdAndUpdate(id)
+const updateOrder  = async (id: string, update: Partial<OrderDocument>): Promise<OrderDocument |null> => {
+    return Order.findByIdAndUpdate(id, update, {new: true})
 }
 
 export default { getOrder, getOrders, createOrder, deleteOrder, updateOrder, getOrdersByUserId}

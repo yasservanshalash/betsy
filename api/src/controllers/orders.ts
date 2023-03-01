@@ -66,7 +66,8 @@ export const deleteOrderController = async (req: Request, res: Response) => {
 export const updateOrderController = async (req: Request, res: Response) => {
     try {
         const id = req.params.id;
-        const order = await OrderServices.updateOrder(id);
+        const update = req.body
+        const order = await OrderServices.updateOrder(id, update);
         res.status(200).json(order);
 
     } catch(error) {
