@@ -19,7 +19,7 @@ const CartComponent = () => {
           {
              cart.products.length > 0 ? cart.products.map((item: Product, index) => {
               return (
-                <CartItem key={crypto.randomUUID()} product={item} index={index} cart={cart}/>
+                <CartItem key={item._id} product={item} index={index} cart={cart}/>
               )
             }) : <h1>Nothing in cart</h1>
           }

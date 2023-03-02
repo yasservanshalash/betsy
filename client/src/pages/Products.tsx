@@ -23,9 +23,9 @@ const Products = ({filterTerm}: {filterTerm: string}) => {
         </Box>
         <Box sx={{display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", my: 2, justifyItems: "center", alignItems: "center", justifyContent: "center", rowGap: "3em"}}>
         {filterTerm !== "" ? products?.filter((item: Product) => item.name.toLocaleLowerCase().includes(filterTerm.toLocaleLowerCase())).map((product: Product) => {
-          return <ProductItem product={product} key={crypto.randomUUID()} />;
+          return <ProductItem product={product} key={product._id} />;
         }): products?.map((product: Product) => {
-          return <ProductItem product={product} key={crypto.randomUUID()} />;
+          return <ProductItem product={product} key={product._id} />;
         })}
         </Box>
       </Box>
