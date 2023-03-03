@@ -21,7 +21,7 @@ const Products = ({filterTerm}: {filterTerm: string}) => {
         >
           <Button>Sort By</Button>
         </Box>
-        <Box sx={{display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", my: 2, justifyItems: "center", alignItems: "center", justifyContent: "center", rowGap: "3em"}}>
+        <Box sx={{display: "grid", gridTemplateColumns: {xs: "1fr", sm: "1fr 1fr", lg: "1fr 1fr 1fr 1fr"}, my: 2, justifyItems: "center", alignItems: "center", justifyContent: "center", rowGap: "3em"}}>
         {filterTerm !== "" ? products?.filter((item: Product) => item.name.toLocaleLowerCase().includes(filterTerm.toLocaleLowerCase())).map((product: Product) => {
           return <ProductItem product={product} key={product._id} />;
         }): products?.map((product: Product) => {

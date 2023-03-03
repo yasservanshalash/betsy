@@ -50,14 +50,14 @@ const SignIn = () => {
     initialValues={initialValues}
     validationSchema={FormSchema}
     onSubmit={(values: InitialValues) => { 
-        axios.post('http://localhost:8000/users/login', values).then((response) => {
+        axios.post('https://betsy-backend.onrender.com/users/login', values).then((response) => {
             const token = response.data.token;
             const user = JSON.stringify(response.data.user);
             localStorage.setItem('token', token);
             localStorage.setItem('user', user)
             dispatch(userActions.logIn(JSON.parse(user)))
-            thunkDispatch(fetchFavorites("http://localhost:8000/favorites/" + response.data.user._id));
-            thunkDispatch(fetchCart("http://localhost:8000/cart/" + response.data.user._id));
+            thunkDispatch(fetchFavorites("https://betsy-backend.onrender.com/favorites/" + response.data.user._id));
+            thunkDispatch(fetchCart("https://betsy-backend.onrender.com/cart/" + response.data.user._id));
             dispatch(favoriteActions.clearFavorites());
             dispatch(cartActions.clearCart());
             navigate("/")

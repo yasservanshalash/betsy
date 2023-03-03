@@ -1,12 +1,19 @@
 import { Box, Button, Rating, Typography } from "@mui/material";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { RootState } from "../redux/store";
+import { cartActions } from "../redux/slices/cart";
+import { favoriteActions } from "../redux/slices/favorite";
+import { AppDispatch, RootState } from "../redux/store";
+import { addToCartThunk } from "../redux/thunks/cart";
+import { addToFavoritesThunk } from "../redux/thunks/favorite";
 import { Product } from "../types/types";
 
 const ProductDetails = () => {
   const products = useSelector((state: RootState) => state.products.products);
+  const user = useSelector((state: RootState) => state.user.user)
+  const favorite = useSelector((state: RootState) => state.favorites.favorites);
+  const cart = useSelector((state: RootState) => state.cart.cart);
   const { id } = useParams();
   const product: Product = products.filter(
     (item: Product) => item._id === id
@@ -14,7 +21,47 @@ const ProductDetails = () => {
   console.log(product);
   console.log(id);
   console.log(typeof product.dateAdded);
+
+  const dispatch = useDispatch();
+  const thunkDispatch = useDispatch<AppDispatch>()
   // const date = new Date(product.dateAdded)
+
+  const addToFav = () => {
+    if (user._id === "") {
+      if (favorite.products.find((item) => item.name === product.name)) {
+        return;
+      } else {
+        dispatch(favoriteActions.addToFavorites(product));
+      }
+    } else {
+      if (favorite.products.find((item) => item.name === product.name)) {
+        return;
+      } else {
+        dispatch(favoriteActions.addToFavorites(product));
+        thunkDispatch(addToFavoritesThunk(user._id, favorite, product));
+        console.log(product);
+      }
+    }
+  };
+
+  const addToCart = () => {
+    if (user._id === "") {
+      if (cart.products.find((item) => item.name === product.name) || product.quantityLeft <= 0) {
+        return;
+      } else {
+        dispatch(cartActions.addTocart(product));
+      }
+    } else {
+      if (cart.products.find((item) => item.name === product.name) || product.quantityLeft <= 0) {
+        return;
+      } else {
+        dispatch(cartActions.addTocart(product));
+        thunkDispatch(addToCartThunk(user._id, cart, product));
+        console.log(product);
+      }
+    }
+  };
+
   return (
     <Box sx={{ width: "80%", margin: "0 auto" }}>
       <Box sx={{ display: "flex", flexDirection: {xs: "column", md: "row"},justifyContent: "flex-start", gap: 20 }}>
@@ -63,6 +110,7 @@ const ProductDetails = () => {
                 border: "2px solid black",
                 borderRadius: "20px",
               }}
+              onClick={addToFav}
             >
               Add to Favorites
             </Button>
@@ -74,6 +122,7 @@ const ProductDetails = () => {
                 borderRadius: "20px",
                 "&:hover": { color: "black", background: "white" },
               }}
+              onClick={addToCart}
             >
               Add to Cart
             </Button>

@@ -43,8 +43,8 @@ function App() {
   useEffect(() => {
     thunkDispatch(fetchProductData());
     if(user._id !== "") {
-      thunkDispatch(fetchFavorites("http://localhost:8000/favorites/" + user._id));
-      thunkDispatch(fetchCart("http://localhost:8000/cart/" + user._id));
+      thunkDispatch(fetchFavorites("https://betsy-backend.onrender.com/favorites/" + user._id));
+      thunkDispatch(fetchCart("https://betsy-backend.onrender.com/cart/" + user._id));
       dispatch(favoriteActions.clearFavorites());
       dispatch(cartActions.clearCart());
     }

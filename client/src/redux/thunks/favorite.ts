@@ -24,7 +24,7 @@ export function addToFavoritesThunk(userId: string, favorites: Favorites, produc
         console.log("product", product)
         const products = favorites.products.concat([product])
         console.log("new products", products)
-        const result = await axios.put("http://localhost:8000/favorites/" + favorites._id , {"products": products})
+        const result = await axios.put("https://betsy-backend.onrender.com/favorites/" + favorites._id , {"products": products})
         console.log(result.data)
 
     }
@@ -35,7 +35,7 @@ export function removeFromFavoritesThunk(userId: string, favorites: Favorites, p
     return async (dispatch: AppDispatch) => {
         const products = favorites.products.filter((item) => item.name !== product.name)
         console.log(products)
-        const result = await axios.put("http://localhost:8000/favorites/" + favorites._id , {"products": products})
+        const result = await axios.put("https://betsy-backend.onrender.com/favorites/" + favorites._id , {"products": products})
         console.log(result.data)
 
     }

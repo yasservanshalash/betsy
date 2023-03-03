@@ -83,7 +83,7 @@ const ProductItem = ({ product }: { product: Product }) => {
     }
   };
   return (
-    <Box sx={{ position: "relative", width: "350px"}} onMouseEnter={() => setFavoriteIconVisibility(true)} onMouseLeave={() => setFavoriteIconVisibility(false)}>
+    <Box sx={{ position: "relative", width: {xs: "300px", sm: "350px"}}} onMouseEnter={() => setFavoriteIconVisibility(true)} onMouseLeave={() => setFavoriteIconVisibility(false)}>
       <Box
         sx={{
           position: "absolute",

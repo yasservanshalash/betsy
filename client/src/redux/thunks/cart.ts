@@ -18,13 +18,13 @@ export function fetchCart(url: string) {
 
 // export function addToCartThunk(userId: string, cartId: string, product: Product) {
 //     return async (dispatch: AppDispatch) => {
-//         const response = await fetch("http://localhost:8000/cart/" + userId);
+//         const response = await fetch("https://betsy-backend.onrender.com/cart/" + userId);
 //         const cart = await response.json();
 //         console.log(cart, "cart from thunk");
 //         const cartObj = cart[0]
 //         cartObj.products.concat(Array(product))
 //         console.log(cartObj, "new cart from thunk");
-//         const result = await axios.put("http://localhost:8000/cart/" + cartId, {"products": [cartObj.products]})
+//         const result = await axios.put("https://betsy-backend.onrender.com/cart/" + cartId, {"products": [cartObj.products]})
 //         console.log(result)
 //         dispatch(cartActions.setcart(result.data))
 //     }
@@ -39,7 +39,7 @@ export function addToCartThunk(userId: string, cart: Cart, product: Product) {
         console.log("product", product)
         const products = cart.products.concat([product])
         console.log("new products", products)
-        const result = await axios.put("http://localhost:8000/cart/" + cart._id , {"products": products})
+        const result = await axios.put("https://betsy-backend.onrender.com/cart/" + cart._id , {"products": products})
         console.log(result.data)
 
     }
@@ -50,7 +50,7 @@ export function removeFromCartThunk(userId: string, cart: Cart, product: Product
     return async (dispatch: AppDispatch) => {
         const products = cart.products.filter((item) => item.name !== product.name)
         console.log(products)
-        const result = await axios.put("http://localhost:8000/cart/" + cart._id , {"products": products})
+        const result = await axios.put("https://betsy-backend.onrender.com/cart/" + cart._id , {"products": products})
         console.log(result.data)
     }
 } 
@@ -58,7 +58,7 @@ export function removeFromCartThunk(userId: string, cart: Cart, product: Product
 export function updateCart(cart: Cart) {
     return async (dispatch: AppDispatch) => {
 
-        const result = await axios.put(`http://localhost:8000/cart/${cart._id}`  , {"products": cart.products})
+        const result = await axios.put(`https://betsy-backend.onrender.com/cart/${cart._id}`  , {"products": cart.products})
         console.log(result.data, "cart updated")
     }
 } 
