@@ -1,18 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { User } from "../../types/types";
 
-type initialStateType = {
-    user: User
-};
-
-const initialState = {
-    user: {
+const localUser =
+  localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user")!)
+    : {
         name: "",
         isAdmin: false,
         email: "",
         _id: "",
         avatar: "",
-    },
+    };
+
+type initialStateType = {
+    user: User
+};
+
+const initialState = {
+    user: localUser
 }
 
 const userSlice = createSlice({

@@ -1,14 +1,18 @@
 import { Add, Remove } from "@mui/icons-material";
 import { Box, Button, Divider, IconButton, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { cartActions } from "../../redux/slices/cart";
-import { AppDispatch } from "../../redux/store";
-import { updateCart } from "../../redux/thunks/cart";
+import { favoriteActions } from "../../redux/slices/favorite";
+import { AppDispatch, RootState } from "../../redux/store";
+import { removeFromCartThunk, updateCart } from "../../redux/thunks/cart";
+import { addToFavoritesThunk } from "../../redux/thunks/favorite";
 import { Cart, Product } from "../../types/types";
 
 const CartItem = ({ product, index, cart }: { product: Product, index: number,cart: Cart }) => {
+  const user = useSelector((state: RootState) => state.user.user)
+  const favorite = useSelector((state: RootState) => state.favorites.favorites)
     const dispatchThunk = useDispatch<AppDispatch>();
     const dispatch = useDispatch();
     const [val, setVal] = useState(product.quantity)
@@ -29,6 +33,35 @@ const CartItem = ({ product, index, cart }: { product: Product, index: number,ca
     useEffect(() => {
         dispatchThunk(updateCart(cart));
     }, [dispatch, dispatchThunk, cart])
+
+    const thunkDispatch = useDispatch<AppDispatch>();
+    const removeFromCart = () => {
+      if (user._id === "") {
+        dispatch(cartActions.removeFromcart(product));
+      } else {
+        dispatch(cartActions.removeFromcart(product));
+        thunkDispatch(removeFromCartThunk(user._id, cart, product));
+        console.log(product);
+      }
+    };
+
+    const addToFav = () => {
+      if (user._id === "") {
+        if (favorite.products.find((item) => item.name === product.name)) {
+          return;
+        } else {
+          dispatch(favoriteActions.addToFavorites(product));
+        }
+      } else {
+        if (favorite.products.find((item) => item.name === product.name)) {
+          return;
+        } else {
+          dispatch(favoriteActions.addToFavorites(product));
+          thunkDispatch(addToFavoritesThunk(user._id, favorite, product));
+          console.log(product);
+        }
+      }
+    };
   return (
     <Box sx={{width: "1000px", }}>
       <Box sx={{ display: "flex", gap: 0 }}>
@@ -40,8 +73,8 @@ const CartItem = ({ product, index, cart }: { product: Product, index: number,ca
         <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
           <Typography sx={{width: "280px"}}>{product.name}</Typography>
           <Box sx={{display: "flex", gap: 2}}>
-            <Button sx={{m: 0, color: "black", border: "0.5px solid black", "&:hover": {color: "black", background: "lightgray"}}}>save for later</Button>
-            <Button sx={{m: 0, color: "black", border: "0.5px solid black", "&:hover": {color: "white", background: "red"}}}>remove</Button>
+            <Button sx={{m: 0, color: "black", border: "0.5px solid black", "&:hover": {color: "black", background: "lightgray"}}} onClick={addToFav}>save for later</Button>
+            <Button sx={{m: 0, color: "black", border: "0.5px solid black", "&:hover": {color: "white", background: "red"}}} onClick={removeFromCart}>remove</Button>
           </Box>
         </Box>
         <Box sx={{display: "flex", flexDirection: "column", justifyContent: "space-between"}}>

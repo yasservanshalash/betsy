@@ -20,6 +20,10 @@ import Footer from './components/Footer/Footer';
 import ProductDetails from './pages/ProductDetails';
 import Category from './pages/Category';
 import UnderConstruction from './pages/UnderConstruction';
+import { fetchFavorites } from './redux/thunks/favorite';
+import { fetchCart } from './redux/thunks/cart';
+import { favoriteActions } from './redux/slices/favorite';
+import { cartActions } from './redux/slices/cart';
 
 function App() {
   const products = useSelector((state: RootState) => state.products.products)
@@ -34,15 +38,23 @@ function App() {
   console.log(cart, "cart")
 
   console.log(favorites, "favorites")
-  const dispatch = useDispatch<AppDispatch>();
-
+  const thunkDispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchProductData());
+    thunkDispatch(fetchProductData());
+    if(user._id !== "") {
+      thunkDispatch(fetchFavorites("http://localhost:8000/favorites/" + user._id));
+      thunkDispatch(fetchCart("http://localhost:8000/cart/" + user._id));
+      dispatch(favoriteActions.clearFavorites());
+      dispatch(cartActions.clearCart());
+    }
   }, [])
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
+
+
   return (
     <Box className="App" sx={{m:0, p:0, width: "100%"}}>
       <NavBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} setFilterTerm={setFilterTerm} filterTerm={filterTerm}/>
