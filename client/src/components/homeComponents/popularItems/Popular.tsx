@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../redux/store'
 import { Product } from '../../../types/types'
@@ -12,9 +12,13 @@ const Popular = () => {
   function shuffle(array: Product[]) {
     array.sort(() => Math.random() - 0.5);
   }
-  const shuffledProducts = shuffle(productsArray)
-  console.log(shuffledProducts)
-  console.log(productsArray)
+
+  useEffect(() => {
+    const shuffledProducts = shuffle(productsArray)
+    console.log(shuffledProducts)
+    console.log(productsArray)
+  }, [])
+
   return (
     <Box sx={{my: 5, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
         <Typography sx={{textAlign: "center", fontWeight: "bold", mb: 3}}>Popular gifts right now</Typography>

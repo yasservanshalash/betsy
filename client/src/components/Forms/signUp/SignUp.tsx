@@ -62,7 +62,11 @@ const SignUp = ({showLogin, showSignup, setShowLogin, setShowSignup}: {showLogin
         return (
             <Form>
                     <Box sx={{width: "324px", height: "730px", display: "flex", flexDirection: "column", gap: "10px", p: 4, position: "relative", background: "white", borderRadius: "20px"}}>
-                    <IconButton sx={{position: "absolute", top: "10px", right: "0px"}}>
+                    <IconButton sx={{position: "absolute", top: "10px", right: "0px"}}
+                                    onClick={() => {
+                                        setShowLogin(false)
+                                        setShowSignup(false)
+                                    }}>
                     <CloseIcon />
 
                     </IconButton>
@@ -90,6 +94,7 @@ const SignUp = ({showLogin, showSignup, setShowLogin, setShowSignup}: {showLogin
             <Typography variant='subtitle2' sx={{textDecoration: "underline", p:1, fontSize: "80%"}} onClick={() => {
                 setShowSignup(false);
                 setShowLogin(true);
+
             }}>Have an account? Sign in.</Typography>
         </Box>
         <Box>

@@ -37,7 +37,7 @@ export default function ChangeAvatar() {
             autoFocus
             margin="dense"
             id="name"
-            label="Name"
+            label="Avatar Link"
             type="text"
             fullWidth
             variant="standard"

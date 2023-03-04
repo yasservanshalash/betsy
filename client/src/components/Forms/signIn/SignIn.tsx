@@ -76,6 +76,7 @@ const SignIn = ({showLogin, showSignup, setShowLogin, setShowSignup}: {showLogin
             dispatch(cartActions.clearCart());
             navigate("/");
             setShowLogin(false);
+            setShowSignup(false);
           });
       }}
     >
@@ -100,6 +101,7 @@ const SignIn = ({showLogin, showSignup, setShowLogin, setShowSignup}: {showLogin
                 sx={{ position: "absolute", top: "10px", right: "10px" }}
                 onClick={() => {
                     setShowLogin(false)
+                    setShowSignup(false)
                 }}
               >
                 <CloseIcon />
@@ -181,8 +183,8 @@ const SignIn = ({showLogin, showSignup, setShowLogin, setShowSignup}: {showLogin
                   variant="subtitle2"
                   sx={{ textDecoration: "underline" }}
                   onClick={() => {
-                    setShowLogin(false);
-                    setShowSignup(true)
+                    setShowSignup(true);
+                    setShowLogin(true);
                   }}
                 >
                   Dont have an account? Sign up.

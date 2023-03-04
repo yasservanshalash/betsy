@@ -1,5 +1,5 @@
 import { Box, Button, Rating, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { cartActions } from "../redux/slices/cart";
@@ -62,6 +62,9 @@ const ProductDetails = () => {
     }
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <Box sx={{ width: "80%", margin: "0 auto" }}>
       <Box sx={{ display: "flex", flexDirection: {xs: "column", md: "row"},justifyContent: "center", alignItems:"center",gap: 20 }}>

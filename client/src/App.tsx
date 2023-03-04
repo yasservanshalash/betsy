@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Container } from "@mui/material"
+import { Box, Fade } from "@mui/material"
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import Home from './pages/Home';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import { Favorite } from '@mui/icons-material';
 import Favorites from './pages/Favorites';
 import Cart from './pages/Cart';
 import SignIn from './components/Forms/signIn/SignIn';
@@ -60,13 +59,17 @@ function App() {
 
   return (
     <Box className="App" sx={{m:0, p:0, width: "100vw"}}>
-      <Box sx={{width: "100vw", height: "100vh", background: "#00000033", position: "fixed",zIndex: "10", display: showLogin? "flex" : "none", justifyContent: "center", alignItems:"center"}}>
-        <SignIn showLogin={showLogin} setShowLogin={setShowLogin} showSignup={showSignup} setShowSignup={setShowSignup}/>
+      <Fade in={showLogin}>
+      <Box sx={{width: "100vw", height: "100vh", background: showSignup ? "transparent" : "#00000033", position: "fixed",zIndex: showLogin ? "30" : "10", display: showLogin? "flex" : "none", justifyContent: "center", alignItems:"center"}}>
+      <SignIn showLogin={showLogin} setShowLogin={setShowLogin} showSignup={showSignup} setShowSignup={setShowSignup}/>
       </Box>
-      <Box sx={{width: "100vw", height: "100vh", background: "#00000033", position: "fixed",zIndex: "10", display: showSignup? "flex" : "none", justifyContent: "center", alignItems:"center"}}>
+      </Fade>
+      <Fade in={showLogin}>
+      <Box sx={{width: "100vw", height: "100vh", background: "#00000033", position: "fixed",zIndex: showSignup ? "30" : "10", display: showSignup? "flex" : "none", justifyContent: "center", alignItems:"center"}}>
         <SignUp showLogin={showLogin} setShowLogin={setShowLogin} showSignup={showSignup} setShowSignup={setShowSignup}/>
       </Box>
-      <NavBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} setFilterTerm={setFilterTerm} filterTerm={filterTerm} showLogin={showLogin} setShowLogin={setShowLogin}/>
+      </Fade>
+      <NavBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} setFilterTerm={setFilterTerm} filterTerm={filterTerm} showLogin={showLogin} setShowLogin={setShowLogin} setShowSignup={setShowSignup}/>
       <Routes>
       <Route path="/" element={<Home />} />
       <Route path='/products' element={<Products filterTerm={filterTerm}/>} />
