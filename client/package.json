@@ -20,7 +20,10 @@
     "react-scripts": "5.0.1",
     "typescript": "^4.4.2",
     "web-vitals": "^2.1.0",
-    "yup": "^1.0.0"
+    "yup": "^1.0.0",
+    "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/material": "^5.11.2"
   },
   "scripts": {
     "start": "react-scripts start",
