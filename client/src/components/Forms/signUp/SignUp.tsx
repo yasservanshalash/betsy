@@ -7,7 +7,7 @@ import * as Yup from "yup";
 import "./SignUp.css"
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-const SignUp = () => {
+const SignUp = ({showLogin, showSignup, setShowLogin, setShowSignup}: {showLogin: boolean, showSignup: boolean, setShowLogin: Function, setShowSignup: Function}) => {
     const [error, setError] = useState("");
     const [readOnly, setReadOnly] = useState(true);
     const navigate = useNavigate();
@@ -29,11 +29,11 @@ const SignUp = () => {
             password: Yup.string()
               .min(8, "Password too short!")
               .max(20, "Password tooo Long!")
-              .required("Password is required to sign up")
-              .matches(
-                /^(?=.*[A-Za-z])(?=.*d)[A-Za-zd]{8,}$/,
-                "Password must have at least one letter one number and 8 characters at least in total."
-              ),
+              .required("Password is required to sign up"),
+            //   .matches(
+            //     /^(?=.*[A-Za-z])(?=.*d)[A-Za-zd]{8,}$/,
+            //     "Password must have at least one letter one number and 8 characters at least in total."
+            //   )
             name: Yup.string().required("Name is required to sign up").matches(/\w+/, "Not a valid name")
         });
         
@@ -60,7 +60,7 @@ const SignUp = () => {
     {({errors, touched, handleChange}) => {
         return (
             <Form>
-                    <Box sx={{width: "324px", height: "730px", display: "flex", flexDirection: "column", gap: "10px", p: 4, position: "relative"}}>
+                    <Box sx={{width: "324px", height: "730px", display: "flex", flexDirection: "column", gap: "10px", p: 4, position: "relative", background: "white", borderRadius: "20px"}}>
                     <IconButton sx={{position: "absolute", top: "10px", right: "0px"}}>
                     <CloseIcon />
 
@@ -86,7 +86,10 @@ const SignUp = () => {
         </Box>
         <Box sx={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: 3}}>
             <Button type="submit" sx={{p: 2.7, width: "324px", height: "24px", background: "black", color: "white", "&:hover": { background: "#222", color: "white"}, textTransform: "none", fontWeight: "bolder", borderRadius: "20px"}}>Sign up</Button>
-            <Typography variant='subtitle2' sx={{textDecoration: "underline", p:1, fontSize: "80%"}}>Trouble signing up?</Typography>
+            <Typography variant='subtitle2' sx={{textDecoration: "underline", p:1, fontSize: "80%"}} onClick={() => {
+                setShowSignup(false);
+                setShowLogin(true);
+            }}>Have an account? Sign in.</Typography>
         </Box>
         <Box>
         {errors.email && touched.email ? (

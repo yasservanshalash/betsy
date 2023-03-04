@@ -33,6 +33,8 @@ function App() {
   const cart = useSelector((state: RootState) => state.cart.cart)
   const [searchTerm, setSearchTerm] = useState("");
   const [filterTerm, setFilterTerm] = useState("");
+  const [showLogin, setShowLogin] = useState(false);
+  const [showSignup, setShowSignup] = useState(false);
   const navigate = useNavigate();
   console.log(user, "user")
   console.log(cart, "cart")
@@ -57,16 +59,22 @@ function App() {
 
 
   return (
-    <Box className="App" sx={{m:0, p:0, width: "100%"}}>
-      <NavBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} setFilterTerm={setFilterTerm} filterTerm={filterTerm}/>
+    <Box className="App" sx={{m:0, p:0, width: "100vw"}}>
+      <Box sx={{width: "100vw", height: "100vh", background: "#00000033", position: "fixed",zIndex: "10", display: showLogin? "flex" : "none", justifyContent: "center", alignItems:"center"}}>
+        <SignIn showLogin={showLogin} setShowLogin={setShowLogin} showSignup={showSignup} setShowSignup={setShowSignup}/>
+      </Box>
+      <Box sx={{width: "100vw", height: "100vh", background: "#00000033", position: "fixed",zIndex: "10", display: showSignup? "flex" : "none", justifyContent: "center", alignItems:"center"}}>
+        <SignUp showLogin={showLogin} setShowLogin={setShowLogin} showSignup={showSignup} setShowSignup={setShowSignup}/>
+      </Box>
+      <NavBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} setFilterTerm={setFilterTerm} filterTerm={filterTerm} showLogin={showLogin} setShowLogin={setShowLogin}/>
       <Routes>
       <Route path="/" element={<Home />} />
       <Route path='/products' element={<Products filterTerm={filterTerm}/>} />
       <Route path="/products/:id" element={<ProductDetails />} />
       <Route path="/favorites" element={<Favorites />} />
       <Route path="/cart" element={<Cart />} />
-      <Route path="/signin" element={<SignIn />} />
-      <Route path="/signup" element={<SignUp />} />
+      <Route path="/signin" element={<SignIn showLogin={showLogin} setShowLogin={setShowLogin} showSignup={showSignup} setShowSignup={setShowSignup}/>} />
+      <Route path="/signup" element={<SignUp showLogin={showLogin} setShowLogin={setShowLogin} showSignup={showSignup} setShowSignup={setShowSignup}/>} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/edit-profile" element={<EditProfile />} />
       <Route path="/admin" element={<Admin/>} />

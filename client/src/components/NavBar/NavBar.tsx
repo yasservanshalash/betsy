@@ -31,7 +31,7 @@ import { userActions } from "../../redux/slices/user";
 import { favoriteActions } from "../../redux/slices/favorite";
 import { cartActions } from "../../redux/slices/cart";
 
-const NavBar = ({searchTerm, setSearchTerm, setFilterTerm, filterTerm}: {searchTerm: string, filterTerm: string,setSearchTerm: Function, setFilterTerm: Function}) => {
+const NavBar = ({searchTerm, setSearchTerm, setFilterTerm, filterTerm, showLogin, setShowLogin}: {searchTerm: string, filterTerm: string,setSearchTerm: Function, setFilterTerm: Function, showLogin: boolean, setShowLogin: Function}) => {
   const user = useSelector((state: RootState) => state.user.user);
   const navigate = useNavigate();
   // MENU
@@ -141,8 +141,7 @@ const NavBar = ({searchTerm, setSearchTerm, setFilterTerm, filterTerm}: {searchT
               color: "black",
               fontWeight: { sx: "lighter", sm: "bold" },
             }}
-            component={Link}
-            to="/signin"
+            onClick={() => setShowLogin(true)}
           >
             Sign in
           </Typography>
