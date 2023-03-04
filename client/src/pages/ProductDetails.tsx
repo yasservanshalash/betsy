@@ -63,13 +63,13 @@ const ProductDetails = () => {
   };
 
   return (
-    <Box sx={{ width: "80%", margin: "0 auto" }}>
+    <Box sx={{ width: "100%", margin: "0 auto" }}>
       <Box sx={{ display: "flex", flexDirection: {xs: "column", md: "row"},justifyContent: "flex-start", gap: 20 }}>
         <Box>
           <Box
             component={"img"}
             src={product.image}
-            style={{ margin: "100px 100px", width: "500px" }}
+            sx={{ margin: "100px 0px", width: "500px", position: "relative", right: "15%" }}
           ></Box>
         </Box>
         <Box

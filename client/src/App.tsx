@@ -3,7 +3,7 @@ import { Box, Container } from "@mui/material"
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import Home from './pages/Home';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { Favorite } from '@mui/icons-material';
 import Favorites from './pages/Favorites';
 import Cart from './pages/Cart';
@@ -33,7 +33,7 @@ function App() {
   const cart = useSelector((state: RootState) => state.cart.cart)
   const [searchTerm, setSearchTerm] = useState("");
   const [filterTerm, setFilterTerm] = useState("");
-
+  const navigate = useNavigate();
   console.log(user, "user")
   console.log(cart, "cart")
 
@@ -43,6 +43,7 @@ function App() {
   useEffect(() => {
     thunkDispatch(fetchProductData());
     if(user._id !== "") {
+      navigate("/")
       thunkDispatch(fetchFavorites("https://betsy-backend.onrender.com/favorites/" + user._id));
       thunkDispatch(fetchCart("https://betsy-backend.onrender.com/cart/" + user._id));
       dispatch(favoriteActions.clearFavorites());
