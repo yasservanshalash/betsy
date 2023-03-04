@@ -64,7 +64,7 @@ const ProductDetails = () => {
 
   return (
     <Box sx={{ width: "80%", margin: "0 auto" }}>
-      <Box sx={{ display: "flex", flexDirection: {xs: "column", md: "row"},justifyContent: "center", gap: 20 }}>
+      <Box sx={{ display: "flex", flexDirection: {xs: "column", md: "row"},justifyContent: "center", alignItems:"center",gap: 20 }}>
         <Box>
           <Box
             component={"img"}

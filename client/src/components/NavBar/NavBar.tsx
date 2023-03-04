@@ -205,14 +205,14 @@ const NavBar = ({searchTerm, setSearchTerm, setFilterTerm, filterTerm, showLogin
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={handleClose} component={Link} to="/profile">
+        <MenuItem onClick={handleClose} component={Link} to="/profile" sx={{pr: 10 }}>
           <Avatar src={user.avatar !== "" ? user.avatar : ""} /> Profile
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        {/* <MenuItem onClick={handleClose}>
           <Avatar /> My account
-        </MenuItem>
+        </MenuItem> */}
         <Divider />
-        <MenuItem onClick={handleClose}>
+        {/* <MenuItem onClick={handleClose}>
           <ListItemIcon>
             <PersonAdd fontSize="small" />
           </ListItemIcon>
@@ -223,7 +223,7 @@ const NavBar = ({searchTerm, setSearchTerm, setFilterTerm, filterTerm, showLogin
             <Settings fontSize="small" />
           </ListItemIcon>
           Settings
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem onClick={() => {
           handleClose();
           dispatch(userActions.logOut())

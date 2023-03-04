@@ -47,7 +47,8 @@ const SignUp = ({showLogin, showSignup, setShowLogin, setShowSignup}: {showLogin
             if(response.data.user) {
                 const user = response.data.user
                 console.log(user);
-                navigate("/signin")
+                setShowSignup(false);
+                setShowLogin(true);
             } else {
                 console.log(response.data.message)
             }
