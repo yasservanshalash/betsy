@@ -26,7 +26,7 @@ const ProductItem = ({ product }: { product: Product }) => {
 
   useEffect(() => {
     favorite.products.find((item) => item.name === product.name) ?  setFavorited(true) : setFavorited(false);
-  }, [])
+  }, [favorite])
   const addToFav = () => {
     if (user._id === "") {
       if (favorite.products.find((item) => item.name === product.name)) {

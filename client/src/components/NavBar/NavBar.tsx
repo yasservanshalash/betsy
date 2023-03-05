@@ -1,4 +1,5 @@
 import {
+  Badge,
   Box,
   Container,
   IconButton,
@@ -33,6 +34,8 @@ import { cartActions } from "../../redux/slices/cart";
 
 const NavBar = ({searchTerm, setSearchTerm, setFilterTerm, filterTerm, showLogin, setShowLogin, setShowSignup}: {searchTerm: string, filterTerm: string,setSearchTerm: Function, setFilterTerm: Function, showLogin: boolean, setShowLogin: Function, setShowSignup: Function}) => {
   const user = useSelector((state: RootState) => state.user.user);
+  const favorite = useSelector((state: RootState) => state.favorites.favorites);
+  const cart = useSelector((state: RootState) => state.cart.cart);
   const navigate = useNavigate();
   // MENU
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -149,19 +152,25 @@ const NavBar = ({searchTerm, setSearchTerm, setFilterTerm, filterTerm, showLogin
             Sign in
           </Typography>
           <Typography sx={{ fontSize: "120%" }}>🇪🇺</Typography>
+          <Badge badgeContent={favorite.products.length} color="warning" variant="dot" overlap="circular">
 
           <Tooltip title="Favorites">
+
           <IconButton component={Link} to="/favorites">
             <FavoriteBorderIcon sx={{ color: "black" }} />
           </IconButton>
+
           </Tooltip>
+          </Badge>
+
+          <Badge badgeContent={cart.products.length} color="warning" variant="dot" overlap="circular">
 
           <Tooltip title="Cart">
           <IconButton component={Link} to="/cart">
             <ShoppingBag sx={{ color: "black" }} />
           </IconButton>
           </Tooltip>
-
+</Badge>
           <Tooltip title="Account settings" style={user.email === "" ? { display: "none" } : { display: "inherit" }}>
           <IconButton
             onClick={handleClick}
