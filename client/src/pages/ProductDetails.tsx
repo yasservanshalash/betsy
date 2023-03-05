@@ -72,7 +72,7 @@ const ProductDetails = () => {
           <Box
             component={"img"}
             src={product.image}
-            sx={{ margin: "100px 100px", width: "400px", height: "220px", objectFit: "cover"}}
+            sx={{ margin: "100px 100px", width: "300px", height: "220px", objectFit: "cover"}}
           ></Box>
         </Box>
         <Box
