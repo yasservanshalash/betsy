@@ -43,7 +43,7 @@ const Popular = () => {
         }}
       >
         {
-          newProducts.length > 0 ? newProducts?.sort(() => Math.random() - 0.5 )?.splice(0,4)?.map((item) => {
+          newProducts ? newProducts?.sort(() => Math.random() - 0.5 )?.splice(0,4)?.map((item) => {
             return (
               <PopularItem product={item} />
             )

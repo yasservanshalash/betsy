@@ -15,8 +15,8 @@ const Home = () => {
   return (
     <Box sx={{width: "100%"}}>
     <Header />
-    <Button onClick={() => dispatch(favoriteActions.addFromLocalStorage())}>Link favorite localstorage</Button>
-    <Button onClick={() => dispatch(cartActions.addFromLocalStorage())}>Link cart localstorage</Button>
+    {/* <Button onClick={() => dispatch(favoriteActions.addFromLocalStorage())}>Link favorite localstorage</Button>
+    <Button onClick={() => dispatch(cartActions.addFromLocalStorage())}>Link cart localstorage</Button> */}
     <Popular />
     <Gifts />
     <PreFooter />

@@ -2,7 +2,7 @@ import { Box, Rating, Skeleton, Typography } from '@mui/material'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const popularItemSkeleton = () => {
+const PopularItemSkeleton = () => {
   return (
     <Box sx={{width: "200px", position: "relative", textDecoration: "none", color: "black"}}>
     <Skeleton variant="rectangular" width={190} height={170} />
@@ -14,4 +14,4 @@ const popularItemSkeleton = () => {
   )
 }
 
-export default popularItemSkeleton
+export default PopularItemSkeleton
