@@ -1,4 +1,4 @@
-import { Box, IconButton, Rating, Typography } from '@mui/material'
+import { Box, IconButton, Rating, Skeleton, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import "./PopularItem.css"
 import Favorite from '@mui/icons-material/Favorite'
@@ -41,13 +41,12 @@ const PopularItem = ({product}: {product: Product}) => {
       thunkDispatch(removeFromFavoritesThunk(user._id, favorite, product));
       console.log(product);
     }
-  };
+  }
 
   return (
     <Box sx={{width: "200px", position: "relative", textDecoration: "none", color: "black"}} onMouseEnter={() => setFavoriteIconVisibility(true)} onMouseLeave={() => setFavoriteIconVisibility(false)}>
         <Link to={`/products/${product._id}`}>
         <img className="popular-item-image" src={product.image} alt={product.name} style={{width: "190px", height: "170px", borderRadius: "10px", objectFit: "contain"}} />
-
         </Link>
         <Typography sx={{textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden"}} noWrap>{product.name}</Typography>
         <Rating sx={{color: "black"}} value={product.rating} readOnly />
