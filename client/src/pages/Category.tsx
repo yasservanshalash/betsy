@@ -9,7 +9,6 @@ import { Product } from '../types/types';
 const Category = () => {
     const products = useSelector((state: RootState) => state.products.products);
     const {category} = useParams();
-    console.log(category)
   return (
     <Box>
     <Box sx={{m: 5}}>

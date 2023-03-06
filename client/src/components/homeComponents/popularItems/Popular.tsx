@@ -14,7 +14,7 @@ const Popular = ({products}: {products: Product[]}) => {
   useEffect(() => {
     setNewProducts([...products]);
 
-  })
+  }, [])
 
   return (
     <Box
