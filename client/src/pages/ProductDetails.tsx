@@ -72,7 +72,7 @@ const ProductDetails = () => {
           <Box
             component={"img"}
             src={product.image}
-            sx={{ margin: "100px 100px", width: "300px", height: {sx: "220px", md: "100%"}, objectFit: "cover"}}
+            sx={{ margin: "100px 100px", width: {xs: "300px", md: "500px"}, height: {xs: "220px", md: "100%"}, objectFit: "cover"}}
           ></Box>
         </Box>
         <Box
@@ -94,7 +94,7 @@ const ProductDetails = () => {
             </Typography>
             <Typography>{`${product.name}`}</Typography>
           </Box>
-          <Typography>{product.description}</Typography>
+          <Typography variant="subtitle2">{product.description}</Typography>
           <Box>
             <Rating
               value={product.rating}
