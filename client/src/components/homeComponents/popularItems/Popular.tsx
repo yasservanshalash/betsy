@@ -14,7 +14,7 @@ const Popular = ({products}: {products: Product[]}) => {
   useEffect(() => {
     setNewProducts([...products]);
 
-  }, [])
+  }, [products])
 
   return (
     <Box
@@ -41,9 +41,9 @@ const Popular = ({products}: {products: Product[]}) => {
         }}
       >
         {
-          newProducts?.splice(0,4)?.map((item) => {
+          newProducts?.slice(3,7)?.map((item) => {
             return (
-              <PopularItem product={item} />
+              <PopularItem product={item} key={item._id}/>
             )
           })
 
