@@ -35,10 +35,7 @@ function App() {
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
   const navigate = useNavigate();
-  console.log(user, "user")
-  console.log(cart, "cart")
 
-  console.log(favorites, "favorites")
   const thunkDispatch = useDispatch<AppDispatch>();
   const dispatch = useDispatch();
   useEffect(() => {

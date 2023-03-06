@@ -18,9 +18,6 @@ const ProductDetails = () => {
   const product: Product = products.filter(
     (item: Product) => item._id === id
   )[0];
-  console.log(product);
-  console.log(id);
-  console.log(typeof product.dateAdded);
 
   const dispatch = useDispatch();
   const thunkDispatch = useDispatch<AppDispatch>()
@@ -39,7 +36,6 @@ const ProductDetails = () => {
       } else {
         dispatch(favoriteActions.addToFavorites(product));
         thunkDispatch(addToFavoritesThunk(user._id, favorite, product));
-        console.log(product);
       }
     }
   };
@@ -57,7 +53,6 @@ const ProductDetails = () => {
       } else {
         dispatch(cartActions.addTocart(product));
         thunkDispatch(addToCartThunk(user._id, cart, product));
-        console.log(product);
       }
     }
   };

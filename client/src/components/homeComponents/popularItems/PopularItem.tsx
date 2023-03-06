@@ -28,7 +28,6 @@ const PopularItem = ({product}: {product: Product}) => {
       } else {
         dispatch(favoriteActions.addToFavorites(product));
         thunkDispatch(addToFavoritesThunk(user._id, favorite, product));
-        console.log(product);
       }
     }
   };
@@ -39,7 +38,6 @@ const PopularItem = ({product}: {product: Product}) => {
     } else {
       dispatch(favoriteActions.removeFromFavorites(product));
       thunkDispatch(removeFromFavoritesThunk(user._id, favorite, product));
-      console.log(product);
     }
   }
 

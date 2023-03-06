@@ -50,7 +50,6 @@ export default function ChangeName() {
             <Button onClick={() => handleClose()} color="inherit">Cancel</Button>
           <Button onClick={() => {
             handleClose();
-            console.log(name)
             dispatchThunk(editNameThunk(user, name))
             }} color="inherit">Confirm</Button>
             </Box>

@@ -50,7 +50,6 @@ export default function ChangeAvatar() {
             <Button onClick={() => handleClose()} color="inherit">Cancel</Button>
           <Button onClick={() => {
             handleClose();
-            console.log(name)
             dispatchThunk(editAvatar(user, name))
             }} color="inherit">Confirm</Button>
             </Box>

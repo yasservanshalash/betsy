@@ -25,7 +25,6 @@ const FavoriteItem = ({
       } else {
         dispatch(favoriteActions.removeFromFavorites(product));
         thunkDispatch(removeFromFavoritesThunk(user._id, favorite, product));
-        console.log(product);
       }
     };
   return (

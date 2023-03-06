@@ -41,7 +41,6 @@ const CartItem = ({ product, index, cart }: { product: Product, index: number,ca
       } else {
         dispatch(cartActions.removeFromcart(product));
         thunkDispatch(removeFromCartThunk(user._id, cart, product));
-        console.log(product);
       }
     };
 
@@ -58,7 +57,6 @@ const CartItem = ({ product, index, cart }: { product: Product, index: number,ca
         } else {
           dispatch(favoriteActions.addToFavorites(product));
           thunkDispatch(addToFavoritesThunk(user._id, favorite, product));
-          console.log(product);
         }
       }
     };

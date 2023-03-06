@@ -10,7 +10,6 @@ import CartPayment from './CartPayment'
 const CartComponent = () => {
   const cart = useSelector((state: RootState) => state.cart.cart)
   const user = useSelector((state: RootState) => state.user.user)
-  console.log(cart)
   return (
     <Box sx={{width: {xs: "100%", sm: "100%", md: "80%"}, margin: "0 auto", display: "flex"}}>
         <Typography variant='h5' sx={{textAlign: "center", m: 5, display: "none"}}>Your basket is empty.</Typography>

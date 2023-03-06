@@ -324,7 +324,6 @@ const NavBar = ({searchTerm, setSearchTerm, setFilterTerm, filterTerm, showLogin
           onClick={() => {
             setFilterTerm("");
             navigate("/products");
-            console.log(searchTerm);
           }}
         >
           All

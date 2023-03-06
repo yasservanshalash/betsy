@@ -40,7 +40,6 @@ const ProductItem = ({ product }: { product: Product }) => {
       } else {
         dispatch(favoriteActions.addToFavorites(product));
         thunkDispatch(addToFavoritesThunk(user._id, favorite, product));
-        console.log(product);
       }
     }
   };
@@ -51,7 +50,6 @@ const ProductItem = ({ product }: { product: Product }) => {
     } else {
       dispatch(favoriteActions.removeFromFavorites(product));
       thunkDispatch(removeFromFavoritesThunk(user._id, favorite, product));
-      console.log(product);
     }
   };
 
@@ -68,7 +66,6 @@ const ProductItem = ({ product }: { product: Product }) => {
       } else {
         dispatch(cartActions.addTocart(product));
         thunkDispatch(addToCartThunk(user._id, cart, product));
-        console.log(product);
       }
     }
   };
@@ -79,7 +76,6 @@ const ProductItem = ({ product }: { product: Product }) => {
     } else {
       dispatch(cartActions.removeFromcart(product));
       thunkDispatch(removeFromCartThunk(user._id, cart, product));
-      console.log(product);
     }
   };
   return (

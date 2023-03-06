@@ -20,7 +20,6 @@ import { fetchProductData } from '../../redux/thunks/product'
 const CartPayment = ({cart}: {cart: Cart}) => {
     const [paymentMethod, setPaymentMethod] = useState("");
     const dispatchThunk = useDispatch<AppDispatch>();
-    console.log(paymentMethod)
     let total = 0;
     let shipping = 0;
     if(cart.products.length > 0) {
