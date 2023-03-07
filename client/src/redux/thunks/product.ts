@@ -10,13 +10,11 @@ export function fetchProductData() {
         const response = await fetch(url);
         const productData = await response.json();
         dispatch(productActions.getAllProducts(productData));
-        console.log(productData)
     }
 }
 
 export function addProductThunk(product: Product) {
     return async (dispatch: AppDispatch) => {
         const result = await axios.post(url, product)
-        console.log(result.data);
     }
 }

@@ -50,48 +50,48 @@ const DrawerItem = () => {
         <Typography variant='h5' sx={{textAlign: "center"}}>
           Browse Categories
         </Typography>
-        <ListItem>
-          <ListItemButton>
-            <Typography variant="subtitle1">
+        <ListItem component={Link} to="/c/consoles">
+          <ListItemButton >
+          <Typography variant="subtitle1" sx={{textDecoration: "none", color: "black"}}>
               Consoles
             </Typography>
           </ListItemButton>
           </ListItem>
-          <ListItem>
+          <ListItem component={Link} to="/c/visual">
 
           <ListItemButton>
-            <Typography variant="subtitle1">
+          <Typography variant="subtitle1" sx={{textDecoration: "none", color: "black"}}>
               Video
             </Typography>
           </ListItemButton>
           </ListItem>
-          <ListItem>
+          <ListItem component={Link} to="/c/audio">
 
           <ListItemButton>
-            <Typography variant="subtitle1">
+          <Typography variant="subtitle1" sx={{textDecoration: "none", color: "black"}}>
               Audio
             </Typography>
           </ListItemButton>
           </ListItem>
-          <ListItem>
+          <ListItem component={Link} to="/c/appliances">
 
           <ListItemButton>
-            <Typography variant="subtitle1">
+          <Typography variant="subtitle1" sx={{textDecoration: "none", color: "black"}}>
               Appliances
             </Typography>
           </ListItemButton>
           </ListItem>
-          <ListItem>
+          <ListItem component={Link} to="/c/photography">
 
           <ListItemButton>
-            <Typography variant="subtitle1">
+          <Typography variant="subtitle1" sx={{textDecoration: "none", color: "black"}}>
               Photography
             </Typography>
           </ListItemButton>
           </ListItem>
-          <ListItem>
+          <ListItem component={Link} to="/c/computers">
           <ListItemButton>
-            <Typography variant="subtitle1">
+          <Typography variant="subtitle1" sx={{textDecoration: "none", color: "black"}}>
               Computers
             </Typography>
           </ListItemButton>

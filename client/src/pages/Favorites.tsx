@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux'
 import { RootState } from '../redux/store'
 const Favorites = () => {
   const cart = useSelector((state: RootState) => state.cart.cart)
-  console.log(cart)
   return (
     <Box>
     <Favorite />

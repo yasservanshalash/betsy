@@ -24,6 +24,7 @@ import { fetchCart } from './redux/thunks/cart';
 import { favoriteActions } from './redux/slices/favorite';
 import { cartActions } from './redux/slices/cart';
 import Orders from './pages/Orders';
+import { fetchOrders } from './redux/thunks/orders';
 
 function App() {
   const products = useSelector((state: RootState) => state.products.products)
@@ -46,6 +47,7 @@ function App() {
       navigate("/")
       thunkDispatch(fetchFavorites("https://betsy-backend.onrender.com/favorites/" + user._id));
       thunkDispatch(fetchCart("https://betsy-backend.onrender.com/cart/" + user._id));
+      thunkDispatch(fetchOrders(user._id))
       dispatch(favoriteActions.clearFavorites());
       dispatch(cartActions.clearCart());
     }

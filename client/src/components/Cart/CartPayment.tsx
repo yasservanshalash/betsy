@@ -16,6 +16,7 @@ import { Cart } from '../../types/types'
 import { createOrder, fetchOrders } from '../../redux/thunks/orders'
 import { productActions } from '../../redux/slices/product'
 import { fetchProductData } from '../../redux/thunks/product'
+import { useNavigate } from 'react-router-dom'
 
 const CartPayment = ({cart}: {cart: Cart}) => {
     const [paymentMethod, setPaymentMethod] = useState("");
@@ -27,7 +28,7 @@ const CartPayment = ({cart}: {cart: Cart}) => {
             total += (cart.products[i].quantity * cart.products[i].price)
         }
     }
-
+    const nav = useNavigate()
   return (
     <Box sx={{width:"400px", maxHeight: "487px",mx: 10,my: 5, p:2, boxShadow: "1px black", borderRadius: "20px", right: "0px", overflowY:"hidden", background: "white"}} className="payment">
         <Box sx={{display: "flex", flexDirection: "column", gap:2, p:3}}>
@@ -72,7 +73,8 @@ const CartPayment = ({cart}: {cart: Cart}) => {
         <Button sx={{color: "black", background: 'white', "&:hover": {color: "white", background: "black"}}} onClick={() => {
             dispatchThunk(createOrder(cart, total, paymentMethod));
             dispatchThunk(fetchProductData());
-            dispatchThunk(fetchOrders(cart.userId))
+            dispatchThunk(fetchOrders(cart.userId));
+            dispatchThunk(fetchOrders(cart.userId));
         }
          } disabled={ paymentMethod === "" ? true: false}>Proceed to checkout</Button>
         </Box>
