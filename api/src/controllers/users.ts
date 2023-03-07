@@ -2,7 +2,7 @@ import { createFavoritesController } from './favorites';
 import { Request, Response } from "express";
 import jwt, { Secret } from 'jsonwebtoken';
 import dotenv from "dotenv";
-
+import bcrypt from 'bcrypt'
 import UserServices from '../services/users';
 import User from "../models/User";
 
@@ -20,10 +20,13 @@ export const createUserController = async (req: Request, res: Response) => {
     try {
         const user = await UserServices.findUserByEmail(req.body.email);
         if(!user) {
+            const { name, email, password} = req.body;
+            const saltRounds = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(password, saltRounds)
             const newUser = new User({
-                "name": req.body.name,
-                "email": req.body.email,
-                "password": req.body.password,
+                "name": name,
+                "email": email,
+                "password": hashedPassword,
             })
             const user = await UserServices.createUser(newUser);
 
@@ -101,6 +104,16 @@ export const loginWithPassword = async (req: Request, res: Response) => {
         const user = await UserServices.findUserByEmail(req.body.email)
         if(!user) {
             res.json({message: `coudn't find user with email ${req.body.email}`})
+            return;
+        }
+
+        const passwordInDB = user.password;
+        const passwordInReq = req.body.password;
+
+        const match = await bcrypt.compare(passwordInReq, passwordInDB)
+
+        if(!match) {
+            res.json({message: "wrong password"});
             return;
         }
         const token = jwt.sign(
