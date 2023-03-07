@@ -28,6 +28,7 @@ const Orders = () => {
                   })
                 }
             </Box>
+            <Typography>{`Paid with: ${item.paymentMethod}`}</Typography>
             <Divider variant='middle' sx={{my: 5}}/>
 
             </Box>
