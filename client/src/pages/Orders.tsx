@@ -6,11 +6,12 @@ import { Order } from '../types/types'
 
 const Orders = () => {
   const orders = useSelector((state: RootState) => state.orders.orders)
+  const reversedOrders = [...orders].reverse();
   return (
     <Box sx={{width: "78%", margin: "0 auto", my: 5}}>
       <Typography variant='h4' sx={{mb: 5}}>My Orders</Typography>
       {
-        orders.map((item: Order) => {
+        reversedOrders.map((item: Order) => {
           return (
             <Box sx={{display: "flex", flexDirection: "column", gap: 2, my: 5}}>
               <Box sx={{display: "flex", gap: 5}}>
