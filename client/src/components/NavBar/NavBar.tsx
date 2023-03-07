@@ -60,6 +60,7 @@ const NavBar = ({searchTerm, setSearchTerm, setFilterTerm, filterTerm, showLogin
         p: 1,
         width: { xs: "100%", md: "90%", lg: "80%" },
         margin: { md: "0 auto" },
+        overflowY: "hidden"
       }}
     >
       <Box
@@ -67,6 +68,8 @@ const NavBar = ({searchTerm, setSearchTerm, setFilterTerm, filterTerm, showLogin
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          overflowY: "hidden"
+
         }}
       >
         <Box>

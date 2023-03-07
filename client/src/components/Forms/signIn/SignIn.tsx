@@ -165,6 +165,7 @@ const SignIn = ({showLogin, showSignup, setShowLogin, setShowSignup}: {showLogin
                   justifyContent: "center",
                   alignItems: "center",
                   gap: 3,
+                  overflowY: "hidden"
                 }}
               >
                 <Button
@@ -179,6 +180,8 @@ const SignIn = ({showLogin, showSignup, setShowLogin, setShowSignup}: {showLogin
                     textTransform: "none",
                     fontWeight: "bolder",
                     borderRadius: "20px",
+                    overflowY: "hidden"
+
                   }}
                 >
                   Sign in
@@ -241,6 +244,7 @@ const SignIn = ({showLogin, showSignup, setShowLogin, setShowSignup}: {showLogin
                     display: "flex",
                     justifyContent: "space-evenly",
                     gap: "20px",
+                    overflowY: "hidden"
                   }}
                 >
                   <img
@@ -266,6 +270,8 @@ const SignIn = ({showLogin, showSignup, setShowLogin, setShowSignup}: {showLogin
                     display: "flex",
                     justifyContent: "space-evenly",
                     gap: "20px",
+                                        overflowY: "hidden"
+
                   }}
                 >
                   <img
@@ -291,6 +297,8 @@ const SignIn = ({showLogin, showSignup, setShowLogin, setShowSignup}: {showLogin
                     display: "flex",
                     justifyContent: "space-evenly",
                     gap: "20px",
+                    overflowY: "hidden"
+
                   }}
                 >
                   <img
@@ -299,7 +307,7 @@ const SignIn = ({showLogin, showSignup, setShowLogin, setShowSignup}: {showLogin
                     }
                     style={{ width: "25px" }}
                   />
-                  <Typography>Sign in with Facebook</Typography>
+                  <Typography>Sign in with Apple</Typography>
                 </Button>
               </Box>
               <Box>
