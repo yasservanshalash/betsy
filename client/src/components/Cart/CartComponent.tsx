@@ -12,7 +12,7 @@ const CartComponent = () => {
   const user = useSelector((state: RootState) => state.user.user)
   return (
     <Box sx={{width: {xs: "100%", sm: "100%", md: "80%"}, margin: "0 auto", display: "flex"}}>
-        <Typography variant='h5' sx={{textAlign: "center", m: 5, display: "none"}}>Your basket is empty.</Typography>
+
         <Box sx={{display: "flex", gap: 10, justifyContent: "space-around", position: "relative"}}>
         <Box sx={{display: "flex", flexDirection: "column", justifyContent: "space-evenly", my: 5, gap: 10, width: "130%"}}>
           {
@@ -20,7 +20,8 @@ const CartComponent = () => {
               return (
                 <CartItem key={item._id} product={item} index={index} cart={cart}/>
               )
-            }) : <h1>Nothing in cart</h1>
+            }) : <Typography></Typography>
+
           }
         </Box>
         <Box sx={{width: "1400px", display: user._id !== "" && cart.products.length !== 0 ? "flex" : "none",  position: "relative", left: "60px"}}>

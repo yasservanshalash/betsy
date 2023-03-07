@@ -74,6 +74,7 @@ const CartPayment = ({cart}: {cart: Cart}) => {
             dispatchThunk(createOrder(cart, total, paymentMethod));
             dispatchThunk(fetchProductData());
             dispatchThunk(fetchOrders(cart.userId));
+            nav("/orders")
             dispatchThunk(fetchOrders(cart.userId));
         }
          } disabled={ paymentMethod === "" ? true: false}>Proceed to checkout</Button>

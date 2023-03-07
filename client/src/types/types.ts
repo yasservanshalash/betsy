@@ -39,4 +39,7 @@ export type Order = {
     products: Product[];
     totalPrice: number;
     paymentMethod: string;
+    dateOfOrder: string
+    isDelivered: boolean;
+    shippingAddress: string;
 }
