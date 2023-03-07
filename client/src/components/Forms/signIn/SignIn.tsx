@@ -14,6 +14,7 @@ import { fetchFavorites } from "../../../redux/thunks/favorite";
 import { AppDispatch, RootState } from "../../../redux/store";
 import { fetchCart } from "../../../redux/thunks/cart";
 import { cartActions } from "../../../redux/slices/cart";
+import { fetchOrders } from "../../../redux/thunks/orders";
 const SignIn = ({showLogin, showSignup, setShowLogin, setShowSignup}: {showLogin: boolean, showSignup: boolean, setShowLogin: Function, setShowSignup: Function}) => {
   const favorites = useSelector(
     (state: RootState) => state.favorites.favorites
@@ -72,6 +73,9 @@ const SignIn = ({showLogin, showSignup, setShowLogin, setShowSignup}: {showLogin
                   response.data.user._id
               )
             );
+            thunkDispatch(
+              fetchOrders(response.data.user._id)
+            )
             dispatch(favoriteActions.clearFavorites());
             dispatch(cartActions.clearCart());
             navigate("/");

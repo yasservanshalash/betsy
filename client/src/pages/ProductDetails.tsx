@@ -114,13 +114,14 @@ const ProductDetails = () => {
             </Button>
             <Button
               sx={{
-                color: "white",
-                backgroundColor: "black",
+                color: "black",
+                backgroundColor: "white",
                 border: "2px solid black",
                 borderRadius: "20px",
-                "&:hover": { color: "black", background: "white" },
+                "&:hover": { color: "white", background: "black" },
               }}
               onClick={addToCart}
+              disabled={product.quantityLeft < 1 ? true : false}
             >
               Add to Cart
             </Button>

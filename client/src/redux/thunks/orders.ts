@@ -1,12 +1,11 @@
 import { cartActions } from './../slices/cart';
 import axios from "axios";
-import { Cart, Product } from "../../types/types";
+import { Cart, Product, User } from "../../types/types";
 import { productActions } from "../slices/product";
 import { AppDispatch } from "../store";
 import { fetchProductData } from './product';
+import { orderActions } from '../slices/orders';
 
-
-const url = "https://betsy-backend.onrender.com/products";
 
 export function createOrder(cart: Cart, totalPrice: number, paymentMethod: string) {
     return async (dispatch: AppDispatch) => {
@@ -22,5 +21,15 @@ export function createOrder(cart: Cart, totalPrice: number, paymentMethod: strin
         const response = await fetch("https://betsy-backend.onrender.com/products/");
         const productData = await response.json();
         dispatch(productActions.getAllProducts(productData));
+        
     }
 } 
+
+
+export function fetchOrders(userId: string) {
+    return async (dispatch: AppDispatch) => {
+        const response = await fetch("https://betsy-backend.onrender.com/orders/" + userId);
+        const orders = await response.json();
+        dispatch(orderActions.getAllOrders(orders));
+    }
+}

@@ -21,6 +21,7 @@ import Divider from '@mui/material/Divider';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
+import TocIcon from '@mui/icons-material/Toc';
 
 // MENU
 import React, { useState } from "react";
@@ -220,9 +221,11 @@ const NavBar = ({searchTerm, setSearchTerm, setFilterTerm, filterTerm, showLogin
         <MenuItem onClick={handleClose} component={Link} to="/profile" sx={{pr: 10 }}>
           <Avatar src={user.avatar !== "" ? user.avatar : ""} /> Profile
         </MenuItem>
-        {/* <MenuItem onClick={handleClose}>
-          <Avatar /> My account
-        </MenuItem> */}
+        <MenuItem onClick={handleClose} component={Link} to="/orders">
+        <ListItemIcon>
+            <TocIcon fontSize="small"/>
+          </ListItemIcon> Orders
+        </MenuItem>
         <Divider />
         {/* <MenuItem onClick={handleClose}>
           <ListItemIcon>

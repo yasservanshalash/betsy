@@ -13,7 +13,7 @@ import googlepay from "../../assets/googlepay.png"
 
 import "./CartPayment.css"
 import { Cart } from '../../types/types'
-import { createOrder } from '../../redux/thunks/orders'
+import { createOrder, fetchOrders } from '../../redux/thunks/orders'
 import { productActions } from '../../redux/slices/product'
 import { fetchProductData } from '../../redux/thunks/product'
 
@@ -72,6 +72,7 @@ const CartPayment = ({cart}: {cart: Cart}) => {
         <Button sx={{color: "black", background: 'white', "&:hover": {color: "white", background: "black"}}} onClick={() => {
             dispatchThunk(createOrder(cart, total, paymentMethod));
             dispatchThunk(fetchProductData());
+            dispatchThunk(fetchOrders(cart.userId))
         }
          } disabled={ paymentMethod === "" ? true: false}>Proceed to checkout</Button>
         </Box>

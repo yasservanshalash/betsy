@@ -23,6 +23,7 @@ import { fetchFavorites } from './redux/thunks/favorite';
 import { fetchCart } from './redux/thunks/cart';
 import { favoriteActions } from './redux/slices/favorite';
 import { cartActions } from './redux/slices/cart';
+import Orders from './pages/Orders';
 
 function App() {
   const products = useSelector((state: RootState) => state.products.products)
@@ -30,6 +31,7 @@ function App() {
   const favorites = useSelector((state: RootState) => state.favorites.favorites)
   const localFavorites = (JSON.parse(localStorage.getItem('favorites') as string))
   const cart = useSelector((state: RootState) => state.cart.cart)
+  const orders = useSelector((state: RootState) => state.orders.orders);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterTerm, setFilterTerm] = useState("");
   const [showLogin, setShowLogin] = useState(false);
@@ -53,7 +55,7 @@ function App() {
     window.scrollTo(0, 0)
   }, [])
 
-
+  console.log(orders, "orders")
   return (
     <Box className="App" sx={{m:0, p:0, width: "100vw"}}>
       <Fade in={showLogin}>
@@ -76,6 +78,7 @@ function App() {
       <Route path="/signin" element={<SignIn showLogin={showLogin} setShowLogin={setShowLogin} showSignup={showSignup} setShowSignup={setShowSignup}/>} />
       <Route path="/signup" element={<SignUp showLogin={showLogin} setShowLogin={setShowLogin} showSignup={showSignup} setShowSignup={setShowSignup}/>} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/orders" element={<Orders />} />
       <Route path="/edit-profile" element={<EditProfile />} />
       <Route path="/admin" element={<Admin/>} />
       <Route path="/c/:category" element={<Category />} />

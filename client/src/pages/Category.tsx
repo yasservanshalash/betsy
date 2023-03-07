@@ -1,7 +1,7 @@
 import { Box, Button } from '@mui/material';
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import ProductItem from '../components/productsComponents/ProductItem';
 import { RootState } from '../redux/store';
 import { Product } from '../types/types';
@@ -9,6 +9,11 @@ import { Product } from '../types/types';
 const Category = () => {
     const products = useSelector((state: RootState) => state.products.products);
     const {category} = useParams();
+    const nav = useNavigate();
+    const arr = products.filter((item: Product) => item.category.includes(category as string));
+    useEffect(() => {
+      arr.length === 0 ? nav('/404') : console.log(arr);
+    })
   return (
     <Box>
     <Box sx={{m: 5}}>
