@@ -1,13 +1,19 @@
 import { Box, Divider, Typography } from '@mui/material'
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { RootState } from '../redux/store'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch, RootState } from '../redux/store'
+import { fetchOrders } from '../redux/thunks/orders'
 import { Order } from '../types/types'
 
 const Orders = () => {
+  const user = useSelector((state: RootState) => state.user.user)
   const orders = useSelector((state: RootState) => state.orders.orders)
   const reversedOrders = [...orders].reverse();
   console.log(reversedOrders)
+  const thunkDispatch = useDispatch<AppDispatch>()
+  useEffect(() => {
+    thunkDispatch(fetchOrders(user._id))
+  }, [])
   return (
     <Box sx={{width: "78%", margin: "0 auto", my: 5}}>
       <Typography variant='h4' sx={{mb: 5}}>My Orders</Typography>
