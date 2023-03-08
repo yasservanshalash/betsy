@@ -24,7 +24,6 @@ const Category = () => {
           alignItems: "center",
         }}
       >
-        <Button>Sort By</Button>
       </Box>
       <Box sx={{display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", my: 2, justifyItems: "center", alignItems: "center", justifyContent: "center", rowGap: "3em"}}>
         { products.filter((item: Product) => item.category.includes(category as string)).map((item: Product) => {

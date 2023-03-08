@@ -3,7 +3,7 @@ import { Product } from "../../types/types";
 import { productActions } from "../slices/product";
 import { AppDispatch } from "../store";
 
-const url = "https://betsy-backend.onrender.com/products";
+const url = "http://localhost:8000/products";
 
 export function fetchProductData() {
     return async (dispatch: AppDispatch) => {

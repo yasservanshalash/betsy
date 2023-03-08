@@ -62,7 +62,7 @@ const CartItem = ({ product, index, cart }: { product: Product, index: number,ca
     };
   return (
     <Box sx={{width: "1000px", }}>
-      <Box sx={{ display: "flex", gap: 0 }}>
+      <Box sx={{ display: "flex", gap: 1 }}>
         <Box>
         <Link to={`/products/${product._id}`} >
           <img src={product.image} alt={product.name} width="212.336px"/>

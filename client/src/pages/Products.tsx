@@ -19,7 +19,6 @@ const Products = ({filterTerm}: {filterTerm: string}) => {
             alignItems: "center",
           }}
         >
-          <Button>Sort By</Button>
         </Box>
         <Box sx={{display: "grid", gridTemplateColumns: {xs: "1fr", sm: "1fr 1fr", lg: "1fr 1fr 1fr 1fr"}, my: 2, justifyItems: "center", alignItems: "center", justifyContent: "center", rowGap: "3em"}}>
         {filterTerm !== "" ? products?.filter((item: Product) => item.name.toLocaleLowerCase().includes(filterTerm.toLocaleLowerCase())).map((product: Product) => {

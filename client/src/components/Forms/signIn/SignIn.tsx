@@ -1,6 +1,6 @@
 import { Box, Button, Divider, IconButton, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
@@ -15,10 +15,13 @@ import { AppDispatch, RootState } from "../../../redux/store";
 import { fetchCart } from "../../../redux/thunks/cart";
 import { cartActions } from "../../../redux/slices/cart";
 import { fetchOrders } from "../../../redux/thunks/orders";
-const SignIn = ({showLogin, showSignup, setShowLogin, setShowSignup}: {showLogin: boolean, showSignup: boolean, setShowLogin: Function, setShowSignup: Function}) => {
+import { Cart, Product } from "../../../types/types";
+const SignIn = ({showLogin, showSignup, setShowLogin, setShowSignup, setChoice}: {showLogin: boolean, showSignup: boolean, setShowLogin: Function, setShowSignup: Function, setChoice: Function}) => {
+  const [error, setError] = useState("");
   const favorites = useSelector(
     (state: RootState) => state.favorites.favorites
   );
+  const cart = useSelector((state: RootState) => state.cart.cart);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const thunkDispatch = useDispatch<AppDispatch>();
@@ -54,7 +57,7 @@ const SignIn = ({showLogin, showSignup, setShowLogin, setShowSignup}: {showLogin
       validationSchema={FormSchema}
       onSubmit={(values: InitialValues) => {
         axios
-          .post("https://betsy-backend.onrender.com/users/login", values)
+          .post("http://localhost:8000/users/login", values)
           .then((response) => {
             const token = response.data.token;
             const user = JSON.stringify(response.data.user);
@@ -63,24 +66,33 @@ const SignIn = ({showLogin, showSignup, setShowLogin, setShowSignup}: {showLogin
             dispatch(userActions.logIn(JSON.parse(user)));
             thunkDispatch(
               fetchFavorites(
-                "https://betsy-backend.onrender.com/favorites/" +
+                "http://localhost:8000/favorites/" +
                   response.data.user._id
               )
             );
             thunkDispatch(
               fetchCart(
-                "https://betsy-backend.onrender.com/cart/" +
+                "http://localhost:8000/cart/" +
                   response.data.user._id
               )
             );
+
             thunkDispatch(
               fetchOrders(response.data.user._id)
             )
             dispatch(favoriteActions.clearFavorites());
-            dispatch(cartActions.clearCart());
+            // dispatch(cartActions.clearCart());
+            const localCart: Product[] = JSON.parse(localStorage.getItem('cart') || '[]')
+            dispatch(cartActions.addFromLocalStorage())
             navigate("/");
             setShowLogin(false);
             setShowSignup(false);
+            setChoice(true)
+            
+          }).catch(function (error) {
+            if (error.response) {
+              setError(error.response.data.message)
+            }
           });
       }}
     >
@@ -207,6 +219,7 @@ const SignIn = ({showLogin, showSignup, setShowLogin, setShowSignup}: {showLogin
                   * {errors.password} *
                 </Typography>
               ) : null}
+            <Typography variant='subtitle2' color="error" sx={{textAlign: "center"}}>{error ? "* " + error + " *" : ""}</Typography>
               <Box
                 sx={{
                   display: "flex",

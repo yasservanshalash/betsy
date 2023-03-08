@@ -4,7 +4,7 @@ import { Cart } from "../../types/types";
 
 const localCart =
   localStorage.getItem("cart") !== null
-    ? JSON.parse(localStorage.getItem("cart")!)
+    ? JSON.parse(localStorage.getItem('cart')!)
     : [];
 
 type initialStateType = {
@@ -28,12 +28,15 @@ const cartSlice = createSlice({
   reducers: {
     setcart: (state, action) => {
         state.cart = action.payload[0]
+
     },
     addTocart: (state, action) => {
       if(state.cart?.products?.find((product) => product.name === action.payload.name)) {
         return;
       } else {
         state.cart?.products?.push(action.payload);
+        localStorage.setItem('cart', JSON.stringify(state.cart.products))
+
       }
     },
     removeFromcart: (state, action) => {
@@ -43,6 +46,8 @@ const cartSlice = createSlice({
           );
           if (result !== -1) {
             state.cart.products.splice(result, 1);
+            localStorage.setItem('cart', JSON.stringify(state.cart.products))
+
           }
     },addFromLocalStorage: (state) => {
       const localString = localStorage.getItem('cart') as string;
@@ -70,6 +75,7 @@ const cartSlice = createSlice({
   },
     clearCart: (state) => {
         state.cart.products = [];
+        localStorage.setItem('cart', JSON.stringify([]))
     }
   },
 });

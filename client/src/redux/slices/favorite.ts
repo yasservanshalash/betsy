@@ -60,6 +60,7 @@ const favoriteSlice = createSlice({
           }
         }
     },
+    
     clearFavorites: (state) => {
         state.favorites.products = [];
     }

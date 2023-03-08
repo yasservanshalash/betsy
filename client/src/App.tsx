@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Fade } from "@mui/material"
+import { Box, Button, Fade, Typography } from "@mui/material"
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import Home from './pages/Home';
@@ -37,6 +37,7 @@ function App() {
   const [filterTerm, setFilterTerm] = useState("");
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
+  const [choice, setChoice] = useState(false)
   const navigate = useNavigate();
 
   const thunkDispatch = useDispatch<AppDispatch>();
@@ -45,11 +46,13 @@ function App() {
     thunkDispatch(fetchProductData());
     if(user._id !== "") {
       navigate("/")
-      thunkDispatch(fetchFavorites("https://betsy-backend.onrender.com/favorites/" + user._id));
-      thunkDispatch(fetchCart("https://betsy-backend.onrender.com/cart/" + user._id));
+      thunkDispatch(fetchFavorites("http://localhost:8000/favorites/" + user._id));
+      thunkDispatch(fetchCart("http://localhost:8000/cart/" + user._id));
       thunkDispatch(fetchOrders(user._id))
-      dispatch(favoriteActions.clearFavorites());
-      dispatch(cartActions.clearCart());
+      // dispatch(favoriteActions.clearFavorites());
+      // dispatch(cartActions.clearCart());
+      // dispatch(cartActions.addFromLocalStorage());
+      // dispatch(favoriteActions.addFromLocalStorage());
     }
   }, [])
 
@@ -59,25 +62,46 @@ function App() {
 
   console.log(orders, "orders")
   return (
-    <Box className="App" sx={{m:0, p:0, width: "100vw"}}>
+    <Box className="App" sx={{m:0, p:0, width: "100vw", display: "flex", flexDirection: "column"}}>
       <Fade in={showLogin}>
       <Box sx={{width: "100vw", height: "100vh", background: showSignup ? "transparent" : "#00000033", position: "fixed",zIndex: showLogin ? "30" : "10", display: showLogin? "flex" : "none", justifyContent: "center", alignItems:"center"}}>
-      <SignIn showLogin={showLogin} setShowLogin={setShowLogin} showSignup={showSignup} setShowSignup={setShowSignup}/>
+      <SignIn showLogin={showLogin} setShowLogin={setShowLogin} showSignup={showSignup} setShowSignup={setShowSignup} setChoice={setChoice}/>
       </Box>
       </Fade>
       <Fade in={showLogin}>
       <Box sx={{width: "100vw", height: "100vh", background: "#00000033", position: "fixed",zIndex: showSignup ? "30" : "10", display: showSignup? "flex" : "none", justifyContent: "center", alignItems:"center"}}>
-        <SignUp showLogin={showLogin} setShowLogin={setShowLogin} showSignup={showSignup} setShowSignup={setShowSignup}/>
+        <SignUp showLogin={showLogin} setShowLogin={setShowLogin} showSignup={showSignup} setShowSignup={setShowSignup} />
       </Box>
       </Fade>
+      <Box sx={{width: "100vw", height: "100vh", position: "fixed", background: "#00000033",display: choice ? "flex" : "none", flexDirection:"column",justifyContent: "center", alignItems: "center", zIndex: "10" }}>
+        <Box sx={{ display: "flex", flexDirection:"column",justifyContent: "center", alignItems: "center", background: "#ffffffef",p:7, borderRadius: "20px"}}>
+        <Typography>Would you like to save your favorites and your cart?</Typography>
+        <Box sx={{display: "flex"}}>
+          <Button onClick={() => {
+              if(localStorage.getItem('cart')) {
+                dispatch(cartActions.addFromLocalStorage());
+              }
+              if(localStorage.getItem('favorites')) {
+                dispatch(favoriteActions.addFromLocalStorage());
+
+              }
+              setChoice(false)
+          }}>Yes, please</Button>
+          <Button onClick={() => {
+            setChoice(false)
+          }}>No, tnank you</Button>
+        </Box>
+        </Box>
+      </Box>
       <NavBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} setFilterTerm={setFilterTerm} filterTerm={filterTerm} showLogin={showLogin} setShowLogin={setShowLogin} setShowSignup={setShowSignup}/>
+      <Box>
       <Routes>
       <Route path="/" element={<Home />} />
       <Route path='/products' element={<Products filterTerm={filterTerm}/>} />
       <Route path="/products/:id" element={<ProductDetails />} />
       <Route path="/favorites" element={<Favorites />} />
       <Route path="/cart" element={<Cart />} />
-      <Route path="/signin" element={<SignIn showLogin={showLogin} setShowLogin={setShowLogin} showSignup={showSignup} setShowSignup={setShowSignup}/>} />
+      <Route path="/signin" element={<SignIn showLogin={showLogin} setShowLogin={setShowLogin} showSignup={showSignup} setShowSignup={setShowSignup} setChoice={setChoice}/>} />
       <Route path="/signup" element={<SignUp showLogin={showLogin} setShowLogin={setShowLogin} showSignup={showSignup} setShowSignup={setShowSignup}/>} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/orders" element={<Orders />} />
@@ -87,6 +111,8 @@ function App() {
       <Route path="/404" element={<UnderConstruction/>} />
       <Route path="*" element={<Home />} />
       </Routes>
+      </Box>
+
       <Footer />
     </Box>
   );
