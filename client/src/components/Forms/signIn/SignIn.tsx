@@ -57,7 +57,7 @@ const SignIn = ({showLogin, showSignup, setShowLogin, setShowSignup, setChoice}:
       validationSchema={FormSchema}
       onSubmit={(values: InitialValues) => {
         axios
-          .post("http://localhost:8000/users/login", values)
+          .post("https://betsy-backend.onrender.com/users/login", values)
           .then((response) => {
             const token = response.data.token;
             const user = JSON.stringify(response.data.user);
@@ -66,13 +66,13 @@ const SignIn = ({showLogin, showSignup, setShowLogin, setShowSignup, setChoice}:
             dispatch(userActions.logIn(JSON.parse(user)));
             thunkDispatch(
               fetchFavorites(
-                "http://localhost:8000/favorites/" +
+                "https://betsy-backend.onrender.com/favorites/" +
                   response.data.user._id
               )
             );
             thunkDispatch(
               fetchCart(
-                "http://localhost:8000/cart/" +
+                "https://betsy-backend.onrender.com/art/" +
                   response.data.user._id
               )
             );

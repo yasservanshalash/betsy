@@ -42,7 +42,7 @@ const SignUp = ({showLogin, showSignup, setShowLogin, setShowSignup}: {showLogin
     initialValues={initialValues}
     validationSchema={FormSchema}
     onSubmit={(values: InitialValues) => { 
-        axios.post('http://localhost:8000/users/', values).then((response) => {
+        axios.post('https://betsy-backend.onrender.com/users/', values).then((response) => {
             if(response.data.user) {
                 const user = response.data.user
                 setShowSignup(false);
