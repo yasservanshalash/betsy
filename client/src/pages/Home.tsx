@@ -13,7 +13,6 @@ import { RootState } from '../redux/store'
 const Home = () => {
   // const dispatch = useDispatch();
   const products = useSelector((state: RootState) => state.products.products)
-  console.log(products)
   return (
     <Box sx={{width: "100%"}}>
     <Header />

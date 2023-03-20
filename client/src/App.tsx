@@ -60,7 +60,6 @@ function App() {
     window.scrollTo(0, 0)
   }, [])
 
-  console.log(orders, "orders")
   return (
     <Box className="App" sx={{m:0, p:0, width: "100vw", display: "flex", flexDirection: "column"}}>
       <Fade in={showLogin}>

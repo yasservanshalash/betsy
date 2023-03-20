@@ -1,6 +1,6 @@
 import { getUserController, getUsersController, createUserController, deleteUserController, updateUserController, loginWithPassword } from './../controllers/users';
 import { Router } from "express";
-import passport from 'passport';
+import passport, { session } from 'passport';
 
 const router = Router();
 

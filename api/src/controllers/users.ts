@@ -16,7 +16,9 @@ dotenv.config();
 
 export const JWT_SECRET = process.env.JWT_SECRET as string;
 
-export const createUserController = async (req: Request, res: Response) => {    
+export const createUserController = async (req: Request, res: Response) => {  
+        res.setHeader("Access-Control-Allow-Origin", "*");
+  
     try {
         const user = await UserServices.findUserByEmail(req.body.email);
         if(!user) {
@@ -100,6 +102,8 @@ export const updateUserController = async (req: Request, res: Response) => {
 }
 
 export const loginWithPassword = async (req: Request, res: Response) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+
     try {
         const user = await UserServices.findUserByEmail(req.body.email)
         if(!user) {
@@ -113,7 +117,8 @@ export const loginWithPassword = async (req: Request, res: Response) => {
         const match = await bcrypt.compare(passwordInReq, passwordInDB)
 
         if(!match) {
-            res.json({message: "wrong password"});
+            res.status(400).json({message: "Password is wrong"})
+            
             return;
         }
         const token = jwt.sign(

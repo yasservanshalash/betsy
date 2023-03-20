@@ -9,7 +9,6 @@ const Orders = () => {
   const user = useSelector((state: RootState) => state.user.user)
   const orders = useSelector((state: RootState) => state.orders.orders)
   const reversedOrders = [...orders].reverse();
-  console.log(reversedOrders)
   const thunkDispatch = useDispatch<AppDispatch>()
   useEffect(() => {
     thunkDispatch(fetchOrders(user._id))
