@@ -20,7 +20,7 @@ export function fetchCart(url: string) {
 export function addToCartThunk(userId: string, cart: Cart, product: Product) {
     return async (dispatch: AppDispatch) => {
         const products = cart.products.concat([product])
-        const result = await axios.put("http://localhost:8000/cart/" + cart._id , {"products": products})
+        const result = await axios.put("https://betsy-backend.onrender.com/cart/" + cart._id , {"products": products})
     }
 } 
 
@@ -28,19 +28,19 @@ export function addToCartThunk(userId: string, cart: Cart, product: Product) {
 export function removeFromCartThunk(userId: string, cart: Cart, product: Product) {
     return async (dispatch: AppDispatch) => {
         const products = cart.products.filter((item) => item.name !== product.name)
-        const result = await axios.put("http://localhost:8000/cart/" + cart._id , {"products": products})
+        const result = await axios.put("https://betsy-backend.onrender.com/cart/" + cart._id , {"products": products})
     }
 } 
 
 export function updateCart(cart: Cart) {
     return async (dispatch: AppDispatch) => {
-        const result = await axios.put(`http://localhost:8000/cart/${cart._id}`  , {"products": cart.products})
+        const result = await axios.put(`https://betsy-backend.onrender.com/cart/${cart._id}`  , {"products": cart.products})
     }
 } 
 
 
 export function updateCartFromLocalStorage(cart: Cart, products: []) {
     return async (dispatch: AppDispatch) => {
-        const result = await axios.put(`http://localhost:8000/cart/${cart._id}`  , {"products": products})
+        const result = await axios.put(`https://betsy-backend.onrender.com/cart/${cart._id}`  , {"products": products})
     }
 } 
