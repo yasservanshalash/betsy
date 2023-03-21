@@ -6,7 +6,7 @@ import { User } from '../../types/types';
 const token = localStorage.getItem('token')
 export function editNameThunk(user: User, name: string) {
     return async (dispatch: AppDispatch) => {
-        const result = await axios.put("http://localhost:8000/users/" + user._id , {"name": name}, { headers: {
+        const result = await axios.put("https://betsy-backend.onrender.com/users/" + user._id , {"name": name}, { headers: {
             Authorization: `Bearer ${token}`
         }})
         dispatch(userActions.changeName(result.data));
@@ -15,7 +15,7 @@ export function editNameThunk(user: User, name: string) {
 
 export function editAvatar(user: User, avatar: string) {
     return async (dispatch: AppDispatch) => {
-        const result = await axios.put("http://localhost:8000/users/" + user._id , {"avatar": avatar}, { headers: {
+        const result = await axios.put("https://betsy-backend.onrender.com/users/" + user._id , {"avatar": avatar}, { headers: {
             Authorization: `Bearer ${token}`
         }})
         dispatch(userActions.changeAvatar(result.data));
