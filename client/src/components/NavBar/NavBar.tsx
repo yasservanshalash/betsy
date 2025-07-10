@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Search, Heart, ShoppingBag, User, Menu, X } from "lucide-react";
+import { Search, Heart, ShoppingBag, User, Menu, X, ChevronDown } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { userActions } from "../../redux/slices/user";
@@ -35,6 +35,15 @@ const NavBar: React.FC<NavBarProps> = ({
   
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState('en');
+
+  const languages = [
+    { code: 'en', name: 'English', flag: '🇺🇸' },
+    { code: 'ar', name: 'العربية', flag: '🇸🇾' }
+  ];
+
+  const currentLanguage = languages.find(lang => lang.code === selectedLanguage);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -52,6 +61,11 @@ const NavBar: React.FC<NavBarProps> = ({
     setIsUserMenuOpen(false);
   };
 
+  const handleLanguageSelect = (langCode: string) => {
+    setSelectedLanguage(langCode);
+    setIsLanguageDropdownOpen(false);
+  };
+
   return (
     <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-etsy-border shadow-sm">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -59,7 +73,7 @@ const NavBar: React.FC<NavBarProps> = ({
           
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link to="/" className="text-2xl md:text-3xl logo-betsy">
+            <Link to="/" className="text-2xl md:text-3xl logo-betsy hover:no-underline">
               Betsy
             </Link>
           </div>
@@ -101,8 +115,33 @@ const NavBar: React.FC<NavBarProps> = ({
               </button>
             )}
 
-            {/* Region Flag */}
-            <span className="text-lg">🇪🇺</span>
+            {/* Language Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
+                className="flex items-center gap-1 px-2 py-1 rounded-lg hover:bg-etsy-background-secondary transition-colors"
+              >
+                <span className="text-lg">{currentLanguage?.flag}</span>
+                <ChevronDown className={`w-3 h-3 transition-transform ${isLanguageDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+              
+              {isLanguageDropdownOpen && (
+                <div className="absolute top-full right-0 mt-2 bg-white rounded-lg shadow-lg border border-neutral-200 min-w-[120px] z-50">
+                  {languages.map((language) => (
+                    <button
+                      key={language.code}
+                      onClick={() => handleLanguageSelect(language.code)}
+                      className={`w-full flex items-center gap-2 px-3 py-2 text-left hover:bg-neutral-50 transition-colors first:rounded-t-lg last:rounded-b-lg ${
+                        selectedLanguage === language.code ? 'bg-primary-50 text-primary-600' : 'text-neutral-700'
+                      }`}
+                    >
+                      <span className="text-sm">{language.flag}</span>
+                      <span className="text-xs">{language.name}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
 
             {/* Favorites */}
             <Link to="/favorites" className="relative p-2 text-etsy-text-secondary hover:text-etsy-orange transition-colors group">
@@ -229,6 +268,37 @@ const NavBar: React.FC<NavBarProps> = ({
                   Sign in
                 </button>
               )}
+
+              {/* Mobile Language Selector */}
+              <div className="py-2">
+                <div className="flex items-center gap-2 text-etsy-text-primary">
+                  <span className="text-lg">{currentLanguage?.flag}</span>
+                  <span className="text-sm">{currentLanguage?.name}</span>
+                  <button
+                    onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
+                    className="ml-auto p-1 hover:bg-etsy-background-secondary rounded"
+                  >
+                    <ChevronDown className={`w-4 h-4 transition-transform ${isLanguageDropdownOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                </div>
+                
+                {isLanguageDropdownOpen && (
+                  <div className="mt-2 pl-4 space-y-1">
+                    {languages.map((language) => (
+                      <button
+                        key={language.code}
+                        onClick={() => handleLanguageSelect(language.code)}
+                        className={`w-full flex items-center gap-2 px-3 py-2 text-left hover:bg-neutral-50 transition-colors rounded ${
+                          selectedLanguage === language.code ? 'bg-primary-50 text-primary-600' : 'text-neutral-700'
+                        }`}
+                      >
+                        <span className="text-sm">{language.flag}</span>
+                        <span className="text-sm">{language.name}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
 
               <Link
                 to="/favorites"

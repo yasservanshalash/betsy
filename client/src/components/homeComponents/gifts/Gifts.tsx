@@ -54,7 +54,7 @@ const Gifts = () => {
           
           <motion.div variants={fadeInUp}>
             <GiftItem 
-              categoryImage="https://d1dmo9iwh0r4qt.cloudfront.net/~/media/ai/main/images/publications/blog/onlinephotonov/photographyphoto.ashx?modified=20181123034155&la=en&hash=061F51B0825AEC249CED44DB5E32432D3FEA05C2"
+              categoryImage="https://www.adorama.com/alc/wp-content/uploads/2021/04/photography-camera-learning-feature.jpg"
               categoryTitle="Capture Every Moment"
               category="photography"
             />

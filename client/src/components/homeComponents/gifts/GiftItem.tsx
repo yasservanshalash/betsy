@@ -30,9 +30,9 @@ const GiftItem: React.FC<GiftItemProps> = ({ categoryImage, categoryTitle, categ
         </div>
         
         <div className="p-4">
-          <h3 className="text-center font-medium text-neutral-800 group-hover:text-primary-600 transition-colors duration-200">
+          <h6 className="text-center font-medium text-neutral-800 group-hover:text-primary-600 transition-colors duration-200 hover:no-underline">
             {categoryTitle}
-          </h3>
+          </h6>
         </div>
       </Link>
     </motion.div>

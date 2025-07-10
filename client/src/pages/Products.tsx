@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../redux/store'
 import { fetchProductData } from '../redux/thunks/product'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { Product } from '../types/types'
 import { 
   Search, 
@@ -26,6 +26,7 @@ const Products = () => {
   const dispatch = useDispatch()
   const { products } = useSelector((state: RootState) => state.products)
   const [loading, setLoading] = useState(true)
+  const [searchParams] = useSearchParams()
   
   // State for filters and search
   const [searchTerm, setSearchTerm] = useState('')
@@ -36,6 +37,14 @@ const Products = () => {
   const [showFilters, setShowFilters] = useState(false)
   const [selectedRating, setSelectedRating] = useState(0)
   const [freeShipping, setFreeShipping] = useState(false)
+  
+  // Initialize search term from URL parameters
+  useEffect(() => {
+    const urlSearchTerm = searchParams.get('search')
+    if (urlSearchTerm) {
+      setSearchTerm(urlSearchTerm)
+    }
+  }, [searchParams])
   
   // Categories from products
   const categories = useMemo(() => {

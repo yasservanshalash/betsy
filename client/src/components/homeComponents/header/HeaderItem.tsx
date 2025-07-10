@@ -8,6 +8,26 @@ interface HeaderItemProps {
 }
 
 const HeaderItem: React.FC<HeaderItemProps> = ({ image, title }) => {
+  // Create URL-friendly category names
+  const getCategoryUrl = (title: string) => {
+    switch (title.toLowerCase()) {
+      case 'computers':
+        return 'computers'
+      case 'art & images':
+        return 'visual'
+      case 'sound':
+        return 'sound'
+      case 'gaming':
+        return 'gaming'
+      case 'photography':
+        return 'photography'
+      case 'appliances':
+        return 'appliances'
+      default:
+        return title.toLowerCase().replace(/[^a-z0-9]/g, '')
+    }
+  }
+  
   return (
     <motion.div
       whileHover={{ 
@@ -22,7 +42,7 @@ const HeaderItem: React.FC<HeaderItemProps> = ({ image, title }) => {
       }}
     >
       <Link 
-        to={`/c/${title.toLowerCase()}`}
+        to={`/c/${getCategoryUrl(title)}`}
         className="group block text-center p-4 rounded-2xl transition-all duration-300 hover:bg-white/50 hover:shadow-medium hover:backdrop-blur-sm focus-visible-ring no-underline decoration-none"
         style={{ textDecoration: 'none' }}
       >

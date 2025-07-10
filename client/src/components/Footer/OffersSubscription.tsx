@@ -27,7 +27,7 @@ const OffersSubscription = () => {
         </h2>
         
         <form onSubmit={handleSubmit} className="relative">
-          <div className="flex items-center bg-white border border-neutral-300 rounded-full p-1 shadow-soft max-w-md mx-auto">
+          <div className="flex items-center bg-white rounded-full p-1 shadow-soft max-w-md mx-auto">
             <div className="flex items-center flex-1 px-4">
               <Mail className="w-4 h-4 text-neutral-400 mr-2" />
               <input
@@ -35,7 +35,7 @@ const OffersSubscription = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="flex-1 outline-none text-neutral-700 placeholder-neutral-400 bg-transparent"
+                className="flex-1 outline-none text-neutral-700 placeholder-neutral-400 bg-transparent border-none focus:border-none focus:ring-0"
                 required
               />
             </div>
