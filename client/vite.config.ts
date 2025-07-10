@@ -15,7 +15,7 @@ export default defineConfig({
     open: true,
   },
   build: {
-    outDir: 'build',
+    outDir: 'dist',
     sourcemap: true,
     rollupOptions: {
       output: {
@@ -34,11 +34,5 @@ export default defineConfig({
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom'],
-  },
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: './src/setupTests.ts',
-    css: true,
   },
 }) 
