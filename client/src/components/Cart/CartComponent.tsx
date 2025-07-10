@@ -1,36 +1,51 @@
-import { Box, Button, Typography } from '@mui/material'
 import React from 'react'
+import { motion } from 'framer-motion'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
 import { Product } from '../../types/types'
-import ProductItem from '../productsComponents/ProductItem'
 import CartItem from './CartItem'
 import CartPayment from './CartPayment'
 
 const CartComponent = () => {
   const cart = useSelector((state: RootState) => state.cart.cart)
   const user = useSelector((state: RootState) => state.user.user)
+
   return (
-    <Box sx={{width: {xs: "100%", sm: "100%", md: "80%"}, margin: "0 auto", display: "flex"}}>
+    <div className="w-full max-w-6xl mx-auto px-4 py-8">
+      <div className="flex flex-col lg:flex-row gap-8">
+        
+        {/* Cart Items Section */}
+        <div className="flex-1">
+          <div className="space-y-6">
+            {cart.products.length > 0 ? (
+              cart.products.map((item: Product, index) => (
+                <motion.div
+                  key={item._id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <CartItem product={item} index={index} cart={cart} />
+                </motion.div>
+              ))
+            ) : (
+              <div className="text-center py-12">
+                <p className="text-neutral-500 text-lg">Your cart is empty</p>
+              </div>
+            )}
+          </div>
+        </div>
 
-        <Box sx={{display: "flex", gap: 10, justifyContent: "space-around", position: "relative"}}>
-        <Box sx={{display: "flex", flexDirection: "column", justifyContent: "space-evenly", my: 5, gap: 10, width: "130%"}}>
-          {
-             cart.products.length > 0 ? cart.products.map((item: Product, index) => {
-              return (
-                <CartItem key={item._id} product={item} index={index} cart={cart}/>
-              )
-            }) : <Typography></Typography>
-
-          }
-        </Box>
-        <Box sx={{width: "1400px", display: user._id !== "" && cart.products.length !== 0 ? "flex" : "none",  position: "relative", left: "60px"}}>
-        <CartPayment cart={cart}/>
-
-        </Box>
-        </Box>
-
-    </Box>
+        {/* Payment Section */}
+        {user._id !== "" && cart.products.length !== 0 && (
+          <div className="w-full lg:w-96">
+            <div className="sticky top-8">
+              <CartPayment cart={cart} />
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
   )
 }
 

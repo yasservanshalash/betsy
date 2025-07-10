@@ -1,341 +1,296 @@
-import {
-  Badge,
-  Box,
-  Container,
-  IconButton,
-  InputBase,
-  Tooltip,
-  Typography,
-} from "@mui/material";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { ShoppingBag } from "@mui/icons-material";
-import SearchIcon from "@mui/icons-material/Search";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-// MENU
-
-import Avatar from '@mui/material/Avatar';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Divider from '@mui/material/Divider';
-import PersonAdd from '@mui/icons-material/PersonAdd';
-import Settings from '@mui/icons-material/Settings';
-import Logout from '@mui/icons-material/Logout';
-import TocIcon from '@mui/icons-material/Toc';
-
-// MENU
 import React, { useState } from "react";
-import DrawerItem from "../homeComponents/drawer/DrawerItem";
 import { Link, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Search, Heart, ShoppingBag, User, Menu, X } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { userActions } from "../../redux/slices/user";
 import { favoriteActions } from "../../redux/slices/favorite";
 import { cartActions } from "../../redux/slices/cart";
 
-const NavBar = ({searchTerm, setSearchTerm, setFilterTerm, filterTerm, showLogin, setShowLogin, setShowSignup}: {searchTerm: string, filterTerm: string,setSearchTerm: Function, setFilterTerm: Function, showLogin: boolean, setShowLogin: Function, setShowSignup: Function}) => {
+interface NavBarProps {
+  searchTerm: string
+  filterTerm: string
+  setSearchTerm: Function
+  setFilterTerm: Function
+  showLogin: boolean
+  setShowLogin: Function
+  setShowSignup: Function
+}
+
+const NavBar: React.FC<NavBarProps> = ({
+  searchTerm,
+  setSearchTerm,
+  setFilterTerm,
+  filterTerm,
+  showLogin,
+  setShowLogin,
+  setShowSignup
+}) => {
   const user = useSelector((state: RootState) => state.user.user);
   const favorite = useSelector((state: RootState) => state.favorites.favorites);
   const cart = useSelector((state: RootState) => state.cart.cart);
   const navigate = useNavigate();
-  // MENU
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  // MENU
-
-  // Log Out 
   const dispatch = useDispatch();
+  
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
-  // Log Out
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    setFilterTerm(searchTerm);
+    navigate('/products');
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    dispatch(userActions.logOut());
+    dispatch(favoriteActions.clearFavorites());
+    dispatch(cartActions.clearCart());
+    navigate("/");
+    setIsUserMenuOpen(false);
+  };
+
   return (
-    <Box
-      sx={{
-        p: 1,
-        width: { xs: "100%", md: "90%", lg: "80%" },
-        margin: { md: "0 auto" },
-        overflowY: "hidden"
-      }}
-    >
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          overflowY: "hidden"
-
-        }}
-      >
-        <Box>
-          <Typography
-            variant="h4"
-            sx={{
-              display: { xs: "none", sm: "block" },
-              fontFamily: "inherit",
-              mx: 2,
-              color: "#F1641D",
-              fontWeight: "bold",
-            }}
-          >
-            <Link to="/" style={{ textDecoration: "none", color: "#F47D49" }}>
+    <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-etsy-border shadow-sm">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <Link to="/" className="text-2xl md:text-3xl logo-betsy">
               Betsy
             </Link>
-          </Typography>
-          <Typography
-            variant="h5"
-            sx={{
-              display: { xs: "block", sm: "none" },
-              fontFamily: "inherit",
-              mx: 2,
-              color: "#F1641D",
-              fontWeight: "bold",
-            }}
-          >
-            <Link to="/" style={{ textDecoration: "none", color: "#F47D49" }}>
-              Betsy
+          </div>
+
+          {/* Desktop Search Bar */}
+          <div className="hidden md:flex flex-1 max-w-2xl mx-8">
+            <form onSubmit={handleSearch} className="w-full">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search for anything..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-4 pr-12 py-2 border border-etsy-border rounded-full bg-etsy-background-secondary focus:bg-white focus:border-etsy-orange focus:ring-2 focus:ring-primary-100 transition-all duration-200 outline-none text-etsy-text-primary"
+                />
+                <button
+                  type="submit"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-etsy-text-secondary hover:text-etsy-orange transition-colors"
+                >
+                  <Search className="w-4 h-4" />
+                </button>
+              </div>
+            </form>
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-4">
+            
+            {/* Sign In Button (if not logged in) */}
+            {user.email === "" && (
+              <button
+                onClick={() => {
+                  setShowLogin(true);
+                  setShowSignup(false);
+                }}
+                className="text-sm font-medium text-etsy-text-primary hover:text-etsy-orange transition-colors"
+              >
+                Sign in
+              </button>
+            )}
+
+            {/* Region Flag */}
+            <span className="text-lg">🇪🇺</span>
+
+            {/* Favorites */}
+            <Link to="/favorites" className="relative p-2 text-etsy-text-secondary hover:text-etsy-orange transition-colors group">
+              <Heart className="w-5 h-5" />
+              {favorite.products.length > 0 && (
+                <span className="absolute -top-1 -right-1 bg-etsy-orange text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  {favorite.products.length}
+                </span>
+              )}
             </Link>
-          </Typography>
-        </Box>
-        <Box
-          component="form"
-          sx={{
-            p: "2px 4px",
-            display: { xs: "none", sm: "none", md: "flex" },
-            alignItems: "center",
-            justifyContent: "space-between",
-            flex: "1",
-            flexGrow: "1",
-            position: "relative",
-            top: "2px",
-            width: 400,
-          }}
-        >
-          <InputBase
-            sx={{ ml: 1, flex: 1, flexGrow: 1 }}
-            placeholder="Search for anything..."
-            inputProps={{ "aria-label": "Search for anything..." }}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <IconButton type="button" sx={{ p: "10px" }} aria-label="search" onClick={() => {
-            setFilterTerm(searchTerm)
-            navigate('/products')
-          }}>
-            <SearchIcon />
-          </IconButton>
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-evenly",
-            alignItems: "center",
-            gap: "10px",
-            mx: 2,
-          }}
-        >
-          <Typography
-            variant="subtitle2"
-            style={
-              user.email === "" ? { display: "inherit" } : { display: "none" }
-            }
-            sx={{
-              textDecoration: "none",
-              color: "black",
-              fontWeight: { sx: "lighter", sm: "bold" },
-            }}
-            onClick={() => {
-              setShowLogin(true);
-              setShowSignup(false);
-            }}
+
+            {/* Cart */}
+            <Link to="/cart" className="relative p-2 text-etsy-text-secondary hover:text-etsy-orange transition-colors group">
+              <ShoppingBag className="w-5 h-5" />
+              {cart.products.length > 0 && (
+                <span className="absolute -top-1 -right-1 bg-etsy-orange text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  {cart.products.length}
+                </span>
+              )}
+            </Link>
+
+            {/* User Menu (if logged in) */}
+            {user.email !== "" && (
+              <div className="relative">
+                <button
+                  onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                  className="flex items-center p-2 text-etsy-text-secondary hover:text-etsy-orange transition-colors"
+                >
+                  {user.avatar ? (
+                    <img
+                      src={user.avatar}
+                      alt={user.name}
+                      className="w-6 h-6 rounded-full object-cover border border-etsy-border"
+                    />
+                  ) : (
+                    <User className="w-5 h-5" />
+                  )}
+                </button>
+
+                {/* User Dropdown */}
+                {isUserMenuOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-medium border border-etsy-border py-2 z-50"
+                  >
+                    <Link
+                      to="/profile"
+                      className="block px-4 py-2 text-sm text-etsy-text-primary hover:bg-etsy-background-secondary transition-colors"
+                      onClick={() => setIsUserMenuOpen(false)}
+                    >
+                      Profile
+                    </Link>
+                    <Link
+                      to="/orders"
+                      className="block px-4 py-2 text-sm text-etsy-text-primary hover:bg-etsy-background-secondary transition-colors"
+                      onClick={() => setIsUserMenuOpen(false)}
+                    >
+                      Orders
+                    </Link>
+                    <hr className="my-2 border-etsy-border" />
+                    <button
+                      onClick={handleLogout}
+                      className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
+                    >
+                      Logout
+                    </button>
+                  </motion.div>
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 text-etsy-text-secondary hover:text-etsy-orange transition-colors"
+            >
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation */}
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden border-t border-etsy-border py-4"
           >
-            Sign in
-          </Typography>
-          <Typography sx={{ fontSize: "120%" }}>🇪🇺</Typography>
-          <Badge badgeContent={favorite.products.length} color="warning" variant="dot" overlap="circular">
+            {/* Mobile Search */}
+            <form onSubmit={handleSearch} className="px-4 mb-4">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search for anything..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-4 pr-12 py-2 border border-etsy-border rounded-full bg-etsy-background-secondary focus:bg-white focus:border-etsy-orange focus:ring-2 focus:ring-primary-100 transition-all duration-200 outline-none text-etsy-text-primary"
+                />
+                <button
+                  type="submit"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-etsy-text-secondary hover:text-etsy-orange transition-colors"
+                >
+                  <Search className="w-4 h-4" />
+                </button>
+              </div>
+            </form>
 
-          <Tooltip title="Favorites">
+            {/* Mobile Navigation Links */}
+            <div className="px-4 space-y-2">
+              {user.email === "" && (
+                <button
+                  onClick={() => {
+                    setShowLogin(true);
+                    setShowSignup(false);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="block w-full text-left py-2 text-etsy-text-primary hover:text-etsy-orange transition-colors"
+                >
+                  Sign in
+                </button>
+              )}
 
-          <IconButton component={Link} to="/favorites">
-            <FavoriteBorderIcon sx={{ color: "black" }} />
-          </IconButton>
+              <Link
+                to="/favorites"
+                className="flex items-center py-2 text-etsy-text-primary hover:text-etsy-orange transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <Heart className="w-5 h-5 mr-3" />
+                Favorites
+                {favorite.products.length > 0 && (
+                  <span className="ml-2 bg-etsy-orange text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                    {favorite.products.length}
+                  </span>
+                )}
+              </Link>
 
-          </Tooltip>
-          </Badge>
+              <Link
+                to="/cart"
+                className="flex items-center py-2 text-etsy-text-primary hover:text-etsy-orange transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <ShoppingBag className="w-5 h-5 mr-3" />
+                Cart
+                {cart.products.length > 0 && (
+                  <span className="ml-2 bg-etsy-orange text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                    {cart.products.length}
+                  </span>
+                )}
+              </Link>
 
-          <Badge badgeContent={cart.products.length} color="warning" variant="dot" overlap="circular">
-
-          <Tooltip title="Cart">
-          <IconButton component={Link} to="/cart">
-            <ShoppingBag sx={{ color: "black" }} />
-          </IconButton>
-          </Tooltip>
-</Badge>
-          <Tooltip title="Account settings" style={user.email === "" ? { display: "none" } : { display: "inherit" }}>
-          <IconButton
-            onClick={handleClick}
-            size="small"
-            aria-controls={open ? 'account-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-          >
-            { user.avatar !== "" ? <img src={user.avatar} style={{width: "20px", borderRadius: "50%"}} /> : <AccountCircleIcon sx={{ color: "black" }}/>}
-          </IconButton>
-        </Tooltip>
-          <Menu
-        anchorEl={anchorEl}
-        id="account-menu"
-        open={open}
-        onClose={handleClose}
-        onClick={handleClose}
-        PaperProps={{
-          elevation: 0,
-          sx: {
-            overflow: 'visible',
-            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-            mt: 1.5,
-            '& .MuiAvatar-root': {
-              width: 32,
-              height: 32,
-              ml: -0.5,
-              mr: 1,
-            },
-            '&:before': {
-              content: '""',
-              display: 'block',
-              position: 'absolute',
-              top: 0,
-              right: 14,
-              width: 10,
-              height: 10,
-              bgcolor: 'background.paper',
-              transform: 'translateY(-50%) rotate(45deg)',
-              zIndex: 0,
-            },
-          },
-        }}
-        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-      >
-        <MenuItem onClick={handleClose} component={Link} to="/profile" sx={{pr: 10 }}>
-          <Avatar src={user.avatar !== "" ? user.avatar : ""} /> Profile
-        </MenuItem>
-        <MenuItem onClick={handleClose} component={Link} to="/orders">
-        <ListItemIcon>
-            <TocIcon fontSize="small"/>
-          </ListItemIcon> Orders
-        </MenuItem>
-        <Divider />
-        {/* <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <PersonAdd fontSize="small" />
-          </ListItemIcon>
-          Add another account
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          Settings
-        </MenuItem> */}
-        <MenuItem onClick={() => {
-          handleClose();
-          dispatch(userActions.logOut())
-          dispatch(favoriteActions.clearFavorites())
-          dispatch(cartActions.clearCart())
-
-          navigate("/")
-          
-        }}>
-          <ListItemIcon>
-            <Logout fontSize="small" />
-          </ListItemIcon>
-          Logout
-        </MenuItem>
-      </Menu>
-          
-        </Box>
-      </Box>
-      <Box
-        sx={{
-          display: { xs: "flex", md: "none" },
-          justifyContent: "flex-start",
-          alignItems: "center",
-          py: 2,
-          width: "95%",
-          margin: "0 auto"
-        }}
-      >
-        <Box>
-          <DrawerItem />
-        </Box>
-        <Box
-          component="form"
-          sx={{
-            p: "2px 4px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            flex: "1",
-            flexGrow: "1",
-            width: 400,
-          }}
-        >
-          <InputBase
-            sx={{ ml: 1, flex: 1, flexGrow: 1 }}
-            placeholder="Search for anything..."
-            inputProps={{ "aria-label": "Search for anything..." }}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <IconButton type="button" sx={{ p: "10px" }} aria-label="search" onClick={() => {
-            setFilterTerm(searchTerm)
-            navigate('/products')
-          }}>
-            <SearchIcon />
-          </IconButton>
-        </Box>
-      </Box>
-      <Box
-        sx={{
-          display: { xs: "none", sm: "none", md: "flex" },
-          justifyContent: "space-between",
-          p: 2,
-        }}
-      >
-        <Typography variant="subtitle2" sx={{ fontWeight: "light", textDecoration: "none", color: "black" }} component={Link} to={`/c/computers`}>
-          Computers
-        </Typography>
-        <Typography variant="subtitle2" sx={{ fontWeight: "light",textDecoration: "none", color: "black"}} component={Link} to={`/c/audio`}>
-          Audio
-        </Typography>
-        <Typography variant="subtitle2" sx={{ fontWeight: "light",textDecoration: "none", color: "black"}} component={Link} to={`/c/visual`}>
-          Visual
-        </Typography>
-        <Typography variant="subtitle2" sx={{ fontWeight: "light",textDecoration: "none", color: "black" }} component={Link} to={`/c/gaming`}>
-          Consoles
-        </Typography>
-        <Typography variant="subtitle2" sx={{ fontWeight: "light",textDecoration: "none", color: "black" }} component={Link} to={`/c/photography`}>
-          Photography
-        </Typography>
-        <Typography variant="subtitle2" sx={{ fontWeight: "light",textDecoration: "none", color: "black" }} component={Link} to={`/c/home`}>
-          Appliances
-        </Typography>
-        <Typography
-          variant="subtitle2"
-          sx={{ fontWeight: "light", textDecoration: "none", color: "black" , cursor: "pointer"}}
-          onClick={() => {
-            setFilterTerm("");
-            navigate("/products");
-          }}
-        >
-          All
-        </Typography>
-      </Box>
-    </Box>
+              {user.email !== "" && (
+                <>
+                  <Link
+                    to="/profile"
+                    className="flex items-center py-2 text-etsy-text-primary hover:text-etsy-orange transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <User className="w-5 h-5 mr-3" />
+                    Profile
+                  </Link>
+                  <Link
+                    to="/orders"
+                    className="flex items-center py-2 text-etsy-text-primary hover:text-etsy-orange transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <ShoppingBag className="w-5 h-5 mr-3" />
+                    Orders
+                  </Link>
+                  <hr className="my-2 border-etsy-border" />
+                  <button
+                    onClick={handleLogout}
+                    className="flex items-center w-full text-left py-2 text-red-600 hover:text-red-700 transition-colors"
+                  >
+                    <X className="w-5 h-5 mr-3" />
+                    Logout
+                  </button>
+                </>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </div>
+    </nav>
   );
 };
 

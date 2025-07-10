@@ -1,21 +1,358 @@
-@import url('https://fonts.googleapis.com/css2?family=Gideon+Roman&display=swap');
-@import url('https://fonts.cdnfonts.com/css/pliska');
+@import url('https://fonts.googleapis.com/css2?family=Minister:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-body {
-  padding: 0px;
-  margin: 0px;
-  box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-family: 'Gideon Roman', cursive;
-  font-family: 'Pliska', sans-serif;
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+    --primary: 16 87% 54%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 10%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 93%;
+    --input: 0 0% 93%;
+    --ring: 16 87% 54%;
+    --radius: 0.5rem;
+  }
 
+  .dark {
+    --background: 0 0% 6%;
+    --foreground: 0 0% 93%;
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 93%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 93%;
+    --primary: 16 87% 54%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 93%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 0 0% 10%;
+    --accent-foreground: 0 0% 93%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 93%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 16 87% 54%;
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-white text-text-primary;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-text-primary font-medium;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+  }
+
+  h1 {
+    @apply text-3xl md:text-4xl;
+    font-weight: 600;
+  }
+
+  h2 {
+    @apply text-2xl md:text-3xl;
+    font-weight: 600;
+  }
+
+  h3 {
+    @apply text-xl md:text-2xl;
+    font-weight: 600;
+  }
+
+  h4 {
+    @apply text-lg md:text-xl;
+    font-weight: 600;
+  }
+
+  h5 {
+    @apply text-base md:text-lg;
+    font-weight: 600;
+  }
+
+  h6 {
+    @apply text-sm md:text-base;
+    font-weight: 600;
+  }
+
+  p {
+    @apply text-text-secondary;
+  }
+
+  /* Links */
+  a {
+    @apply text-primary hover:text-primary-700 transition-colors duration-200;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Buttons */
+  button {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+  }
+
+  /* Form elements */
+  input, textarea, select {
+    @apply border-neutral-100 text-text-primary;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+  }
+
+  input:focus, textarea:focus, select:focus {
+    @apply border-primary ring-primary/20;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-neutral-50;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-neutral-200 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-neutral-300;
+  }
+}
+
+@layer components {
+  /* Button Components */
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+  }
+
+  /* Logo specific styling */
+  .logo-betsy {
+    font-family: 'Minister', serif;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: #F16521;
+    transition: all 0.3s ease;
+  }
+
+  .logo-betsy:hover {
+    color: #e04e0a;
+    transform: scale(1.02);
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary-600 focus-visible:ring-primary/20;
+  }
+
+  .btn-secondary {
+    @apply bg-neutral-50 text-text-primary border border-neutral-100 hover:bg-neutral-100 focus-visible:ring-neutral-200;
+  }
+
+  .btn-outline {
+    @apply border border-primary text-primary hover:bg-primary hover:text-white focus-visible:ring-primary/20;
+  }
+
+  .btn-ghost {
+    @apply text-text-primary hover:bg-neutral-50 focus-visible:ring-neutral-200;
+  }
+
+  .btn-sm {
+    @apply px-3 py-1.5 text-sm;
+  }
+
+  .btn-md {
+    @apply px-4 py-2 text-base;
+  }
+
+  .btn-lg {
+    @apply px-6 py-3 text-lg;
+  }
+
+  /* Card Components */
+  .card {
+    @apply bg-white border border-neutral-100 rounded-lg shadow-soft;
+  }
+
+  .card-hover {
+    @apply hover:shadow-medium transition-shadow duration-200;
+  }
+
+  /* Input Components */
+  .input {
+    @apply w-full px-3 py-2 border border-neutral-100 rounded-md bg-white text-text-primary placeholder-text-secondary focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors duration-200;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+  }
+
+  /* Badge Components */
+  .badge {
+    @apply inline-flex items-center px-2 py-1 rounded-full text-xs font-medium;
+  }
+
+  .badge-primary {
+    @apply bg-primary text-white;
+  }
+
+  .badge-secondary {
+    @apply bg-neutral-100 text-text-secondary;
+  }
+
+  .badge-success {
+    @apply bg-green-100 text-green-800;
+  }
+
+  .badge-warning {
+    @apply bg-yellow-100 text-yellow-800;
+  }
+
+  .badge-error {
+    @apply bg-red-100 text-red-800;
+  }
+
+  /* Text Utilities */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-primary-600 bg-clip-text text-transparent;
+  }
+
+  /* Animation Classes */
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out;
+  }
+
+  .animate-slide-in {
+    animation: slide-in 0.3s ease-out;
+  }
+
+  .animate-bounce-gentle {
+    animation: bounce-gentle 2s infinite;
+  }
+
+  /* Glassmorphism */
+  .glass {
+    @apply bg-white/80 backdrop-blur-sm border border-white/20;
+  }
+
+  .glass-dark {
+    @apply bg-black/20 backdrop-blur-sm border border-white/10;
+  }
+
+  /* Layout */
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section {
+    @apply py-12 md:py-16;
+  }
+
+  .section-sm {
+    @apply py-8 md:py-12;
+  }
+
+  .section-lg {
+    @apply py-16 md:py-24;
+  }
+
+  /* Hover Effects */
+  .hover-lift {
+    @apply transition-transform duration-200 hover:-translate-y-1;
+  }
+
+  .hover-scale {
+    @apply transition-transform duration-200 hover:scale-105;
+  }
+
+  /* Focus States */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20 focus-visible:ring-offset-2;
+  }
+}
+
+/* Custom animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounce-gentle {
+  0%, 100% {
+    transform: translateY(-2px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+}
+
+/* Responsive text sizes */
+@media (max-width: 640px) {
+  .responsive-text {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .responsive-text {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .responsive-text {
+    font-size: 18px;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    @apply text-black bg-white;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
 }

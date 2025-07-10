@@ -1,6 +1,423 @@
-* {
-    font-family: 'Gideon Roman', cursive;
-    
-    overflow-x: hidden;
+/* App.css - Etsy-inspired design system */
 
+/* Global app styles */
+.App {
+  min-height: 100vh;
+  background-color: #FFFFFF;
+  color: #191919;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+}
+
+/* Main content wrapper */
+.main-content {
+  min-height: calc(100vh - 80px);
+  padding-top: 80px; /* Account for fixed header */
+}
+
+/* Page containers */
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.page-container-wide {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Common layout patterns */
+.section-padding {
+  padding: 48px 0;
+}
+
+.section-padding-sm {
+  padding: 32px 0;
+}
+
+.section-padding-lg {
+  padding: 64px 0;
+}
+
+/* Typography overrides */
+.text-primary {
+  color: #191919;
+}
+
+.text-secondary {
+  color: #666666;
+}
+
+.text-muted {
+  color: #999999;
+}
+
+.text-white {
+  color: #FFFFFF;
+}
+
+/* Link styles */
+.link-primary {
+  color: #F16521;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.link-primary:hover {
+  color: #e04e0a;
+  text-decoration: underline;
+}
+
+/* Button styles */
+.btn-etsy {
+  background-color: #F16521;
+  color: #FFFFFF;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+}
+
+.btn-etsy:hover {
+  background-color: #e04e0a;
+  transform: translateY(-1px);
+}
+
+.btn-etsy:active {
+  transform: translateY(0);
+}
+
+.btn-etsy:disabled {
+  background-color: #CCCCCC;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-etsy-outline {
+  background-color: transparent;
+  color: #F16521;
+  border: 2px solid #F16521;
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+}
+
+.btn-etsy-outline:hover {
+  background-color: #F16521;
+  color: #FFFFFF;
+}
+
+.btn-etsy-secondary {
+  background-color: #F5F5F5;
+  color: #191919;
+  border: 1px solid #EEEEEE;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+}
+
+.btn-etsy-secondary:hover {
+  background-color: #EEEEEE;
+  border-color: #CCCCCC;
+}
+
+/* Card styles */
+.card-etsy {
+  background-color: #FFFFFF;
+  border: 1px solid #EEEEEE;
+  border-radius: 8px;
+  padding: 24px;
+  transition: all 0.2s ease;
+}
+
+.card-etsy:hover {
+  box-shadow: 0 4px 25px -5px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.card-etsy-simple {
+  background-color: #FFFFFF;
+  border: 1px solid #EEEEEE;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Input styles */
+.input-etsy {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #EEEEEE;
+  border-radius: 6px;
+  font-size: 16px;
+  color: #191919;
+  background-color: #FFFFFF;
+  transition: all 0.2s ease;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+}
+
+.input-etsy:focus {
+  outline: none;
+  border-color: #F16521;
+  box-shadow: 0 0 0 3px rgba(241, 101, 33, 0.1);
+}
+
+.input-etsy::placeholder {
+  color: #666666;
+}
+
+/* Badge styles */
+.badge-etsy {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  background-color: #F16521;
+  color: #FFFFFF;
+}
+
+.badge-etsy-secondary {
+  background-color: #F5F5F5;
+  color: #666666;
+}
+
+.badge-etsy-success {
+  background-color: #10B981;
+  color: #FFFFFF;
+}
+
+.badge-etsy-warning {
+  background-color: #F59E0B;
+  color: #FFFFFF;
+}
+
+.badge-etsy-error {
+  background-color: #EF4444;
+  color: #FFFFFF;
+}
+
+/* Navigation styles */
+.nav-etsy {
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #EEEEEE;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.nav-link-etsy {
+  color: #191919;
+  text-decoration: none;
+  padding: 12px 16px;
+  display: inline-block;
+  transition: color 0.2s ease;
+  font-weight: 500;
+}
+
+.nav-link-etsy:hover {
+  color: #F16521;
+}
+
+.nav-link-etsy.active {
+  color: #F16521;
+  border-bottom: 2px solid #F16521;
+}
+
+/* Grid layouts */
+.grid-etsy {
+  display: grid;
+  gap: 24px;
+}
+
+.grid-etsy-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-etsy-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-etsy-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.grid-etsy-responsive {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .grid-etsy-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .grid-etsy-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .page-container {
+    padding: 0 12px;
+  }
+  
+  .section-padding {
+    padding: 32px 0;
+  }
+  
+  .btn-etsy,
+  .btn-etsy-outline,
+  .btn-etsy-secondary {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-etsy-4,
+  .grid-etsy-3,
+  .grid-etsy-2 {
+    grid-template-columns: 1fr;
+  }
+  
+  .grid-etsy {
+    gap: 16px;
+  }
+  
+  .card-etsy {
+    padding: 16px;
+  }
+}
+
+/* Loading states */
+.loading-etsy {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #EEEEEE;
+  border-radius: 50%;
+  border-top-color: #F16521;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Skeleton loading */
+.skeleton-etsy {
+  background: linear-gradient(90deg, #F5F5F5 25%, #EEEEEE 50%, #F5F5F5 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Utility classes */
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-start {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.flex-end {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: 8px; }
+.mb-2 { margin-bottom: 16px; }
+.mb-3 { margin-bottom: 24px; }
+.mb-4 { margin-bottom: 32px; }
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: 8px; }
+.mt-2 { margin-top: 16px; }
+.mt-3 { margin-top: 24px; }
+.mt-4 { margin-top: 32px; }
+
+.p-0 { padding: 0; }
+.p-1 { padding: 8px; }
+.p-2 { padding: 16px; }
+.p-3 { padding: 24px; }
+.p-4 { padding: 32px; }
+
+/* Accessibility improvements */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.focus-visible {
+  outline: 2px solid #F16521;
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .btn-etsy,
+  .btn-etsy-outline,
+  .btn-etsy-secondary {
+    border: 1px solid #191919;
+    background: transparent;
+    color: #191919;
+  }
 }

@@ -1,40 +1,47 @@
-import { Box, Divider, Typography } from '@mui/material'
 import React from 'react'
 
 const BottomFooterDesktop = () => {
-    const date = new Date().getFullYear();
-    const footerMessage = `© ${date} Betsy, Inc.`
+  const date = new Date().getFullYear();
+  const footerMessage = `© ${date} Betsy, Inc.`;
+
+  const footerLinks = [
+    'Terms of Use',
+    'Privacy', 
+    'Cookies',
+    'Interest-based ads',
+    'Regions'
+  ];
+
   return (
-    <Box sx={{p: 3,background: "#232347", display: {xs: "none", md:"flex"}, justifyContent: "space-between", alignItems: "center"}}>
-        <Box sx={{display: "flex", color: "white", p: 2, gap: "10px"}}>
-        <Typography variant="subtitle2" sx={{fontSize:"110%"}}>🇪🇺</Typography>
-        <Divider sx={{ height: 15, m: 0.5 , background: "white"}} orientation="vertical" />
-
-        <Typography variant='subtitle2'>English (US)</Typography>
-        <Divider sx={{ height: 15, m: 0.5 , background: "white"}} orientation="vertical" />
-
-        <Typography variant='subtitle2'>€ (EUR)</Typography>
-        </Box>
-        <Box sx={{display: "flex", justifyContent: "center", alignItems :"center", color: "white", p: 2, gap: "10px"}}>
-        <Typography>{footerMessage}</Typography>
-
-            <Typography variant='subtitle2' sx={{fontSize: "80%", textDecoration: "underline"}}>
-                Terms of Use
-            </Typography>
-            <Typography variant='subtitle2' sx={{fontSize: "80%", textDecoration: "underline"}}>
-                Privacy
-            </Typography>
-            <Typography variant='subtitle2' sx={{fontSize: "80%", textDecoration: "underline"}}>
-                Cookies
-            </Typography>
-            <Typography variant='subtitle2' sx={{fontSize: "80%", textDecoration: "underline"}}>
-            Interest-based ads
-            </Typography>
-            <Typography variant='subtitle2' sx={{fontSize: "80%", textDecoration: "underline"}}>
-                Regions
-            </Typography>
-        </Box>
-    </Box>  )
+    <div className="bg-neutral-900 p-6 hidden md:flex justify-between items-center">
+      
+      {/* Language and Currency Section */}
+      <div className="flex items-center gap-3 text-white">
+        <span className="text-lg">🇪🇺</span>
+        <div className="w-px h-4 bg-white/30"></div>
+        <span className="text-sm">English (US)</span>
+        <div className="w-px h-4 bg-white/30"></div>
+        <span className="text-sm">€ (EUR)</span>
+      </div>
+      
+      {/* Copyright and Links */}
+      <div className="flex items-center gap-6 text-white">
+        <span className="text-sm">{footerMessage}</span>
+        
+        {/* Footer Links */}
+        <div className="flex items-center gap-4">
+          {footerLinks.map((link, index) => (
+            <button
+              key={index}
+              className="text-xs underline hover:text-neutral-300 transition-colors"
+            >
+              {link}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export default BottomFooterDesktop

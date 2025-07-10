@@ -1,121 +1,168 @@
-import { Accordion, AccordionDetails, AccordionSummary, Box, Button, IconButton, Typography } from '@mui/material'
-import React from 'react'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import PinterestIcon from '@mui/icons-material/Pinterest';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import YouTube  from '@mui/icons-material/YouTube';
-import { lightBlue } from '@mui/material/colors';
+import React, { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ChevronDown, Instagram, Facebook, Twitter, Youtube } from 'lucide-react'
+import { Link } from 'react-router-dom'
+
 const FooterAccordion = () => {
+  const [openSections, setOpenSections] = useState<{ [key: string]: boolean }>({})
+
+  const toggleSection = (section: string) => {
+    setOpenSections(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }))
+  }
+
+  const AccordionItem = ({ 
+    title, 
+    children, 
+    sectionKey 
+  }: { 
+    title: string
+    children: React.ReactNode
+    sectionKey: string 
+  }) => (
+    <div className="border-b border-white/20">
+      <button
+        onClick={() => toggleSection(sectionKey)}
+        className="w-full flex items-center justify-between py-4 text-left focus:outline-none"
+      >
+        <span className="text-white font-semibold text-lg">{title}</span>
+        <motion.div
+          animate={{ rotate: openSections[sectionKey] ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          <ChevronDown className="w-5 h-5 text-white" />
+        </motion.div>
+      </button>
+      
+      <AnimatePresence>
+        {openSections[sectionKey] && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2 }}
+            className="overflow-hidden"
+          >
+            <div className="pb-4 space-y-3">
+              {children}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+
   return (
-    <Box sx={{background: "#2F456C", border: "0px", display:{xs: "flex", md: "none"}, flexDirection: "column", gap: "5px"}}>
-    <Accordion sx={{background: "transparent", border:"0px", boxShadow: "0px 0px 0px", color: "white", borderRadius: "10px",px:1}}>
-      <AccordionSummary
-        expandIcon={<ExpandMoreIcon sx={{color: "white"}}/>}
-        aria-controls="panel1a-content"
-        id="panel1a-header"
-        sx={{background: "transparent"}}
-      >
-        <Typography sx={{fontWeight: "bold"}}>Shop</Typography>
-      </AccordionSummary>
-      <AccordionDetails sx={{display: "flex", flexDirection: "column", gap: 5}}>
-      <Typography>
+    <div className="bg-slate-700 px-4 md:hidden">
+      <AccordionItem title="Shop" sectionKey="shop">
+        <Link to="/404" className="block text-white/80 hover:text-white transition-colors">
           Gift Cards
-        </Typography>
-        <Typography>
+        </Link>
+        <Link to="/404" className="block text-white/80 hover:text-white transition-colors">
           Sitemap
-        </Typography>
-        <Typography>
+        </Link>
+        <Link to="/404" className="block text-white/80 hover:text-white transition-colors">
           Betsy blog
-        </Typography>
-      </AccordionDetails>
-    </Accordion >
-    <Accordion sx={{background: "transparent", boxShadow: "0px 0px 0px", color: "white", px:1}}>
-      <AccordionSummary
-        expandIcon={<ExpandMoreIcon sx={{color: "white"}}/>}
-        aria-controls="panel2a-content"
-        id="panel2a-header"
-      >
-        <Typography sx={{fontWeight: "bold"}}>Sell</Typography>
-      </AccordionSummary>
-      <AccordionDetails sx={{display: "flex", flexDirection: "column", gap: 5}}>
-      <Typography>
+        </Link>
+      </AccordionItem>
+
+      <AccordionItem title="Sell" sectionKey="sell">
+        <Link to="/404" className="block text-white/80 hover:text-white transition-colors">
           Sell on Betsy
-        </Typography>
-        <Typography>
+        </Link>
+        <Link to="/404" className="block text-white/80 hover:text-white transition-colors">
           Teams
-        </Typography>
-        <Typography>
+        </Link>
+        <Link to="/404" className="block text-white/80 hover:text-white transition-colors">
           Forums
-        </Typography>
-        <Typography>
-            Affiliates
-        </Typography>
-      </AccordionDetails>
-    </Accordion>
-    <Accordion sx={{background: "transparent", boxShadow: "0px 0px 0px", color: "white", px:1}}>
-      <AccordionSummary
-        expandIcon={<ExpandMoreIcon sx={{color: "white"}}/>}
-        aria-controls="panel2a-content"
-        id="panel2a-header"
-      >
-        <Typography sx={{fontWeight: "bold"}}>About</Typography>
-      </AccordionSummary>
-      <AccordionDetails sx={{display: "flex", flexDirection: "column", gap: 5}}>
-      <Typography>
+        </Link>
+        <Link to="/404" className="block text-white/80 hover:text-white transition-colors">
+          Affiliates
+        </Link>
+      </AccordionItem>
+
+      <AccordionItem title="About" sectionKey="about">
+        <Link to="/404" className="block text-white/80 hover:text-white transition-colors">
           Betsy, Inc.
-        </Typography>
-        <Typography>
+        </Link>
+        <Link to="/404" className="block text-white/80 hover:text-white transition-colors">
           Policies
-        </Typography>
-        <Typography>
+        </Link>
+        <Link to="/404" className="block text-white/80 hover:text-white transition-colors">
           Investors
-        </Typography>        <Typography>
-          Carreers
-        </Typography>
-      </AccordionDetails>
-    </Accordion>
-    <Accordion sx={{background: "transparent", boxShadow: "0px 0px 0px", color: "white", px:1}}>
-      <AccordionSummary
-        expandIcon={<ExpandMoreIcon sx={{color: "white"}}/>}
-        aria-controls="panel2a-content"
-        id="panel2a-header"
-      >
-        <Typography sx={{fontWeight: "bold"}}>Help</Typography>
-      </AccordionSummary>
-      <AccordionDetails sx={{display: "flex", flexDirection: "column", gap: 5}}>
-        <Typography>
+        </Link>
+        <Link to="/404" className="block text-white/80 hover:text-white transition-colors">
+          Careers
+        </Link>
+      </AccordionItem>
+
+      <AccordionItem title="Help" sectionKey="help">
+        <Link to="/404" className="block text-white/80 hover:text-white transition-colors">
           Help center
-        </Typography>
-        <Typography>
+        </Link>
+        <Link to="/404" className="block text-white/80 hover:text-white transition-colors">
           Privacy settings
-        </Typography>
-      </AccordionDetails>
-    </Accordion>
-    <Box sx={{justifySelf: "center", alignSelf: "center"}}>
-        <Button sx={{padding: 1, background: "transparent", border: "2px solid white", borderRadius: "20px", textTransform: "unset", my: 3}} disabled>
-            <Typography variant='subtitle1' sx={{color: "white", fontSize: "80%"}}>Download Betsy App</Typography>
-        </Button>
-    </Box>
-    <Box sx={{display: "flex", justifyContent: "center", mb: 2}}>
-    <IconButton>
-                <InstagramIcon sx={{color: "red", fontSize: "120%"}}/>
-            </IconButton>
-            <IconButton>
-                <FacebookIcon sx={{color: "#3b5998",fontSize: "120%"}}/>
-            </IconButton>
-            <IconButton>
-                <PinterestIcon sx={{color: "pink", fontSize: "120%"}}/>
-            </IconButton>
-            <IconButton>
-                <TwitterIcon sx={{color: "lightblue", fontSize: "120%"}}/>
-            </IconButton>
-            <IconButton>
-                <YouTube sx={{color: 'red', fontSize: "120%"}}/>
-            </IconButton>
-    </Box>
-  </Box>
+        </Link>
+      </AccordionItem>
+
+      {/* Download App Button */}
+      <div className="flex justify-center py-6">
+        <button 
+          disabled
+          className="px-6 py-2 border-2 border-white rounded-full text-white text-sm opacity-60 cursor-not-allowed"
+        >
+          Download Betsy App
+        </button>
+      </div>
+
+      {/* Social Media Icons */}
+      <div className="flex justify-center space-x-4 pb-6">
+        <motion.a
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          href="#"
+          className="p-2 rounded-full hover:bg-white/10 transition-colors"
+        >
+          <Instagram className="w-6 h-6 text-pink-400" />
+        </motion.a>
+        <motion.a
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          href="#"
+          className="p-2 rounded-full hover:bg-white/10 transition-colors"
+        >
+          <Facebook className="w-6 h-6 text-blue-400" />
+        </motion.a>
+        <motion.a
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          href="#"
+          className="p-2 rounded-full hover:bg-white/10 transition-colors"
+        >
+          <div className="w-6 h-6 bg-pink-400 rounded-sm flex items-center justify-center">
+            <span className="text-white text-xs font-bold">P</span>
+          </div>
+        </motion.a>
+        <motion.a
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          href="#"
+          className="p-2 rounded-full hover:bg-white/10 transition-colors"
+        >
+          <Twitter className="w-6 h-6 text-sky-400" />
+        </motion.a>
+        <motion.a
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          href="#"
+          className="p-2 rounded-full hover:bg-white/10 transition-colors"
+        >
+          <Youtube className="w-6 h-6 text-red-500" />
+        </motion.a>
+      </div>
+    </div>
   )
 }
 
